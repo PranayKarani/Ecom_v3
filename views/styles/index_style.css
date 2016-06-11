@@ -1,0 +1,57 @@
+h2{
+    margin: 0 0;
+}
+#dept-category{
+    outline: 1px solid black;
+}
+#dept_container {
+    width: 100%;
+    height: 100px;
+    outline: 1px solid black;
+}
+.dept_link {
+    width: 25%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+.dept_link:hover, .category_link:hover{
+    background-color: silver;
+    cursor: pointer;
+}
+#category-products{
+    width: 100%;
+    height: auto;
+    float: left;
+    outline: 1px solid green;
+}
+#category_container{
+    width: 25%;
+    height: auto;
+    float: left;
+    outline: 1px solid black;
+}
+#category_products_container{
+    width: 75%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+.category_link{
+    width: 100%;
+    height: 50px;
+    /*float: left;*/
+    outline: 1px solid black;
+}
+#new-products, #top-products{
+    clear: both;
+}
+.product_link{
+    width: auto;
+}
+.product_link:hover, .category_product_link:hover{
+    cursor: pointer;
+    /*font-weight: bolder;*/
+    color: white;
+    background-color: black;
+}

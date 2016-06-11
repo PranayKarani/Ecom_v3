@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Ecom_v3" uuid="93041413-01f6-44fa-b35e-399982e35105">
+    <database-info product="MySQL" version="5.5.5-10.1.10-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="ecom_v3"/>
+      <table id="2" parent="1" name="brands"/>
+      <table id="3" parent="1" name="c__air_conditioner"/>
+      <table id="4" parent="1" name="c__camera"/>
+      <table id="5" parent="1" name="c__laptop"/>
+      <table id="6" parent="1" name="c__mobile_phone"/>
+      <table id="7" parent="1" name="c__refrigerator"/>
+      <table id="8" parent="1" name="c__tablet"/>
+      <table id="9" parent="1" name="c__television"/>
+      <table id="10" parent="1" name="cart_pool"/>
+      <table id="11" parent="1" name="category"/>
+      <table id="12" parent="1" name="customer"/>
+      <table id="13" parent="1" name="department"/>
+      <table id="14" parent="1" name="image_pool"/>
+      <table id="15" parent="1" name="inventory_pool"/>
+      <table id="16" parent="1" name="market"/>
+      <table id="17" parent="1" name="order_pool"/>
+      <table id="18" parent="1" name="product_pool"/>
+      <table id="19" parent="1" name="sale_pool"/>
+      <table id="20" parent="1" name="seller"/>
+      <table id="21" parent="1" name="shop_pool"/>
+      <table id="22" parent="1" name="shortlist_pool"/>
+      <table id="23" parent="1" name="c__microwave_oven"/>
+      <routine id="24" parent="1" name="count_products">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="25" parent="1" name="count_products_in_category">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="26" parent="1" name="count_products_in_dept">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="27" parent="1" name="get_category_details">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="28" parent="1" name="get_category_list">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="29" parent="1" name="get_dept_details">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="30" parent="1" name="get_dept_list">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="31" parent="1" name="get_products_in_category">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="32" parent="1" name="get_products_in_dept">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="33" parent="1" name="get_products_list">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="34" parent="1" name="get_product_details">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="35" parent="1" name="get_searched_products">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="36" parent="1" name="get_searched_categories">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="37" parent="1" name="get_searched_shops">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="38" parent="1" name="get_shop_details">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="39" parent="1" name="get_shop_owner_details">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="40" parent="1" name="get_shop_products">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <routine id="41" parent="1" name="get_shop_product_details">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <column id="42" parent="2" name="brand_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="43" parent="2" name="PRIMARY">
+        <columns>brand_name</columns>
+        <primary>1</primary>
+      </key>
+      <column id="44" parent="3" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="45" parent="3" name="type">
+        <comment>split, window.</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="46" parent="3" name="energy_rating">
+        <comment>append star(s) to values e.g. 5 stars</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="47" parent="3" name="capacity">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="48" parent="3" name="c__air_conditioner_ibfk_1">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="49" parent="3" name="c__air_conditioner_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="50" parent="4" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="51" parent="4" name="type">
+        <comment>DLSR, Point and shoot etc.</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="52" parent="4" name="mp">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="53" parent="4" name="c__camera_ibfk_1">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="54" parent="4" name="c__camera_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="55" parent="5" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="56" parent="5" name="os">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="57" parent="5" name="cpu">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="58" parent="5" name="ram">
+        <comment>2gb, 512mb. last two (exactly) letters should gb/mb etc.</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="59" parent="5" name="in_storage">
+        <comment>8gb, 128gb. formatting same as ram</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="60" parent="5" name="battery">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="61" parent="5" name="c__laptop_ibfk_1">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="62" parent="5" name="c__laptop_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="63" parent="6" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="64" parent="6" name="os">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="65" parent="6" name="cpu">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="66" parent="6" name="ram">
+        <comment>2gb, 512mb. last two (exactly) letters should gb/mb etc.</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="67" parent="6" name="in_storage">
+        <comment>8gb, 128gb. formatting same as ram</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="68" parent="6" name="ex_storage">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="69" parent="6" name="battery">
+        <comment>5000mAh, formatting same as ram, but with 3 last letters</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="70" parent="6" name="camera">
+        <comment>12.2MP, 14MP, last 2 letters = MP</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="71" parent="6" name="c__mobile_phone_ibfk_1">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="72" parent="6" name="c__mobile_phone_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="73" parent="7" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="74" parent="7" name="type">
+        <comment>triple door, double door etc.</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="75" parent="7" name="energy_rating">
+        <comment>append star(s) to values e.g. 5 stars</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="76" parent="7" name="capacity">
+        <comment>150, append L e.g. 150L</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="77" parent="7" name="c__refrigerator_ibfk_1">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="78" parent="7" name="c__refrigerator_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="79" parent="8" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="80" parent="8" name="os">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="81" parent="8" name="cpu">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="82" parent="8" name="ram">
+        <comment>2gb, 512mb. last two (exactly) letters should gb/mb etc.</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="83" parent="8" name="in_storage">
+        <comment>8gb, 128gb. formatting same as ram</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="84" parent="8" name="ex_storage">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="85" parent="8" name="battery">
+        <comment>5000mAh, formatting same as ram, but with 3 last letters</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="86" parent="8" name="camera">
+        <comment>12.2MP, 14MP, last 2 letters = MP</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="87" parent="8" name="c__tablet_ibfk_1">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="88" parent="8" name="c__tablet_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="89" parent="9" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="90" parent="9" name="resolution">
+        <comment>HD, Full HD etc.</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="91" parent="9" name="size">
+        <comment>screen size</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="92" parent="9" name="hdmi">
+        <comment>-1 if no hdmi</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="93" parent="9" name="usb">
+        <comment>-1 if no hdmi</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="94" parent="9" name="c__television_ibfk_1">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="95" parent="9" name="c__television_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="96" parent="10" name="customer">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="97" parent="10" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="98" parent="10" name="shop">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="99" parent="10" name="qty">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="100" parent="10" name="price">
+        <data-type>double</data-type>
+      </column>
+      <index id="101" parent="10" name="customer">
+        <columns>customer</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="102" parent="10" name="product">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="103" parent="10" name="shop">
+        <columns>shop</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="104" parent="10" name="cart_pool_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="105" parent="10" name="cart_pool_ibfk_3">
+        <columns>shop</columns>
+        <ref-key>~.shop_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="106" parent="10" name="cart_pool_ibfk_4">
+        <columns>customer</columns>
+        <ref-key>~.customer.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="107" parent="11" name="category_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="108" parent="11" name="department">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="109" parent="11" name="filters">
+        <mandatory>1</mandatory>
+        <data-type>varchar(1000)</data-type>
+      </column>
+      <index id="110" parent="11" name="department">
+        <columns>department</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="111" parent="11" name="PRIMARY">
+        <columns>category_name</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="112" parent="11" name="category_ibfk_1">
+        <columns>department</columns>
+        <ref-key>~.department.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="113" parent="12" name="customer_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="114" parent="12" name="customer_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="115" parent="12" name="customer_password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="116" parent="12" name="customer_contact">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="117" parent="12" name="customer_email">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="118" parent="12" name="customer_email">
+        <columns>customer_email</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="119" parent="12" name="customer_email">
+        <columns>customer_email</columns>
+        <underlying-index>customer_email</underlying-index>
+      </key>
+      <key id="120" parent="12" name="PRIMARY">
+        <columns>customer_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="121" parent="13" name="department_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="122" parent="13" name="PRIMARY">
+        <columns>department_name</columns>
+        <primary>1</primary>
+      </key>
+      <column id="123" parent="14" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="124" parent="14" name="image_path">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="125" parent="14" name="product">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="126" parent="14" name="image_pool_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="127" parent="15" name="shop">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="128" parent="15" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="129" parent="15" name="qty">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="130" parent="15" name="price">
+        <data-type>double</data-type>
+      </column>
+      <column id="131" parent="15" name="shop_specific_info">
+        <comment>just in case :P</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="132" parent="15" name="inventory_pool_ibfk_1">
+        <columns>shop</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="133" parent="15" name="inventory_pool_ibfk_2">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="134" parent="15" name="inventory_pool_ibfk_1">
+        <columns>shop</columns>
+        <ref-key>~.shop_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="135" parent="15" name="inventory_pool_ibfk_2">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="136" parent="16" name="seller">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="137" parent="16" name="shop">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <index id="138" parent="16" name="market_ibfk_1">
+        <columns>shop</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="139" parent="16" name="market_ibfk_2">
+        <columns>seller</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="140" parent="16" name="market_ibfk_1">
+        <columns>shop</columns>
+        <ref-key>~.shop_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="141" parent="16" name="market_ibfk_2">
+        <columns>seller</columns>
+        <ref-key>~.seller.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="142" parent="17" name="order_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="143" parent="17" name="customer">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="144" parent="17" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="145" parent="17" name="shop">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="146" parent="17" name="qty">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="147" parent="17" name="price">
+        <data-type>double</data-type>
+      </column>
+      <column id="148" parent="17" name="status">
+        <comment>0-pending, 1-delivered</comment>
+        <data-type>tinyint(4)</data-type>
+      </column>
+      <column id="149" parent="17" name="date">
+        <data-type>date</data-type>
+      </column>
+      <column id="150" parent="17" name="time">
+        <data-type>time</data-type>
+      </column>
+      <index id="151" parent="17" name="customer">
+        <columns>customer</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="152" parent="17" name="product">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="153" parent="17" name="shop">
+        <columns>shop</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="154" parent="17" name="PRIMARY">
+        <columns>order_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="155" parent="17" name="order_pool_ibfk_2">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="156" parent="17" name="order_pool_ibfk_3">
+        <columns>shop</columns>
+        <ref-key>~.shop_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="157" parent="17" name="order_pool_ibfk_4">
+        <columns>customer</columns>
+        <ref-key>~.customer.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="158" parent="18" name="product_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="159" parent="18" name="product_name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="160" parent="18" name="category">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="161" parent="18" name="quick_info">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="162" parent="18" name="brand">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="163" parent="18" name="thumbnail">
+        <comment>display picture of the product</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="164" parent="18" name="mrp">
+        <data-type>double</data-type>
+      </column>
+      <column id="165" parent="18" name="keywords">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="166" parent="18" name="brand">
+        <columns>brand</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="167" parent="18" name="category">
+        <columns>category</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="168" parent="18" name="PRIMARY">
+        <columns>product_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="169" parent="18" name="product_pool_ibfk_1">
+        <columns>category</columns>
+        <ref-key>~.category.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="170" parent="18" name="product_pool_ibfk_2">
+        <columns>brand</columns>
+        <ref-key>~.brands.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="171" parent="19" name="sale_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="172" parent="19" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="173" parent="19" name="shop">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="174" parent="19" name="discount_rate">
+        <data-type>double</data-type>
+      </column>
+      <column id="175" parent="19" name="expiry_date">
+        <data-type>date</data-type>
+      </column>
+      <column id="176" parent="19" name="description">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="177" parent="19" name="product">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="178" parent="19" name="shop">
+        <columns>shop</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="179" parent="19" name="PRIMARY">
+        <columns>sale_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="180" parent="19" name="sale_pool_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="181" parent="19" name="sale_pool_ibfk_2">
+        <columns>shop</columns>
+        <ref-key>~.shop_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="182" parent="20" name="seller_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="183" parent="20" name="seller_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="184" parent="20" name="seller_password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="185" parent="20" name="seller_contact">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="186" parent="20" name="seller_email">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="187" parent="20" name="seller_email">
+        <columns>seller_email</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="188" parent="20" name="PRIMARY">
+        <columns>seller_id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="189" parent="20" name="seller_email">
+        <columns>seller_email</columns>
+        <underlying-index>seller_email</underlying-index>
+      </key>
+      <column id="190" parent="21" name="shop_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="191" parent="21" name="shop_name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="192" parent="21" name="department">
+        <comment>Electronics, Clothing etc.</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="193" parent="21" name="shop_contact">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="194" parent="21" name="shop_image">
+        <comment>bit different from thumbnail</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="195" parent="21" name="shop_desc">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="196" parent="21" name="shop_address">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="197" parent="21" name="loc_x">
+        <data-type>double</data-type>
+      </column>
+      <column id="198" parent="21" name="loc_y">
+        <data-type>double</data-type>
+      </column>
+      <column id="199" parent="21" name="keywords">
+        <comment>in case of shop search :p</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="200" parent="21" name="open">
+        <comment>whether shop is open or closed</comment>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <column id="201" parent="21" name="inv_size">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;250&apos;</default-expression>
+      </column>
+      <key id="202" parent="21" name="PRIMARY">
+        <columns>shop_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="203" parent="22" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="204" parent="22" name="customer">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <index id="205" parent="22" name="customer">
+        <columns>customer</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="206" parent="22" name="product">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="207" parent="22" name="shortlist_pool_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="208" parent="22" name="shortlist_pool_ibfk_2">
+        <columns>customer</columns>
+        <ref-key>~.customer.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="209" parent="23" name="product">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="210" parent="23" name="type">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="211" parent="23" name="capacity">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="212" parent="23" name="power_output">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="213" parent="23" name="product">
+        <columns>product</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="214" parent="23" name="c__microwave_oven_ibfk_1">
+        <columns>product</columns>
+        <ref-key>~.product_pool.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <argument id="215" parent="25" name="category_name_var">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="216" parent="26" name="dept_name_var">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="217" parent="27" name="category_name_var">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="218" parent="28" name="dept_name_var">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="219" parent="29" name="dept_name_var">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="220" parent="31" name="category_name_var">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="221" parent="32" name="dept_name_var">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="222" parent="34" name="id">
+        <direction>IN</direction>
+        <data-type>int(10) unsigned</data-type>
+      </argument>
+      <argument id="223" parent="35" name="search_text">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="224" parent="35" name="lmt">
+        <direction>IN</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+      <argument id="225" parent="36" name="search_text">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="226" parent="36" name="lmt">
+        <direction>IN</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+      <argument id="227" parent="37" name="search_text">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="228" parent="38" name="id">
+        <direction>IN</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+      <argument id="229" parent="39" name="shop_id">
+        <direction>IN</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+      <argument id="230" parent="40" name="shop_id">
+        <direction>IN</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+      <argument id="231" parent="41" name="shop_id">
+        <direction>IN</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+      <argument id="232" parent="41" name="product_id">
+        <direction>IN</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+    </database-model>
+  </data-source>
+</component>

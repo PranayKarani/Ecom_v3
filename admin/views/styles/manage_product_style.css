@@ -1,0 +1,98 @@
+body {
+    width: 1400px;
+    margin: 0 auto;
+}
+
+input[type="search"] {
+    width: 100%;
+}
+
+#left_section {
+    width: 20%;
+    /*height: 100px;*/
+    float: left;
+    outline: 1px solid red;
+}
+
+#center_section {
+    width: 40%;
+    /*height: 100px;*/
+    float: left;
+    outline: 1px solid green;
+}
+
+#center_top {
+    width: 100%;
+    float: left;
+    outline: 1px dotted black;
+}
+
+#center_bottom {
+    width: 100%;
+    float: right;
+    outline: 1px dotted black;
+}
+
+#right_section {
+    width: 40%;
+    /*height: 100px;*/
+    float: left;
+    outline: 1px solid blue;
+}
+
+#right_top {
+    width: 100%;
+    float: left;
+    outline: 1px dotted black;
+}
+
+#right_center {
+    width: 100%;
+    float: right;
+    margin-top: 20px;
+    outline: 1px dotted black;
+}
+#right_bottom{
+    width: 100%;
+    float: right;
+    margin-top: 20px;
+    outline: 1px dotted black;
+}
+
+#search_box {
+    width: 100%;
+    outline: 1px solid black;
+}
+
+.search_result_link {
+    width: auto;
+    height: 100%;
+    padding: 5px;
+}
+
+.search_result_link:hover{
+    cursor: pointer;
+    outline: 2px solid black;
+    font-weight: bold;
+}
+/*.product_name_link:hover {*/
+    /*cursor: pointer;*/
+    /*color: blue;*/
+    /*border-bottom: 1px solid blue;*/
+/*}*/
+
+#submit_basic, #submit_advance {
+    background-color: orange;
+    color: white;
+    font-size: large;
+}
+
+#add_new_product_button, #submit_new, #add_new_brand_button {
+    background-color: limegreen;
+    color: white;
+    font-size: large
+}
+
+#submit_basic:disabled, #submit_advance:disabled, #add_new_product_button:disabled {
+    background-color: lightgrey;
+}
