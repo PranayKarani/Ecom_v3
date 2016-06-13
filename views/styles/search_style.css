@@ -1,0 +1,28 @@
+#left_section {
+    width: 25%;
+    /*height: 200px;*/
+    float: left;
+    outline: 1px solid black;
+}
+
+#center_section {
+    width: 75%;
+    height: 200px;
+    float: left;
+    outline: 1px solid black;
+}
+
+.filtered_product_link {
+    background-color: chartreuse;
+}
+
+.product_link {
+    background-color: darkorange;
+}
+
+.filtered_product_link:hover, .product_link:hover {
+    cursor: pointer;
+    /*font-weight: bolder;*/
+    color: white;
+    background-color: black;
+}

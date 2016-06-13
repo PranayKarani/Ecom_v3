@@ -11,7 +11,23 @@ class ProductController {
     }
 
     public static function getSearchedProducts ($search_text) {
-        $sql = "CALL get_searched_products('$search_text', 10)";
+        $search_text = stripslashes($search_text);
+
+        $replacements = array( '+', '-', '*', '~', '@', '%', '(', ')', '<', '>', '\'', '"', '\\' );
+        $search_text = str_replace($replacements, '', $search_text);
+
+//        $search_text = preg_replace('#[+*()%-~@\'"]#', '', $search_text);
+
+        $text = explode(' ', trim($search_text));
+        $strict_search_text = '';
+        for ($i = 0; $i < count($text); $i++) {
+            $txt = $text[$i];
+
+            if (!empty(trim($txt))) {
+                $strict_search_text .= " +$txt";
+            }
+        }
+        $sql = "CALL get_searched_products('$strict_search_text','$search_text', 20)";
 
         return DBHandler::getAll($sql);
     }
@@ -81,10 +97,6 @@ class ProductController {
                 }
 
             }
-
-//            echo "<pre>";
-//            print_r($details);
-//            echo "</pre>";
 
         }
 

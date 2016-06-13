@@ -50,12 +50,12 @@ require_once('views/CategoryView.php');
 
 <div id="new-products">
     <h2>New Products</h2>
-    <?php ProductView::showNewProducts(); ?>
+    <?php ProductView::showNewProducts(5); ?>
 </div>
 
 <div id="top-products">
     <h2>Top Products</h2>
-    <?php ProductView::showTopProducts(); ?>
+    <?php ProductView::showTopProducts(5); ?>
 </div>
 
 </body>

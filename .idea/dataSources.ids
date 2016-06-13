@@ -580,260 +580,268 @@
         <columns>category</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="168" parent="18" name="PRIMARY">
+      <index id="168" parent="18" name="keywords">
+        <columns>keywords</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="169" parent="18" name="PRIMARY">
         <columns>product_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="169" parent="18" name="product_pool_ibfk_1">
+      <foreign-key id="170" parent="18" name="product_pool_ibfk_1">
         <columns>category</columns>
         <ref-key>~.category.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="170" parent="18" name="product_pool_ibfk_2">
+      <foreign-key id="171" parent="18" name="product_pool_ibfk_2">
         <columns>brand</columns>
         <ref-key>~.brands.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="171" parent="19" name="sale_id">
+      <column id="172" parent="19" name="sale_id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
       </column>
-      <column id="172" parent="19" name="product">
+      <column id="173" parent="19" name="product">
         <data-type>int(10) unsigned</data-type>
       </column>
-      <column id="173" parent="19" name="shop">
+      <column id="174" parent="19" name="shop">
         <data-type>int(10) unsigned</data-type>
       </column>
-      <column id="174" parent="19" name="discount_rate">
+      <column id="175" parent="19" name="discount_rate">
         <data-type>double</data-type>
       </column>
-      <column id="175" parent="19" name="expiry_date">
+      <column id="176" parent="19" name="expiry_date">
         <data-type>date</data-type>
       </column>
-      <column id="176" parent="19" name="description">
+      <column id="177" parent="19" name="description">
         <data-type>varchar(255)</data-type>
       </column>
-      <index id="177" parent="19" name="product">
+      <index id="178" parent="19" name="product">
         <columns>product</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="178" parent="19" name="shop">
+      <index id="179" parent="19" name="shop">
         <columns>shop</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="179" parent="19" name="PRIMARY">
+      <key id="180" parent="19" name="PRIMARY">
         <columns>sale_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="180" parent="19" name="sale_pool_ibfk_1">
+      <foreign-key id="181" parent="19" name="sale_pool_ibfk_1">
         <columns>product</columns>
         <ref-key>~.product_pool.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="181" parent="19" name="sale_pool_ibfk_2">
+      <foreign-key id="182" parent="19" name="sale_pool_ibfk_2">
         <columns>shop</columns>
         <ref-key>~.shop_pool.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="182" parent="20" name="seller_id">
+      <column id="183" parent="20" name="seller_id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
       </column>
-      <column id="183" parent="20" name="seller_name">
+      <column id="184" parent="20" name="seller_name">
         <mandatory>1</mandatory>
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="184" parent="20" name="seller_password">
+      <column id="185" parent="20" name="seller_password">
         <mandatory>1</mandatory>
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="185" parent="20" name="seller_contact">
+      <column id="186" parent="20" name="seller_contact">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="186" parent="20" name="seller_email">
+      <column id="187" parent="20" name="seller_email">
         <data-type>varchar(255)</data-type>
       </column>
-      <index id="187" parent="20" name="seller_email">
+      <index id="188" parent="20" name="seller_email">
         <columns>seller_email</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="188" parent="20" name="PRIMARY">
+      <key id="189" parent="20" name="PRIMARY">
         <columns>seller_id</columns>
         <primary>1</primary>
       </key>
-      <key id="189" parent="20" name="seller_email">
+      <key id="190" parent="20" name="seller_email">
         <columns>seller_email</columns>
         <underlying-index>seller_email</underlying-index>
       </key>
-      <column id="190" parent="21" name="shop_id">
+      <column id="191" parent="21" name="shop_id">
         <mandatory>1</mandatory>
         <data-type>int(10) unsigned</data-type>
       </column>
-      <column id="191" parent="21" name="shop_name">
+      <column id="192" parent="21" name="shop_name">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="192" parent="21" name="department">
+      <column id="193" parent="21" name="department">
         <comment>Electronics, Clothing etc.</comment>
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="193" parent="21" name="shop_contact">
+      <column id="194" parent="21" name="shop_contact">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="194" parent="21" name="shop_image">
+      <column id="195" parent="21" name="shop_image">
         <comment>bit different from thumbnail</comment>
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="195" parent="21" name="shop_desc">
+      <column id="196" parent="21" name="shop_desc">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="196" parent="21" name="shop_address">
+      <column id="197" parent="21" name="shop_address">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="197" parent="21" name="loc_x">
+      <column id="198" parent="21" name="loc_x">
         <data-type>double</data-type>
       </column>
-      <column id="198" parent="21" name="loc_y">
+      <column id="199" parent="21" name="loc_y">
         <data-type>double</data-type>
       </column>
-      <column id="199" parent="21" name="keywords">
+      <column id="200" parent="21" name="keywords">
         <comment>in case of shop search :p</comment>
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="200" parent="21" name="open">
+      <column id="201" parent="21" name="open">
         <comment>whether shop is open or closed</comment>
         <data-type>tinyint(1)</data-type>
       </column>
-      <column id="201" parent="21" name="inv_size">
+      <column id="202" parent="21" name="inv_size">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
         <default-expression>&apos;250&apos;</default-expression>
       </column>
-      <key id="202" parent="21" name="PRIMARY">
+      <key id="203" parent="21" name="PRIMARY">
         <columns>shop_id</columns>
         <primary>1</primary>
       </key>
-      <column id="203" parent="22" name="product">
+      <column id="204" parent="22" name="product">
         <data-type>int(10) unsigned</data-type>
       </column>
-      <column id="204" parent="22" name="customer">
+      <column id="205" parent="22" name="customer">
         <data-type>int(10) unsigned</data-type>
       </column>
-      <index id="205" parent="22" name="customer">
+      <index id="206" parent="22" name="customer">
         <columns>customer</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="206" parent="22" name="product">
+      <index id="207" parent="22" name="product">
         <columns>product</columns>
         <desc-columns></desc-columns>
       </index>
-      <foreign-key id="207" parent="22" name="shortlist_pool_ibfk_1">
+      <foreign-key id="208" parent="22" name="shortlist_pool_ibfk_1">
         <columns>product</columns>
         <ref-key>~.product_pool.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="208" parent="22" name="shortlist_pool_ibfk_2">
+      <foreign-key id="209" parent="22" name="shortlist_pool_ibfk_2">
         <columns>customer</columns>
         <ref-key>~.customer.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="209" parent="23" name="product">
+      <column id="210" parent="23" name="product">
         <data-type>int(10) unsigned</data-type>
       </column>
-      <column id="210" parent="23" name="type">
+      <column id="211" parent="23" name="type">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="211" parent="23" name="capacity">
+      <column id="212" parent="23" name="capacity">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="212" parent="23" name="power_output">
+      <column id="213" parent="23" name="power_output">
         <data-type>varchar(255)</data-type>
       </column>
-      <index id="213" parent="23" name="product">
+      <index id="214" parent="23" name="product">
         <columns>product</columns>
         <desc-columns></desc-columns>
       </index>
-      <foreign-key id="214" parent="23" name="c__microwave_oven_ibfk_1">
+      <foreign-key id="215" parent="23" name="c__microwave_oven_ibfk_1">
         <columns>product</columns>
         <ref-key>~.product_pool.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <argument id="215" parent="25" name="category_name_var">
+      <argument id="216" parent="25" name="category_name_var">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="216" parent="26" name="dept_name_var">
+      <argument id="217" parent="26" name="dept_name_var">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="217" parent="27" name="category_name_var">
+      <argument id="218" parent="27" name="category_name_var">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="218" parent="28" name="dept_name_var">
+      <argument id="219" parent="28" name="dept_name_var">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="219" parent="29" name="dept_name_var">
+      <argument id="220" parent="29" name="dept_name_var">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="220" parent="31" name="category_name_var">
+      <argument id="221" parent="31" name="category_name_var">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="221" parent="32" name="dept_name_var">
+      <argument id="222" parent="32" name="dept_name_var">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="222" parent="34" name="id">
+      <argument id="223" parent="34" name="id">
         <direction>IN</direction>
         <data-type>int(10) unsigned</data-type>
       </argument>
-      <argument id="223" parent="35" name="search_text">
+      <argument id="224" parent="35" name="strict_text">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="224" parent="35" name="lmt">
-        <direction>IN</direction>
-        <data-type>int(11)</data-type>
-      </argument>
-      <argument id="225" parent="36" name="search_text">
+      <argument id="225" parent="35" name="search_text">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="226" parent="36" name="lmt">
+      <argument id="226" parent="35" name="lmt">
         <direction>IN</direction>
         <data-type>int(11)</data-type>
       </argument>
-      <argument id="227" parent="37" name="search_text">
+      <argument id="227" parent="36" name="search_text">
         <direction>IN</direction>
         <data-type>varchar(255)</data-type>
       </argument>
-      <argument id="228" parent="38" name="id">
+      <argument id="228" parent="36" name="lmt">
         <direction>IN</direction>
         <data-type>int(11)</data-type>
       </argument>
-      <argument id="229" parent="39" name="shop_id">
+      <argument id="229" parent="37" name="search_text">
+        <direction>IN</direction>
+        <data-type>varchar(255)</data-type>
+      </argument>
+      <argument id="230" parent="38" name="id">
         <direction>IN</direction>
         <data-type>int(11)</data-type>
       </argument>
-      <argument id="230" parent="40" name="shop_id">
+      <argument id="231" parent="39" name="shop_id">
         <direction>IN</direction>
         <data-type>int(11)</data-type>
       </argument>
-      <argument id="231" parent="41" name="shop_id">
+      <argument id="232" parent="40" name="shop_id">
         <direction>IN</direction>
         <data-type>int(11)</data-type>
       </argument>
-      <argument id="232" parent="41" name="product_id">
+      <argument id="233" parent="41" name="shop_id">
+        <direction>IN</direction>
+        <data-type>int(11)</data-type>
+      </argument>
+      <argument id="234" parent="41" name="product_id">
         <direction>IN</direction>
         <data-type>int(11)</data-type>
       </argument>

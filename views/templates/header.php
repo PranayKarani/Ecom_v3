@@ -10,9 +10,8 @@ class Header {
         <header>
             <div id="left"></div>
             <div id="center">
-                <form>
-                    <input type="search" placeholder="what are you looking for?" id="search_bar" autocomplete="off">
-                </form>
+
+                <input type="search" placeholder="what are you looking for?" id="search_bar" autocomplete="off">
                 <div id="search_suggestions">
 
                 </div>

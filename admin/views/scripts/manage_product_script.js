@@ -18,7 +18,8 @@ function search_products(search) {
             });
             $(".input_basic").on("input", function () {
                 $("#submit_basic").attr('disabled', false);
-                var keywords = $("#category").val() + " " + $("#brand").val() + " " + $("#product_name").val();
+                // TODO get department for keywords
+                var keywords = "electronics " + $("#category").val() + " " + $("#brand").val() + " " + $("#product_name").val();
                 $("#keywords").val(keywords);
             });
             $(".input_advance").on("input", function () {
@@ -119,7 +120,7 @@ $(document).ready(function () {
             function (data) {
 
                 $(".input_basic_new").on("input", function () {
-                    var keywords = $("#new_product_category").val() + " " + $("#new_brand").val() + " " + $("#new_product_name").val();
+                    var keywords = "electronics " + $("#new_product_category").val() + " " + $("#new_brand").val() + " " + $("#new_product_name").val();
                     $("#new_keywords").val(keywords);
                 });
 

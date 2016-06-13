@@ -2,7 +2,7 @@
 
 class CategoryView {
 
-    public static function show($dept){
+    public static function show ($dept) {
 
         $category_array = CategoryController::getCategories($dept);
 
@@ -17,15 +17,15 @@ class CategoryView {
         }
     }
 
-    public static function showSearchedCategories($search_text){
+    public static function showSearchedCategories ($search_text) {
 
         $cats = CategoryController::getSearchedCategories($search_text);
 
         $noofP = count($cats);
 
-        echo "<strong>Categories</strong><br>";
 
         if ($noofP > 0) {
+            echo "<strong>Categories</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
 
                 $name = $cats[$i]['category_name'];
@@ -34,8 +34,38 @@ class CategoryView {
                 echo $name;
                 echo "</div>";
             }
-        } else {
-            echo "no such categories like $search_text<br>";
+        }
+
+    }
+
+    public static function showFilters ($category) {
+
+        $filters = CategoryController::getFilters($category);
+        $filters = explode(' ', $filters);
+        $filter_count = count($filters);
+
+        $cat = str_replace(' ', '_', $category);
+        $table = "c__" . strtolower(trim($cat));
+
+        echo "Filters for <strong style='font-size: x-large'>$category</strong><br>";
+
+        for ($i = 0; $i < $filter_count; $i++) {
+            $name = $filters[$i];
+
+            $result = CategoryController::getFilterData($table, $name);
+            $count = count($result);
+
+            echo "<div>";
+            echo "<strong style='font-size: larger'>$name</strong><br>";
+            for ($j = 0; $j < $count; $j++) {
+                $n = $result[$j][$name];
+                $c = $result[$j]['c'];
+                echo "<input type='checkbox' class='filter_checkbox' name='$name' datatype='$table' value='$n'/>$n ";
+                echo "<span style='font-size: small; color: grey'>[$c]</span><br/>";
+            }
+            echo "</div><br>";
+
+
         }
 
     }

@@ -1,20 +1,25 @@
-function searchProducts(search){
+function searchProducts(search) {
 
     $.post(
         "include/ajaxStaticClass.php",
         {
             dir: "views",
             class: "ProductView",
-            method: "showSearchProducts",
+            method: "showSearchDropdownProducts",
             params: search
         },
-        function(data){
+        function (data) {
             $("#search_suggestions").html(data).show();
-            $(".search_product_link").click(function(){
+            $(".search_product_link").click(function () {
 
                 var id = $(this).attr("id");
+                var category = $(this).find("input[name='product_category_name']").val();
+                var s_text = $("#search_bar").val();
 
-                openProductInfo(id);
+                //openProductInfo(id);
+                var link = "search.php?category=" + category;
+                console.info("-" + link);
+                $(location).attr('href', link);
 
             });
         }
@@ -22,7 +27,7 @@ function searchProducts(search){
 
 }
 
-function searchCategories(search){
+function searchCategories(search) {
     $.post(
         "include/ajaxStaticClass.php",
         {
@@ -31,40 +36,51 @@ function searchCategories(search){
             method: "showSearchedCategories",
             params: search
         },
-        function(data){
+        function (data) {
             $("#search_suggestions").append(data).show();
-            $(".search_category_link").click(function(){
+            $(".search_category_link").click(function () {
 
                 var name = $(this).attr("id");
 
-                alert(name);
+                window.location.href = "category.php?category=" + name;
 
             });
         }
     );
 }
 
-function openProductInfo(id){
+function openProductInfo(id) {
 
     // TODO make it post instead of get
     window.location.href = "productInfo.php?id=" + id;
 
 }
 
-$('document').ready(function() {
+$('document').ready(function () {
 
-    $("#search_suggestions").mouseleave(function(){
+    $("#search_suggestions").mouseleave(function () {
         $("#search_suggestions").hide();
     }).hide();
 
-    $("#search_bar").on("input",function(){
-        var search = $(this).val();
-        if(search == '') {
-            $("#search_suggestions").hide();
-        } else {
-            searchProducts(search);
-            searchCategories(search);
-        }
-    });
+    $("#search_bar")
+        .on("input", function () {
+            var search = $(this).val();
+            if (search.trim().length == 0) {
+                $("#search_suggestions").hide();
+            } else {
+                searchProducts(search);
+                searchCategories(search);
+            }
+        })
+        // on enter press
+        .keypress(function (ev) {
+            if (ev.which === 13) {
+                var s_text = $(this).val();
+                var category = $(".search_product_link:first").find("input[name='product_category_name']").val();
+                var link = "search.php?category=" + category + "&search_text=" + s_text;
+                $(location).attr('href', link);
+            }
+        });
+
 
 });
