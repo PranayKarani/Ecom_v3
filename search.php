@@ -32,7 +32,7 @@ if (isset($_GET['search_text'])) {
     <link rel="stylesheet" href="views/styles/header_style.css">
     <link rel="stylesheet" href="views/styles/common_style.css">
     <link rel="stylesheet" href="views/styles/search_style.css">
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="../jquery-2.2.3.min.js"></script>
     <script src="views/scripts/header_script.js"></script>
     <script src="views/scripts/search_script.js"></script>
