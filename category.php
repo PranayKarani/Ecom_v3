@@ -58,7 +58,7 @@ if (isset($_GET['category'])) {
         <strong style='font-size: larger'>Ratings</strong><br>
         <?php
         if (isset($category)) {
-            ProductView::showRatingFilters($category);
+            ProductView::showCategoryRatingFilters($category);
         } else {
             echo ":(";
         }

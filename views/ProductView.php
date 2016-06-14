@@ -56,53 +56,58 @@ class ProductView {
         }
     }
 
-    public static function showCategoryTopProducts ($category) {
+    public static function showFilteredProducts ($json) {
 
-        $products = ProductController::getCategoryTopProducts($category);
+        $products = ProductController::getFilteredProducts($json);
+        $count = count($products);
 
-        $noofP = count($products);
+        if ($count > 0) {
+            echo "<strong>Products</strong><br>";
+            for ($i = 0; $i < $count; $i++) {
 
-        if ($noofP > 0) {
-            echo "<strong style='font-size: larger'>Top Products</strong><br>";
-            for ($i = 0; $i < $noofP; $i++) {
                 // product box
                 $id = $products[$i]['product_id'];
                 $name = $products[$i]['product_name'];
                 $brand = $products[$i]['brand'];
 
-                echo "<span class='category_product_link' id='$id'>";
+                echo "<span class='filtered_product_link' id='$id'>";
                 echo "<strong>$brand</strong> $name";
                 echo "</span><br>";
+
             }
         } else {
-            echo "no products";
+            echo "no such products found";
         }
+
 
     }
 
-    public static function showCategoryNewProducts ($category) {
-
-        $products = ProductController::getCategoryNewProducts($category);
+    public static function showOrderedSearchedProducts ($json) {
+        $products = ProductController::getOrderedSearchedProducts($json);
 
         $noofP = count($products);
 
+
         if ($noofP > 0) {
-            echo "<strong style='font-size: larger'>New Products</strong><br>";
+            echo "<strong>Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
-                // product box
+
                 $id = $products[$i]['product_id'];
                 $name = $products[$i]['product_name'];
+                $category = $products[$i]['category'];
                 $brand = $products[$i]['brand'];
 
-                echo "<span class='category_product_link' id='$id'>";
+                echo "<span class='product_link' id='$id'>";
+                echo "<input type='hidden' value='$category' name='product_category_name'/>";
                 echo "<strong>$brand</strong> $name";
                 echo "</span><br>";
             }
         } else {
-            echo "no products";
+            echo "no products found<br/>";
         }
-
     }
+
+    /** Search Stuff */
 
     public static function showSearchDropdownProducts ($search) {
 
@@ -154,33 +159,57 @@ class ProductView {
         }
     }
 
-    public static function showFilteredProducts ($json) {
+    /** Category Stuff */
 
-        $products = ProductController::getFilteredProducts($json);
-        $count = count($products);
+    public static function showCategoryTopProducts ($category) {
 
-        if ($count > 0) {
-            echo "<strong>Products</strong><br>";
-            for ($i = 0; $i < $count; $i++) {
+        $products = ProductController::getCategoryTopProducts($category);
 
+        $noofP = count($products);
+
+        if ($noofP > 0) {
+            echo "<strong style='font-size: larger'>Top Products</strong><br>";
+            for ($i = 0; $i < $noofP; $i++) {
                 // product box
                 $id = $products[$i]['product_id'];
                 $name = $products[$i]['product_name'];
                 $brand = $products[$i]['brand'];
 
-                echo "<span class='filtered_product_link' id='$id'>";
+                echo "<span class='category_product_link' id='$id'>";
                 echo "<strong>$brand</strong> $name";
                 echo "</span><br>";
-
             }
         } else {
-            echo "no such products found";
+            echo "no products";
         }
-
 
     }
 
-    public static function showRatingFilters ($category) {
+    public static function showCategoryNewProducts ($category) {
+
+        $products = ProductController::getCategoryNewProducts($category);
+
+        $noofP = count($products);
+
+        if ($noofP > 0) {
+            echo "<strong style='font-size: larger'>New Products</strong><br>";
+            for ($i = 0; $i < $noofP; $i++) {
+                // product box
+                $id = $products[$i]['product_id'];
+                $name = $products[$i]['product_name'];
+                $brand = $products[$i]['brand'];
+
+                echo "<span class='category_product_link' id='$id'>";
+                echo "<strong>$brand</strong> $name";
+                echo "</span><br>";
+            }
+        } else {
+            echo "no products";
+        }
+
+    }
+
+    public static function showCategoryRatingFilters ($category) {
 
         $ratings = ProductController::getCategoryRatingFilters($category);
         $count = count($ratings);
@@ -198,6 +227,8 @@ class ProductView {
         echo "</div><br>";
 
     }
+
+    /** Shop Stuff */
 
     public static function showShopProducts ($shop_id) {
         $products = ProductController::getShopProducts($shop_id);
@@ -245,32 +276,6 @@ class ProductView {
 
     }
 
-    public static function showOrderedSearchedProducts ($json) {
-        $products = ProductController::getOrderedSearchedProducts($json);
-
-        $noofP = count($products);
-
-
-        if ($noofP > 0) {
-            echo "<strong>Products</strong><br>";
-            for ($i = 0; $i < $noofP; $i++) {
-
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $category = $products[$i]['category'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='product_link' id='$id'>";
-                echo "<input type='hidden' value='$category' name='product_category_name'/>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
-            }
-        } else {
-            echo "no products found<br/>";
-        }
-    }
-
-
     public function show_basic_info () {
 
         $name = $this->details['product_name'];
@@ -291,6 +296,5 @@ class ProductView {
         }
 
     }
-
 
 }
