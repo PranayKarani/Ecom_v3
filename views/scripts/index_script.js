@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // Hide category container on mouse leave
     $("#dept-category").mouseleave(function () {
-        $("#category-products").hide();
+        $("#category-products").slideUp();
     });
 
     // fetch and show category of the selected department
@@ -33,7 +33,7 @@ $(document).ready(function () {
                         },
                         function(data){
                             $("#category_products_container").html(data);
-                            $(".category_product_link").click(function(){
+                            $(".product_link").click(function () {
 
                                 var id = $(this).attr("id");
 

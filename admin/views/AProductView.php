@@ -28,7 +28,7 @@ class AProductView {
         // Product Name
         echo "Product Name: <input type='text' id='new_product_name' class='input_basic_new'/></br>";
         echo "<input type='hidden' value='$category' class='input_basic_new'/>";
-        echo "<input type='hidden' value='$quick_info' class='input_basic_new'/>";
+        echo "<input type='hidden' id='quick_info' value='$quick_info' class='input_basic_new'/>";
         // brand
         ABrandView::showBrandSelector("new_brand", "input_basic_new");
         echo "Image: <input type='hidden' value='$thumbnail' class='input_basic_new'/><br>";
@@ -77,6 +77,7 @@ class AProductView {
         $img = $this->p_details['thumbnail'];
         $category = strtolower($this->p_details['category']);
         $brand = strtolower($this->p_details['brand']);
+        $quick_info = strtolower($this->p_details['quick_info']);
         $mrp = $this->p_details['mrp'];
         $keywords = "$category $brand $name";
 
@@ -88,6 +89,8 @@ class AProductView {
         echo "Product Name: <input type='text' value='$name' id='product_name' class='input_basic'/></br>";
         // Category
         ACategoryView::showCategorySelector($this->p_details['department'], "category", "input_basic", $category, true);
+        // quick info
+        echo "Quick Info: <input type='text' value='$quick_info' id='quick_info' class='input_basic' disabled/><br>";
         // brand
         ABrandView::showBrandSelector("brand", "input_basic", $brand);
         // mrp
@@ -110,13 +113,13 @@ class AProductView {
         $id = $this->p_details['product_id'];
 
         echo "<form>";
-        echo "<input type='hidden' value='$table_name' id='table_name' class='input_advance'>";
-        echo "<input type='hidden' value='$id' id='product' class='input_advance'>";
         foreach ($filters_array as $filter) {
             $detail = $this->p_details[$filter];
             echo $filter;
             echo ": <input type='text' value='$detail' id='$filter' class='input_advance'><br/>";
         }
+        echo "<input type='hidden' value='$table_name' id='table_name' class='input_advance'>";
+        echo "<input type='hidden' value='$id' id='product' class='input_advance'>";
         echo "<input type='button' value='update additional info' id='submit_advance' disabled>";
         echo "</form>";
 

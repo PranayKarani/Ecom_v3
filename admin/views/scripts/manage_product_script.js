@@ -18,12 +18,38 @@ function search_products(search) {
             });
             $(".input_basic").on("input", function () {
                 $("#submit_basic").attr('disabled', false);
-                // TODO get department for keywords
+                // TODO get department for keywords and replace 'electronics' below
                 var keywords = "electronics " + $("#category").val() + " " + $("#brand").val() + " " + $("#product_name").val();
                 $("#keywords").val(keywords);
             });
+
             $(".input_advance").on("input", function () {
                 $("#submit_advance").attr('disabled', false);
+                var quick_info = '';
+                var counter = 0;
+                quick_info += '<ul class="product_quick_info">';
+                $('.input_advance').each(function (i) {
+                    if (counter < 3) {
+                        var name = $(this).attr("id");
+                        var value = $(this).val();
+
+                        name = name.replace("_", " ");
+
+                        quick_info += "<li>- " + name + ": " + value + "</li>";
+                    }
+                    counter++;
+
+                });
+                quick_info += '</ul>';
+
+                //alert($(".input_basic").find("#quick_info").val());
+                //alert($("#quick_info").val());
+
+                //$(".input_basic").find("#quick_info").val(quick_info);
+
+                $("#quick_info").val(quick_info);
+                $("#submit_basic").attr('disabled', false);
+
             });
 
             $("#submit_basic").click(function () {
@@ -122,6 +148,27 @@ $(document).ready(function () {
                 $(".input_basic_new").on("input", function () {
                     var keywords = "electronics " + $("#new_product_category").val() + " " + $("#new_brand").val() + " " + $("#new_product_name").val();
                     $("#new_keywords").val(keywords);
+                });
+
+                $(".input_advance_new").on("input", function () {
+
+                    var quick_info = '';
+                    var counter = 0;
+                    quick_info += '<ul>';
+                    $('.input_advance_new').each(function (i) {
+                        if (counter < 3) {
+                            var name = $(this).attr("id");
+                            var value = $(this).val();
+
+                            quick_info += "<li>" + name + ": " + value + "</li>";
+                        }
+                        counter++;
+
+                    });
+                    quick_info += '</ul>';
+
+                    $(".input_basic_new #quick_info").val(quick_info);
+
                 });
 
                 $("#submit_new").click(function () {
@@ -230,9 +277,9 @@ $(document).ready(function () {
 
     $("#add_new_brand_button").click(function () {
         var b_name = $("#new_brand_name").val();
-        if(b_name=='' || b_name == null){
+        if (b_name == '' || b_name == null) {
             alert("Incomplete details");
-        } else{
+        } else {
 
             $.post(
                 "include/ajaxStaticClass.php",
@@ -242,7 +289,7 @@ $(document).ready(function () {
                     method: "addNewBrand",
                     params: b_name
                 },
-                function(data){
+                function (data) {
                     alert(data);
                 }
             )

@@ -20,19 +20,33 @@ class ProductView {
         if ($noofP > 0) {
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
-
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='product_link' id='$id'>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+                self::product_box($products[$i]);
             }
         } else {
             echo "no products";
         }
 
+    }
+
+    private static function product_box ($product) {
+
+        $id = $product['product_id'];
+        $name = $product['product_name'];
+        $brand = $product['brand'];
+        $quick_info = $product['quick_info'];
+        $rating = $product['rating'];
+        $category = $product['category'];
+
+        echo "<div class='product_link' id='$id'>";
+        echo "<input type='image' class='product_image' src='res/images/product/default.png'><br>";
+        echo "<strong>$name</strong><br>";
+        echo "<span style='font-size: small'>from <strong style='font-weight: bolder'>$brand</strong></span><br>";
+        echo "<input type='hidden' value='$category' name='product_category_name'/>";
+        for ($i = 0; $i < $rating; $i++) {
+            echo "<input type='image' src='http://www.clipartbest.com/cliparts/aTq/ogj/aTqogjjpc.png' style='width: 10px; margin-top: 5px'/> ";
+        }
+        echo "<div class='quick_info_box'>$quick_info</div>";
+        echo "</div>";
     }
 
     public static function showTopProducts ($lmt) {
@@ -43,13 +57,7 @@ class ProductView {
         if ($noofP > 0) {
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='product_link' id='$id'>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+                self::product_box($products[$i]);
             }
         } else {
             echo "no products";
@@ -66,13 +74,14 @@ class ProductView {
             for ($i = 0; $i < $count; $i++) {
 
                 // product box
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='filtered_product_link' id='$id'>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+//                $id = $products[$i]['product_id'];
+//                $name = $products[$i]['product_name'];
+//                $brand = $products[$i]['brand'];
+//
+//                echo "<span class='filtered_product_link' id='$id'>";
+//                echo "<strong>$brand</strong> $name";
+//                echo "</span><br>";
+                self::product_box($products[$i]);
 
             }
         } else {
@@ -92,15 +101,16 @@ class ProductView {
             echo "<strong>Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
 
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $category = $products[$i]['category'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='product_link' id='$id'>";
-                echo "<input type='hidden' value='$category' name='product_category_name'/>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+//                $id = $products[$i]['product_id'];
+//                $name = $products[$i]['product_name'];
+//                $category = $products[$i]['category'];
+//                $brand = $products[$i]['brand'];
+//
+//                echo "<span class='product_link' id='$id'>";
+//                echo "<input type='hidden' value='$category' name='product_category_name'/>";
+//                echo "<strong>$brand</strong> $name";
+//                echo "</span><br>";
+                self::product_box($products[$i]);
             }
         } else {
             echo "no products found<br/>";
@@ -144,15 +154,7 @@ class ProductView {
             echo "<strong>Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
 
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $category = $products[$i]['category'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='product_link' id='$id'>";
-                echo "<input type='hidden' value='$category' name='product_category_name'/>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+                self::product_box($products[$i]);
             }
         } else {
             echo "no products like $search<br/>";
@@ -168,16 +170,10 @@ class ProductView {
         $noofP = count($products);
 
         if ($noofP > 0) {
-            echo "<strong style='font-size: larger'>Top Products</strong><br>";
+            echo "<strong>Top Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='category_product_link' id='$id'>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+                self::product_box($products[$i]);
             }
         } else {
             echo "no products";
@@ -195,13 +191,7 @@ class ProductView {
             echo "<strong style='font-size: larger'>New Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='category_product_link' id='$id'>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+                self::product_box($products[$i]);
             }
         } else {
             echo "no products";
@@ -238,13 +228,14 @@ class ProductView {
             for ($i = 0; $i < $count; $i++) {
 
                 // product box
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='shop_product_link' id='$id'>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+//                $id = $products[$i]['product_id'];
+//                $name = $products[$i]['product_name'];
+//                $brand = $products[$i]['brand'];
+//
+//                echo "<span class='shop_product_link' id='$id'>";
+//                echo "<strong>$brand</strong> $name";
+//                echo "</span><br>";
+                self::product_box($products[$i]);
 
             }
         } else {
@@ -261,13 +252,14 @@ class ProductView {
             for ($i = 0; $i < $count; $i++) {
 
                 // product box
-                $id = $products[$i]['product_id'];
-                $name = $products[$i]['product_name'];
-                $brand = $products[$i]['brand'];
-
-                echo "<span class='shop_product_link' id='$id'>";
-                echo "<strong>$brand</strong> $name";
-                echo "</span><br>";
+//                $id = $products[$i]['product_id'];
+//                $name = $products[$i]['product_name'];
+//                $brand = $products[$i]['brand'];
+//
+//                echo "<span class='shop_product_link' id='$id'>";
+//                echo "<strong>$brand</strong> $name";
+//                echo "</span><br>";
+                self::product_box($products[$i]);
 
             }
         } else {

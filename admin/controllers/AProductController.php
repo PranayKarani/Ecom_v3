@@ -27,7 +27,7 @@ class AProductController {
                 $strict_search_text .= " +$txt";
             }
         }
-        $sql = "CALL get_searched_products('$strict_search_text','$search_text', 20)";
+        $sql = "CALL get_searched_products('$strict_search_text','$search_text', 50)";
 
         return DBHandler::getAll($sql);
     }

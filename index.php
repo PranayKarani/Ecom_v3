@@ -47,15 +47,15 @@ require_once('views/CategoryView.php');
         </div>
     </div>
 </div>
-
-<div id="new-products">
-    <h2>New Products</h2>
-    <?php ProductView::showNewProducts(5); ?>
-</div>
-
 <div id="top-products">
+    <br>
     <h2>Top Products</h2>
     <?php ProductView::showTopProducts(5); ?>
+</div>
+<div id="new-products">
+    <br>
+    <h2>New Products</h2>
+    <?php ProductView::showNewProducts(5); ?>
 </div>
 
 </body>
