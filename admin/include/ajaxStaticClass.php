@@ -4,16 +4,16 @@ require_once('../include/config.php');
 require_once('../include/DBHandler.php');
 
 // Controllers
-require_once('../controllers/BrandController.php');
-require_once '../controllers/CategoryController.php';
-require_once '../controllers/ProductController.php';
-require_once '../controllers/SearchController.php';
-require_once '../controllers/DepartmentController.php';
-require_once '../controllers/ShopController.php';
+require_once('../controllers/ABrandController.php');
+require_once '../controllers/ACategoryController.php';
+require_once '../controllers/AProductController.php';
+require_once '../controllers/ASearchController.php';
+require_once '../controllers/ADepartmentController.php';
+require_once '../controllers/AShopController.php';
 
 // Views
-require_once '../views/BrandView.php';
-require_once '../views/CategoryView.php';
+require_once '../views/ABrandView.php';
+require_once '../views/ACategoryView.php';
 
 $dir = $_POST['dir'];
 $class = $_POST['class'];

@@ -7,7 +7,7 @@ function search_products(search) {
         "include/ajaxStaticClass.php",
         {
             dir: "views",
-            class: "SearchView",
+            class: "SSearchView",
             method: "showProductsSearch",
             params: search
         }, function (data) {
@@ -28,7 +28,7 @@ function search_products(search) {
                     "include/ajaxStaticClass.php",
                     {
                         dir: "views",
-                        class: "ProductView",
+                        class: "SProductView",
                         method: "showProductDetails",
                         params: json
                     },
@@ -101,7 +101,8 @@ function productOperations(pID) {
                     "include/ajaxStaticClass.php",
                     {
                         dir: "controllers",
-                        class: "ProductController",
+                        dir: "controllers",
+                        class: "SProductController",
                         method: "removeInventoryProduct",
                         params: json
                     },
@@ -126,7 +127,7 @@ function productOperations(pID) {
                         "include/ajaxStaticClass.php",
                         {
                             dir: "controllers",
-                            class: "ProductController",
+                            class: "SProductController",
                             method: "addInventoryProduct",
                             params: json
                         },
@@ -148,7 +149,7 @@ function productOperations(pID) {
                         "include/ajaxStaticClass.php",
                         {
                             dir: "controllers",
-                            class: "ProductController",
+                            class: "SProductController",
                             method: "updateInventoryProduct",
                             params: json
                         },
@@ -172,7 +173,7 @@ function refreshInventoryProducts(){
         "include/ajaxStaticClass.php",
         {
             dir: "views",
-            class: "ProductView",
+            class: "SProductView",
             method: "showShopProducts",
             params: selectedShop
         }, function (data) {
@@ -196,7 +197,7 @@ function refreshInventoryProducts(){
                     "include/ajaxStaticClass.php",
                     {
                         dir: "views",
-                        class: "ProductView",
+                        class: "SProductView",
                         method: "showShopProductDetails",
                         params: json
                     },

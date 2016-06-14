@@ -1,6 +1,6 @@
 <?php
 
-class ProductController {
+class SProductController {
 
     public static function getSearchedProducts ($search_text) {
         $search_text = stripslashes($search_text);

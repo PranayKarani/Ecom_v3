@@ -1,6 +1,6 @@
 <?php
 
-class SellerController {
+class SSellerController {
 
     public static function authorize($username, $password){
         $sql = "SELECT * FROM seller WHERE seller_name = :un AND seller_password = :pw";

@@ -1,11 +1,11 @@
 <?php
 
 
-class BrandView {
+class ABrandView {
 
     public static function showBrandSelector ($element_id = null, $element_class = null, $brand = null) {
 
-        $brand_list = BrandController::getBrands();
+        $brand_list = ABrandController::getBrands();
 
         $id = '';
         if (isset($element_id)) {

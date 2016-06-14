@@ -4,22 +4,22 @@ require_once('include/config.php');
 require_once('include/DBHandler.php');
 
 // Controllers
-require_once 'controllers/ProductController.php';
-require_once 'controllers/CategoryController.php';
-require_once 'controllers/BrandController.php';
+require_once 'controllers/AProductController.php';
+require_once 'controllers/ACategoryController.php';
+require_once 'controllers/ABrandController.php';
 
 // Views
 require_once('views/templates/SearchBox.php');
-require_once('views/ProductView.php');
-require_once('views/CategoryView.php');
-require_once('views/BrandView.php');
+require_once('views/AProductView.php');
+require_once('views/ACategoryView.php');
+require_once('views/ABrandView.php');
 
 if (isset($_GET['id'])) {
     $pID = $_GET['id'];
 }
 
 if (isset($pID)) {
-    $productView = new ProductView($pID);
+    $productView = new AProductView($pID);
 }
 
 ?>
@@ -61,7 +61,7 @@ if (isset($pID)) {
     <div id="right_top">
         <h3>Add New Product</h3>
         <strong>Select Category for the Product:</strong> <br>
-        <?php CategoryView::showCategorySelector("Electronics", "new_product_category") ?>
+        <?php ACategoryView::showCategorySelector("Electronics", "new_product_category") ?>
         <input type="button" value="add new product" id="add_new_product_button"/>
     </div>
     <div id="right_center">

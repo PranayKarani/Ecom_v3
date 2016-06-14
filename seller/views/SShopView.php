@@ -6,10 +6,10 @@
  * Date: 11/06/2016
  * Time: 02:08 AM
  */
-class ShopView {
+class SShopView {
 
     public static function showShopsSelector ($seller_id, $id = null, $class = null, $d = null) {
-        $list = SellerController::getSellerShopsList($seller_id);
+        $list = SSellerController::getSellerShopsList($seller_id);
 
         if ($d == true) {
             echo "Shop Select: <select id='$id' class='$class' disabled>";

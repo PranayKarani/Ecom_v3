@@ -1,11 +1,11 @@
 <?php
 
 
-class DepartmentView {
+class ADepartmentView {
 
     public static function showDepartmentSelector ($name = null, $id = null, $class = null, $d = null) {
 
-        $list = DepartmentController::getAllDepartments();
+        $list = ADepartmentController::getAllDepartments();
 
         if ($d == true) {
             echo "Department: <select id='$id' class='$class' disabled>";

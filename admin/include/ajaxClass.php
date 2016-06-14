@@ -4,11 +4,11 @@ require_once('../include/config.php');
 require_once('../include/DBHandler.php');
 
 // Controllers
-require_once('../controllers/DepartmentController.php');
-require_once '../controllers/CategoryController.php';
-require_once '../controllers/ProductController.php';
-require_once '../controllers/DepartmentController.php';
-require_once '../controllers/ShopController.php';
+require_once('../controllers/ADepartmentController.php');
+require_once '../controllers/ACategoryController.php';
+require_once '../controllers/AProductController.php';
+require_once '../controllers/ADepartmentController.php';
+require_once '../controllers/AShopController.php';
 
 //$dir = $_POST['dir'];
 $class = $_POST['class'];

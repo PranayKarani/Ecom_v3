@@ -4,26 +4,26 @@ require_once('include/config.php');
 require_once('include/DBHandler.php');
 
 // Controllers
-require_once 'controllers/ProductController.php';
-require_once 'controllers/DepartmentController.php';
-require_once 'controllers/CategoryController.php';
-require_once 'controllers/BrandController.php';
-require_once 'controllers/ShopController.php';
+require_once 'controllers/AProductController.php';
+require_once 'controllers/ADepartmentController.php';
+require_once 'controllers/ACategoryController.php';
+require_once 'controllers/ABrandController.php';
+require_once 'controllers/AShopController.php';
 
 // Views
 require_once('views/templates/SearchBox.php');
-require_once('views/ProductView.php');
-require_once('views/DepartmentView.php');
-require_once('views/CategoryView.php');
-require_once('views/BrandView.php');
-require_once('views/ShopView.php');
+require_once('views/AProductView.php');
+require_once('views/ADepartmentView.php');
+require_once('views/ACategoryView.php');
+require_once('views/ABrandView.php');
+require_once('views/AShopView.php');
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 
 if (isset($id)) {
-    $shopView = new ShopView($id);
+    $shopView = new AShopView($id);
 }
 
 ?>
@@ -63,7 +63,7 @@ if (isset($id)) {
 </div>
 <div id="right_section">
     <?php
-    ShopView::showAddNewShop();
+    AShopView::showAddNewShop();
     ?>
 </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-class BrandController {
+class ABrandController {
 
     public static function getBrands () {
         return DBHandler::getAll("SELECT * FROM brands ORDER BY brand_name");

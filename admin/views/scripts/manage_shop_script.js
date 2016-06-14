@@ -3,7 +3,7 @@ function search_shops(search) {
         "include/ajaxStaticClass.php",
         {
             dir: "views",
-            class: "SearchView",
+            class: "ASearchView",
             method: "showShopSearch",
             params: search
         },
@@ -46,7 +46,7 @@ function search_shops(search) {
                         "include/ajaxStaticClass.php",
                         {
                             dir: "controllers",
-                            class: "ShopController",
+                            class: "AShopController",
                             method: "updateDetails",
                             params: json
                         },
@@ -99,7 +99,7 @@ $('document').ready(function () {
                 "include/ajaxStaticClass.php",
                 {
                     dir: "controllers",
-                    class: "ShopController",
+                    class: "AShopController",
                     method: "addNewShop",
                     params: json
                 },
@@ -126,7 +126,7 @@ $('document').ready(function () {
             "include/ajaxStaticClass.php",
             {
                 dir: "controllers",
-                class: "ShopController",
+                class: "AShopController",
                 method: "removeShop",
                 params: id
             }, function(data){

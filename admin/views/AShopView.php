@@ -1,6 +1,6 @@
 <?php
 
-class ShopView {
+class AShopView {
 
     private $s_id;
     private $s_details;// shop details
@@ -8,8 +8,34 @@ class ShopView {
 
     public function __construct ($id) {
         $this->s_id = $id;
-        $this->s_details = ShopController::getShopDetails($id);
-        $this->o_details = ShopController::getShopOwnerDetails($id);
+        $this->s_details = AShopController::getShopDetails($id);
+        $this->o_details = AShopController::getShopOwnerDetails($id);
+
+    }
+
+    public static function showAddNewShop () {
+
+        echo "<form>";
+
+        echo "Name: <input type='text' id='shop_name' class='input_new'/><br>";
+        ADepartmentView::showDepartmentSelector(null, 'department', 'input_new', false);
+        self::showOwnerSelector(null, 'seller', 'input_new');
+        echo "Contact: <input type='text'  id='shop_contact' class='input_new'/><br>";
+        echo "<input type='hidden' id='shop_image' value='NA.jpg' class='input_new'/>";
+        echo "Description: <input type='text' id='shop_desc' class='input_new'/><br>";
+        echo "Address: <input type='text' id='shop_address' class='input_new'/><br>";
+        echo "Loc X: <input type='number'  id='loc_x' class='input_new'/><br>";
+        echo "Loc Y: <input type='number'  id='loc_y' class='input_new'/><br>";
+//        echo "<input type='hidden' id='keywords' value='-' class='input_new'/>";
+//        echo "<input type='hidden' id='open' value='-' class='input_new'/>";
+        echo "Inventory Size: <input type='number' value='250' id='inv_size' class='input_new' min='250' step='50'/><br>";
+
+
+        // submit button
+        echo "<input type='button' value='add new shop' id='submit_new'>";
+
+        echo "</form>";
+
 
     }
 
@@ -33,7 +59,7 @@ class ShopView {
         echo "ID: <input type='text' value='$id' id='shop_id' class='input' disabled><br>";
         echo "Name: <input type='text' value='$name' id='shop_name' class='input'/><br>";
         echo "<input type='hidden' value='$seller_id' id='old_seller' class='input'/>";
-        DepartmentView::showDepartmentSelector($dept, 'department', 'input', true);
+        ADepartmentView::showDepartmentSelector($dept, 'department', 'input', true);
         self::showOwnerSelector($seller_id, 'seller', 'input');
         echo "Description: <input type='text' value='$desc' id='shop_desc' class='input'/><br>";
         echo "Contact: <input type='text' value='$contact' id='shop_contact' class='input'/><br>";
@@ -50,24 +76,9 @@ class ShopView {
 
     }
 
-    public function show_products () {
-
-        $p_list = ShopController::getShopProducts($this->s_id);
-
-        if (count($p_list) == 0) {
-            echo "No Products";
-        } else {
-            foreach ($p_list as $item) {
-                $name = $item['product_name'];
-                echo "$name </br>";
-            }
-
-        }
-    }
-
     public static function showOwnerSelector ($seller_id = null, $id = null, $class = null, $d = null) {
 
-        $list = ShopController::getSellersList();
+        $list = AShopController::getSellersList();
 
         echo "Shop Owner: <select id='$id' class='$class' $d>";
         foreach ($list as $dept) {
@@ -88,32 +99,19 @@ class ShopView {
 
     }
 
+    public function show_products () {
 
-    public static function showAddNewShop () {
+        $p_list = AShopController::getShopProducts($this->s_id);
 
-        echo "<form>";
+        if (count($p_list) == 0) {
+            echo "No Products";
+        } else {
+            foreach ($p_list as $item) {
+                $name = $item['product_name'];
+                echo "$name </br>";
+            }
 
-        echo "Name: <input type='text' id='shop_name' class='input_new'/><br>";
-        DepartmentView::showDepartmentSelector(null, 'department', 'input_new', false);
-        self::showOwnerSelector(null, 'seller', 'input_new');
-        echo "Contact: <input type='text'  id='shop_contact' class='input_new'/><br>";
-        echo "<input type='hidden' id='shop_image' value='NA.jpg' class='input_new'/>";
-        echo "Description: <input type='text' id='shop_desc' class='input_new'/><br>";
-        echo "Address: <input type='text' id='shop_address' class='input_new'/><br>";
-        echo "Loc X: <input type='number'  id='loc_x' class='input_new'/><br>";
-        echo "Loc Y: <input type='number'  id='loc_y' class='input_new'/><br>";
-//        echo "<input type='hidden' id='keywords' value='-' class='input_new'/>";
-//        echo "<input type='hidden' id='open' value='-' class='input_new'/>";
-        echo "Inventory Size: <input type='number' value='250' id='inv_size' class='input_new' min='250' step='50'/><br>";
-
-
-
-        // submit button
-        echo "<input type='button' value='add new shop' id='submit_new'>";
-
-        echo "</form>";
-
-
+        }
     }
 
 }

@@ -4,24 +4,24 @@ require_once('include/config.php');
 require_once('include/DBHandler.php');
 
 // Controllers
-require_once 'controllers/ProductController.php';
-require_once 'controllers/DepartmentController.php';
-require_once 'controllers/CategoryController.php';
-require_once 'controllers/BrandController.php';
+require_once 'controllers/AProductController.php';
+require_once 'controllers/ADepartmentController.php';
+require_once 'controllers/ACategoryController.php';
+require_once 'controllers/ABrandController.php';
 
 // Views
 require_once('views/templates/SearchBox.php');
-require_once('views/ProductView.php');
-require_once('views/DepartmentView.php');
-require_once('views/CategoryView.php');
-require_once('views/BrandView.php');
+require_once('views/AProductView.php');
+require_once('views/ADepartmentView.php');
+require_once('views/ACategoryView.php');
+require_once('views/ABrandView.php');
 
 if (isset($_GET['name'])) {
     $name = $_GET['name'];
 }
 
 if (isset($name)) {
-    $categoryView = new CategoryView($name);
+    $categoryView = new ACategoryView($name);
 }
 
 ?>
@@ -56,7 +56,7 @@ if (isset($name)) {
         <h3>Add New Category</h3>
         <form>
             Name: <input type="text" id="new_name" class="input_new"/><br>
-            <?php DepartmentView::showDepartmentSelector(null, "new_department","input_new") ?>
+            <?php ADepartmentView::showDepartmentSelector(null, "new_department", "input_new") ?>
             Filters: <input type="text" id="new_filters" class="input_new"/><br>
 
         <input type="button" value="add new category" id="submit_new"/>

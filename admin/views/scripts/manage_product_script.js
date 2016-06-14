@@ -3,7 +3,7 @@ function search_products(search) {
         "include/ajaxStaticClass.php",
         {
             dir: "views",
-            class: "SearchView",
+            class: "ASearchView",
             method: "showProductsSearch",
             params: search
         },
@@ -43,7 +43,7 @@ function search_products(search) {
                     "include/ajaxStaticClass.php",
                     {
                         dir: "controllers",
-                        class: "ProductController",
+                        class: "AProductController",
                         method: "updateBasicProductDetails",
                         params: json
                     },
@@ -73,7 +73,7 @@ function search_products(search) {
                     "include/ajaxStaticClass.php",
                     {
                         dir: "controllers",
-                        class: "ProductController",
+                        class: "AProductController",
                         method: "updateAdvanceProductDetails",
                         params: json
                     },
@@ -113,7 +113,7 @@ $(document).ready(function () {
             "include/ajaxStaticClass.php",
             {
                 dir: "views",
-                class: "ProductView",
+                class: "AProductView",
                 method: "show_ui_for_new",
                 params: category
             },
@@ -150,7 +150,7 @@ $(document).ready(function () {
                             "include/ajaxStaticClass.php",
                             {
                                 dir: "controllers",
-                                class: "ProductController",
+                                class: "AProductController",
                                 method: "addNewBasicProductDetails",
                                 params: json_basic
                             },
@@ -181,7 +181,7 @@ $(document).ready(function () {
                                     "include/ajaxStaticClass.php",
                                     {
                                         dir: "controllers",
-                                        class: "ProductController",
+                                        class: "AProductController",
                                         method: "addNewAdvancedProductDetails",
                                         params: json_advance
                                     },
@@ -218,7 +218,7 @@ $(document).ready(function () {
             "include/ajaxStaticClass.php",
             {
                 dir: "controllers",
-                class: "ProductController",
+                class: "AProductController",
                 method: "deleteProduct",
                 params: pID
             }, function (data) {
@@ -238,7 +238,7 @@ $(document).ready(function () {
                 "include/ajaxStaticClass.php",
                 {
                     dir: "controllers",
-                    class: "BrandController",
+                    class: "ABrandController",
                     method: "addNewBrand",
                     params: b_name
                 },

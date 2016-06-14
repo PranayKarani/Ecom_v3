@@ -13,7 +13,7 @@ require_once '../include/DBHandler.php';
 class BrandControllerTest extends PHPUnit_Framework_TestCase {
 
     public function testCategoryBrands () {
-        $array = BrandController::getCategoryBrands('laptop');
+        $array = ABrandController::getCategoryBrands('laptop');
 
         $this->assertArrayHasKey('brand', $array[0]);
     }

@@ -4,8 +4,8 @@ require_once('../include/config.php');
 require_once('../include/DBHandler.php');
 
 // Controllers
-require_once '../controllers/ProductController.php';
-require_once '../controllers/SearchController.php';
+require_once '../controllers/SProductController.php';
+require_once '../controllers/SSearchController.php';
 
 // Views
 

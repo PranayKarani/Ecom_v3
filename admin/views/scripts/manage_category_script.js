@@ -3,7 +3,7 @@ function search_categories(search) {
         "include/ajaxStaticClass.php",
         {
             dir: "views",
-            class: "SearchView",
+            class: "ASearchView",
             method: "showCategorySearch",
             params: search
         },
@@ -63,7 +63,7 @@ $(document).ready(function () {
                 "include/ajaxStaticClass.php",
                 {
                     dir: "controllers",
-                    class: "categoryController",
+                    class: "ACategoryController",
                     method: "addNewCategory",
                     params: json
                 }, function (data) {
@@ -88,7 +88,7 @@ $(document).ready(function () {
                 "include/ajaxStaticClass.php",
                 {
                     dir: "controllers",
-                    class: "categoryController",
+                    class: "ACategoryController",
                     method: "deleteCategory",
                     params: $name
                 }, function (data) {

@@ -1,10 +1,10 @@
 <?php
 
-class SearchView {
+class ASearchView {
 
     public static function showProductsSearch ($search_text) {
 
-        $search_results = SearchController::searchForProducts($search_text);
+        $search_results = ASearchController::searchForProducts($search_text);
 
         $search_size = count($search_results);
 
@@ -35,7 +35,7 @@ class SearchView {
 
     public static function showCategorySearch ($search_text) {
 
-        $search_results = SearchController::searchForCategories($search_text);
+        $search_results = ASearchController::searchForCategories($search_text);
 
         $search_size = count($search_results);
 
@@ -60,7 +60,7 @@ class SearchView {
     }
 
     public static function showShopSearch($search_text){
-        $search_results = SearchController::searchForShops($search_text);
+        $search_results = ASearchController::searchForShops($search_text);
 
         $search_size = count($search_results);
 

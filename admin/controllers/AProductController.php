@@ -1,6 +1,6 @@
 <?php
 
-class ProductController {
+class AProductController {
 
     private static $lastID;
 

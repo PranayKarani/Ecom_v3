@@ -10,12 +10,12 @@ if (isset($_SESSION['seller_loggedIn']) && $_SESSION['seller_loggedIn'] == true)
 
         require_once 'include/config.php';
         require_once 'include/DBHandler.php';
-        require_once 'controllers/SellerController.php';
+        require_once 'controllers/SSellerController.php';
 
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $result = SellerController::authorize($username, $password);
+        $result = SSellerController::authorize($username, $password);
 
         $id = $result['seller_id'];
 

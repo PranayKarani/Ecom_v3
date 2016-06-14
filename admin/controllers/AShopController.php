@@ -1,6 +1,6 @@
 <?php
 
-class ShopController {
+class AShopController {
 
     public static function getSearchedShops ($search_text) {
         $sql = "CALL get_searched_shops('$search_text')";

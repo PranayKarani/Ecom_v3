@@ -4,14 +4,14 @@ require_once('include/config.php');
 require_once('include/DBHandler.php');
 
 // Controllers
-require_once 'controllers/ProductController.php';
-require_once 'controllers/SellerController.php';
-//require_once 'controllers/BrandController.php';
+require_once 'controllers/SProductController.php';
+require_once 'controllers/SSellerController.php';
+//require_once 'controllers/ABrandController.php';
 
 // Views
 require_once 'views/templates/SearchBox.php';
-require_once 'views/SearchView.php';
-require_once 'views/ShopView.php';
+require_once 'views/SSearchView.php';
+require_once 'views/SShopView.php';
 
 
 if (isset($_GET['id'])) {
@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
 <div id="top_section">
     <?php
     if (isset($seller_id)) {
-        ShopView::showShopsSelector($seller_id,"shop_selector");
+        SShopView::showShopsSelector($seller_id, "shop_selector");
     }
     ?>
     <input type="button" value="go" id="shop_select_button"/>

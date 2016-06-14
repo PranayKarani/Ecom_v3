@@ -1,10 +1,10 @@
 <?php
 
-class ProductView {
+class SProductView {
 
     public static function showShopProducts ($shop_id) {
 
-        $product_list = ProductController::getShopProducts($shop_id);
+        $product_list = SProductController::getShopProducts($shop_id);
 
         $count = count($product_list);
 
@@ -71,7 +71,7 @@ class ProductView {
 
     public static function showShopProductDetails ($json) {
 
-        $details = ProductController::getShopProductDetails($json);
+        $details = SProductController::getShopProductDetails($json);
 
         $id = $details['product_id'];
         $name = $details['product_name'];
@@ -111,7 +111,7 @@ class ProductView {
 
     public static function showProductDetails ($json) {
 
-        $details = ProductController::getShopProductDetails($json);
+        $details = SProductController::getShopProductDetails($json);
 
         // if product not in inventory, load from product pool without shop specific details
         if (!isset($details) || empty($details)) {
@@ -127,7 +127,7 @@ class ProductView {
                     }
                 }
             }
-            $details = ProductController::getProductDetails($pID);
+            $details = SProductController::getProductDetails($pID);
         }
 
         $id = $details['product_id'];

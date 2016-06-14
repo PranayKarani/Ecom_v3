@@ -9,7 +9,7 @@ class ProductControllerTest extends PHPUnit_Framework_TestCase {
 
     public function testGetShopProducts () {
 
-        $data = ProductController::getShopProducts(1);
+        $data = AProductController::getShopProducts(1);
 
         $this->assertArrayHasKey('product_id', $data[0]);
 

@@ -1,15 +1,56 @@
 <?php
 
-class ProductView {
+class AProductView {
 
     private $p_details;
     private $category_list;
     private $brand_list;
 
     public function __construct ($p_id) {
-        $this->p_details = ProductController::getProductDetails($p_id);
-        $this->category_list = CategoryController::getCategories($this->p_details['department']);
-        $this->brand_list = BrandController::getBrands();
+        $this->p_details = AProductController::getProductDetails($p_id);
+        $this->category_list = ACategoryController::getCategories($this->p_details['department']);
+        $this->brand_list = ABrandController::getBrands();
+    }
+
+    /**
+     * Show UI for adding basic details for the new product
+     */
+    public static function show_ui_for_new ($category) {
+
+        $filters = ACategoryController::getCategoryFilters($category);
+
+        $quick_info = 'this is quick info';
+        $thumbnail = 'NA.jpg';
+
+        echo "<form>";
+        echo "<h3>Basic</h3><br>";
+        //TODO add image (thumbnail)
+        // Product Name
+        echo "Product Name: <input type='text' id='new_product_name' class='input_basic_new'/></br>";
+        echo "<input type='hidden' value='$category' class='input_basic_new'/>";
+        echo "<input type='hidden' value='$quick_info' class='input_basic_new'/>";
+        // brand
+        ABrandView::showBrandSelector("new_brand", "input_basic_new");
+        echo "Image: <input type='hidden' value='$thumbnail' class='input_basic_new'/><br>";
+        // mrp
+        echo "Mrp: <input type='number' min='0' id='new_mrp' class='input_basic_new'/><br>";
+        // keywords
+        echo "Keywords: <input type='text' style='width: 400px;' value='$category' id='new_keywords' class='input_basic_new' disabled/><br>";
+
+
+        echo "<h3>Advance</h3><br>";
+
+
+        echo "<input type='hidden' value='c__$category' id='table_name_new' class='input_advance_new'/>";
+        foreach ($filters as $filter) {
+            echo $filter;
+            echo ": <input type='text' id='$filter' class='input_advance_new'><br/>";
+        }
+
+        // submit button
+        echo "<input type='button' value='add' id='submit_new'>";
+
+        echo "</form>";
     }
 
     /**
@@ -46,9 +87,9 @@ class ProductView {
         // Product Name
         echo "Product Name: <input type='text' value='$name' id='product_name' class='input_basic'/></br>";
         // Category
-        CategoryView::showCategorySelector($this->p_details['department'],"category","input_basic",$category,true);
+        ACategoryView::showCategorySelector($this->p_details['department'], "category", "input_basic", $category, true);
         // brand
-        BrandView::showBrandSelector("brand","input_basic",$brand);
+        ABrandView::showBrandSelector("brand", "input_basic", $brand);
         // mrp
         echo "Mrp: <input type='number' value='$mrp' min='0' id='mrp' class='input_basic'/><br>";
         // keywords
@@ -79,48 +120,6 @@ class ProductView {
         echo "<input type='button' value='update additional info' id='submit_advance' disabled>";
         echo "</form>";
 
-    }
-
-    /**
-     * Show UI for adding basic details for the new product
-     */
-    public static function show_ui_for_new($category){
-
-        $filters = CategoryController::getCategoryFilters($category);
-
-        $quick_info ='this is quick info';
-        $thumbnail = 'NA.jpg';
-
-        echo "<form>";
-        echo "<h3>Basic</h3><br>";
-        //TODO add image (thumbnail)
-        // Product Name
-        echo "Product Name: <input type='text' id='new_product_name' class='input_basic_new'/></br>";
-        echo "<input type='hidden' value='$category' class='input_basic_new'/>";
-        echo "<input type='hidden' value='$quick_info' class='input_basic_new'/>";
-        // brand
-        BrandView::showBrandSelector("new_brand","input_basic_new");
-        echo "Image: <input type='hidden' value='$thumbnail' class='input_basic_new'/><br>";
-        // mrp
-        echo "Mrp: <input type='number' min='0' id='new_mrp' class='input_basic_new'/><br>";
-        // keywords
-        echo "Keywords: <input type='text' style='width: 400px;' value='$category' id='new_keywords' class='input_basic_new' disabled/><br>";
-
-
-
-        echo "<h3>Advance</h3><br>";
-
-
-        echo "<input type='hidden' value='c__$category' id='table_name_new' class='input_advance_new'/>";
-        foreach ($filters as $filter) {
-            echo $filter;
-            echo ": <input type='text' id='$filter' class='input_advance_new'><br/>";
-        }
-
-        // submit button
-        echo "<input type='button' value='add' id='submit_new'>";
-
-        echo "</form>";
     }
 
 }

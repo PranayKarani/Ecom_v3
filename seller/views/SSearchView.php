@@ -6,11 +6,11 @@
  * Date: 11/06/2016
  * Time: 01:51 AM
  */
-class SearchView {
+class SSearchView {
 
     public static function showProductsSearch ($search_text) {
 
-        $search_results = SearchController::searchForProducts($search_text);
+        $search_results = SSearchController::searchForProducts($search_text);
 
         $search_size = count($search_results);
 
