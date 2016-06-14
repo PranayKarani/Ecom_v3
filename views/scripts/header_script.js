@@ -76,9 +76,11 @@ $('document').ready(function () {
         .keypress(function (ev) {
             if (ev.which === 13) {
                 var s_text = $(this).val();
-                var category = $(".search_product_link:first").find("input[name='product_category_name']").val();
-                var link = "search.php?category=" + category + "&search_text=" + s_text;
-                $(location).attr('href', link);
+                if (s_text.length > 0) {
+                    var category = $(".search_product_link:first").find("input[name='product_category_name']").val();
+                    var link = "search.php?category=" + category + "&search_text=" + s_text;
+                    $(location).attr('href', link);
+                }
             }
         });
 

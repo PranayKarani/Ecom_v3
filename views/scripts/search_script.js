@@ -4,30 +4,7 @@
 $('document').ready(function () {
 
     $(".filter_checkbox").click(function () {
-
-        var table = $(this).attr('datatype');
-        var sql = '';
-
-        $(".filter_checkbox").each(function () {
-            var checked = $(this).is(':checked');
-
-            if (checked) {
-                var data = $(this).val();
-                var filter = $(this).attr('name');
-
-                sql += filter + "='" + data + "' AND\n";
-            }
-        });
-
-        var details = [];
-        details.push({table: table});
-        details.push({string: sql});
-
-        var json = JSON.stringify(details);
-
-        getFilteredProducts(json);
-
-
+        loadProducts();
     });
 
     $(".product_link").click(function () {
@@ -38,26 +15,149 @@ $('document').ready(function () {
 
     });
 
-    // load all products only if center_middle is empty
-    //if($("#center_middle").html() == '') {
-    //    var table = $(".filter_checkbox:first").attr('datatype');
-    //
-    //    var details = [];
-    //    details.push({table: table});
-    //    details.push({string: ''});
-    //
-    //    var json = JSON.stringify(details);
-    //    getFilteredProducts(json);
-    //}
+    $(".nearBy").click(function () {
+
+        var name = $(this).attr('id');
+
+        url = "nearBy.php?category=" + name;
+
+        $(location).attr('href', url);
+
+
+    });
+
+    $("#order_by").change(function () {
+        var order_by = $("#order_by").val();
+
+        var noneChecked = true;
+
+        $(".filter_checkbox").each(function () {
+            var checked = $(this).is(':checked');
+            if (checked) {
+                noneChecked = false;
+            }
+        });
+
+        if (noneChecked) {
+            var search = $("#search").val();
+            var category = $("#cat").val();
+
+            if (search != null) {
+                var details = [];
+                details.push({search: search});
+                details.push({order: order_by});
+
+                var json = JSON.stringify(details);
+
+                $.post(
+                    "include/ajaxStaticClass.php",
+                    {
+                        dir: "views",
+                        class: "ProductView",
+                        method: "showOrderedSearchedProducts",
+                        params: json
+                    },
+                    function (data) {
+                        console.info(data);
+                        $("#center_bottom").html(data);
+
+                        $(".filtered_product_link").click(function () {
+                            var id = $(this).attr("id");
+
+                            openProductInfo(id);
+                        });
+
+                    }
+                );
+            } else if (category != null) {
+
+                loadFilteredProducts();
+
+            }
+
+
+        } else {
+            loadProducts();
+        }
+    });
 
 });
+
+function loadProducts() {
+    var order_by = $("#order_by").val();
+    var table = $(".filter_checkbox").attr('datatype');
+    var sql = '';
+
+    var noneChecked = true;
+
+    $(".filter_checkbox").each(function () {
+        var checked = $(this).is(':checked');
+
+        if (checked) {
+            noneChecked = false;
+            var data = $(this).val();
+            var filter = $(this).attr('name');
+
+            sql += filter + "='" + data + "' AND\n";
+        }
+    });
+
+    if (noneChecked) {
+        var search = $("#search").val();
+        var category = $("#cat").val();
+
+        if (search != null) {
+            $.post(
+                "include/ajaxStaticClass.php",
+                {
+                    dir: "views",
+                    class: "ProductView",
+                    method: "showSearchedProducts",
+                    params: search
+                },
+                function (data) {
+                    console.info(data);
+                    $("#center_bottom").html(data);
+
+                    $(".filtered_product_link").click(function () {
+                        var id = $(this).attr("id");
+
+                        openProductInfo(id);
+                    });
+
+                }
+            );
+        } else if (category != null) {
+
+            loadFilteredProducts();
+
+        }
+
+
+    } else {
+        var details = [];
+        details.push({table: table});
+        details.push({string: sql});
+        details.push({order: order_by});
+        console.info(sql);
+
+        var json = JSON.stringify(details);
+
+        getFilteredProducts(json);
+    }
+
+
+}
 
 function loadFilteredProducts() {
     var table = $(".filter_checkbox:first").attr('datatype');
 
+    var order_by = $("#order_by").val();
+
     var details = [];
     details.push({table: table});
     details.push({string: ''});
+    details.push({order: order_by});
 
     var json = JSON.stringify(details);
     getFilteredProducts(json);
@@ -74,7 +174,7 @@ function getFilteredProducts(json) {
         },
         function (data) {
             console.info(data);
-            $("#center_middle").html(data);
+            $("#center_bottom").html(data);
 
             $(".filtered_product_link").click(function () {
                 var id = $(this).attr("id");

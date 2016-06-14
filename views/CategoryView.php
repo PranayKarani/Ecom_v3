@@ -10,8 +10,9 @@ class CategoryView {
 
             $cat_name = $category_array[$i]['category_name'];
 
-            echo "<div class='category_link'>";
-            echo $cat_name;
+            echo "<div class='category_link' datatype='$cat_name'>";
+            echo "$cat_name";
+            echo " <button class='view_all' id='$cat_name'>view all</button>";
             echo "</div>";
 
         }
@@ -46,8 +47,6 @@ class CategoryView {
 
         $cat = str_replace(' ', '_', $category);
         $table = "c__" . strtolower(trim($cat));
-
-        echo "Filters for <strong style='font-size: x-large'>$category</strong><br>";
 
         for ($i = 0; $i < $filter_count; $i++) {
             $name = $filters[$i];

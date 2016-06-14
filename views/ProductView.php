@@ -56,13 +56,14 @@ class ProductView {
         }
     }
 
-    public static function getCategoryTopProducts ($category) {
+    public static function showCategoryTopProducts ($category) {
 
         $products = ProductController::getCategoryTopProducts($category);
 
         $noofP = count($products);
 
         if ($noofP > 0) {
+            echo "<strong style='font-size: larger'>Top Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
                 $id = $products[$i]['product_id'];
@@ -79,13 +80,14 @@ class ProductView {
 
     }
 
-    public static function getCategoryNewProducts ($category) {
+    public static function showCategoryNewProducts ($category) {
 
         $products = ProductController::getCategoryNewProducts($category);
 
         $noofP = count($products);
 
         if ($noofP > 0) {
+            echo "<strong style='font-size: larger'>New Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
                 $id = $products[$i]['product_id'];
@@ -132,9 +134,9 @@ class ProductView {
 
         $noofP = count($products);
 
-        echo "<strong>Products</strong><br>";
 
         if ($noofP > 0) {
+            echo "<strong>Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
 
                 $id = $products[$i]['product_id'];
@@ -158,6 +160,7 @@ class ProductView {
         $count = count($products);
 
         if ($count > 0) {
+            echo "<strong>Products</strong><br>";
             for ($i = 0; $i < $count; $i++) {
 
                 // product box
@@ -176,6 +179,97 @@ class ProductView {
 
 
     }
+
+    public static function showRatingFilters ($category) {
+
+        $ratings = ProductController::getRatingFilters($category);
+        $count = count($ratings);
+
+        $cat = str_replace(' ', '_', $category);
+        $table = "c__" . strtolower(trim($cat));
+
+        echo "<div>";
+        for ($j = 0; $j < $count; $j++) {
+            $n = $ratings[$j]['rating'];
+            $c = $ratings[$j]['c'];
+            echo "<input type='checkbox' class='filter_checkbox' name='rating' datatype='$table' value='$n'/>$n ";
+            echo "<span style='font-size: small; color: grey'>[$c]</span><br/>";
+        }
+        echo "</div><br>";
+
+    }
+
+    public static function showShopProducts ($shop_id) {
+        $products = ProductController::getShopProducts($shop_id);
+        $count = count($products);
+
+        if ($count > 0) {
+            for ($i = 0; $i < $count; $i++) {
+
+                // product box
+                $id = $products[$i]['product_id'];
+                $name = $products[$i]['product_name'];
+                $brand = $products[$i]['brand'];
+
+                echo "<span class='shop_product_link' id='$id'>";
+                echo "<strong>$brand</strong> $name";
+                echo "</span><br>";
+
+            }
+        } else {
+            echo "no products found";
+        }
+    }
+
+    public static function showShopCategoryProducts ($shop_id, $category) {
+
+        $products = ProductController::getShopCategoryProducts($shop_id, $category);
+        $count = count($products);
+
+        if ($count > 0) {
+            for ($i = 0; $i < $count; $i++) {
+
+                // product box
+                $id = $products[$i]['product_id'];
+                $name = $products[$i]['product_name'];
+                $brand = $products[$i]['brand'];
+
+                echo "<span class='shop_product_link' id='$id'>";
+                echo "<strong>$brand</strong> $name";
+                echo "</span><br>";
+
+            }
+        } else {
+            echo "no $category" . "s found in this shop";
+        }
+
+    }
+
+    public static function showOrderedSearchedProducts ($json) {
+        $products = ProductController::getOrderedSearchedProducts($json);
+
+        $noofP = count($products);
+
+
+        if ($noofP > 0) {
+            echo "<strong>Products</strong><br>";
+            for ($i = 0; $i < $noofP; $i++) {
+
+                $id = $products[$i]['product_id'];
+                $name = $products[$i]['product_name'];
+                $category = $products[$i]['category'];
+                $brand = $products[$i]['brand'];
+
+                echo "<span class='product_link' id='$id'>";
+                echo "<input type='hidden' value='$category' name='product_category_name'/>";
+                echo "<strong>$brand</strong> $name";
+                echo "</span><br>";
+            }
+        } else {
+            echo "no products found<br/>";
+        }
+    }
+
 
     public function show_basic_info () {
 

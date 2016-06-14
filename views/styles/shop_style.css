@@ -1,0 +1,45 @@
+#top_section {
+    width: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left {
+    width: 30%;
+    height: 200px;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_center {
+    width: 45%;
+    height: 200px;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_right {
+    width: 25%;
+    height: 200px;
+    float: left;
+    outline: 1px solid black;
+}
+
+#middle_section {
+    width: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#bottom_section {
+    width: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+.shop_product_link:hover, .shop_list:hover {
+    cursor: pointer;
+    /*font-weight: bolder;*/
+    color: white;
+    background-color: black;
+}

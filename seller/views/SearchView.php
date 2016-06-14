@@ -30,7 +30,7 @@ class SearchView {
                 echo "<input type='hidden' name='brand' value='$brand'/>";
                 echo "<input type='hidden' name='mrp' value='$mrp'/>";
                 echo "<input type='hidden' name='info' value='$info'/>";
-                echo $name;
+                echo "<strong>$brand</strong> $name";
                 echo "</div>";
             }
         } else {

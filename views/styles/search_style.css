@@ -7,11 +7,43 @@
 
 #center_section {
     width: 75%;
-    height: 200px;
     float: left;
     outline: 1px solid black;
 }
 
+#center_top {
+    width: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#center_middle {
+    width: 100%;
+    outline: 1px solid black;
+}
+
+#center_bottom {
+    width: 100%;
+    outline: 1px solid black;
+}
+
+#left_top {
+    width: 100%;
+    outline: 1px solid black;
+}
+
+#left_bottom {
+    width: 100%;
+    outline: 1px solid black;
+}
+
+#nearBy {
+    float: left;
+}
+
+#sortBy {
+    float: right;
+}
 .filtered_product_link {
     background-color: chartreuse;
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1975151659">
+  <component name="DataSourceManagerImpl" format="xml" hash="4239860960">
     <data-source source="LOCAL" name="Ecom_v3" uuid="93041413-01f6-44fa-b35e-399982e35105">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

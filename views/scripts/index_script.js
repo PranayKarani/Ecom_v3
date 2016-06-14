@@ -20,14 +20,14 @@ $(document).ready(function () {
                 $("#category_container").html(data);
                 $("#category-products").show();
                 $(".category_link").click(function () {
-                    var name = $(this).text();
+                    var name = $(this).attr('datatype');
 
                     $.post(
                         "include/ajaxStaticClass.php",
                         {
                             dir: "views",
                             class: "ProductView",
-                            method: "getCategoryTopProducts",
+                            method: "showCategoryTopProducts",
                             params: name
                         },
                         function(data){
@@ -40,9 +40,19 @@ $(document).ready(function () {
 
                             });
                         }
-                    )
+                    );
+                });
+
+                $(".view_all").click(function () {
+
+
+                    var name = $(this).attr("id");
+                    var url = "category.php?category=" + name;
+                    //window.location.href = "category.php?category=" + name;
+                    $(location).attr('href', url);
 
                 });
+
             }
         )
     });

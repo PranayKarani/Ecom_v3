@@ -8,15 +8,22 @@ class ProductView {
 
         $count = count($product_list);
 
+
         if ($count > 0) {
 
+            echo "<table id='inventory_table'>";
             echo "<tr>";
-            echo "<th width='250' align='left'>Name</th>";
-            echo "<th width='100' align='left'>Brand</th>";
-            echo "<th width='100' align='left'>Quantity</th>";
-            echo "<th width='150' align='left'>My Price</th>";
-            echo "<th width='150' align='left'>MRP</th>";
+            echo "<th width='150' align='left' class='table_header'>Category</th>";
+            echo "<th width='300' align='left' class='table_header'>Name</th>";
+            echo "<th width='100' align='left' class='table_header'>Brand</th>";
+            echo "<th width='30' align='left' class='table_header'>Qty</th>";
+            echo "<th width='100' align='left' class='table_header'>My Price</th>";
+            echo "<th width='100' align='left' class='table_header'>MRP</th>";
             echo "</tr>";
+
+            $total_qty = 0;
+            $total_price = 0;
+            $total_mrp = 0;
 
             for ($i = 0; $i < $count; $i++) {
 
@@ -24,26 +31,37 @@ class ProductView {
 
                 $id = $row['product_id'];
                 $name = $row['product_name'];
+                $category = $row['category'];
                 $brand = $row['brand'];
                 $qty = $row['qty'];
                 $price = $row['price'];
                 $mrp = $row['mrp'];
 
-                echo "<tr>";
-                echo "<td><label class='product_link' id='$id'>$name</label></td>";
-                echo "<td><label>$brand</label></td>";
-                echo "<td><label>$qty</label></td>";
-                echo "<td><label>$price</label></td>";
-                echo "<td><label>$mrp</label></td>";
+                $total_qty += $qty;
+                $total_price += $price;
+                $total_mrp += $mrp;
 
+                echo "<tr class='product_link' id='$id'>";
+                echo "<td class='table_element'><label>$category</label></td>";
+                echo "<td class='table_element'><label>$name</label></td>";
+                echo "<td class='table_element'><label>$brand</label></td>";
+                echo "<td class='table_element'><label>$qty</label></td>";
+                echo "<td class='table_element'><label>$price</label></td>";
+                echo "<td class='table_element'><label>$mrp</label></td>";
                 echo "</tr>";
 
 
             }
+            echo "<tr id='table_total'>";
+            echo "<td><label style='font-size: large'>Total</label></td>";
+            echo "<td><label></label></td>";
+            echo "<td><label></label></td>";
+            echo "<td class='table_element'><label>$total_qty</label></td>";
+            echo "<td class='table_element'><label>$total_price</label></td>";
+            echo "<td class='table_element'><label>$total_mrp</label></td>";
+            echo "</tr>";
+            echo "</table>";
 
-//            echo "<pre>";
-//            print_r($product_list);
-//            echo "</pre>";
 
         } else {
             echo "No Products in your inventory";

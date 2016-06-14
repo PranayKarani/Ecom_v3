@@ -36,7 +36,7 @@ class CategoryController {
 
     public static function getFilterData ($table, $filter) {
 
-        $sql = "SELECT $filter, COUNT($filter) AS c FROM $table GROUP BY $filter";
+        $sql = "SELECT $filter, COUNT($filter) AS c FROM $table GROUP BY $filter ORDER BY $filter DESC";
 
         return DBHandler::getAll($sql);
 
