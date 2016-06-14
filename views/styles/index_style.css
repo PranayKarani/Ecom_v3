@@ -52,7 +52,7 @@ h2{
     padding: 5%;
 }
 
-.product_link, .category_product_link {
+.product_link {
     float: left;
     width: 150px;
     height: 300px;
@@ -83,7 +83,7 @@ h2{
 /*.product_quick_info ul{*/
 /*padding-left: 0px;*/
 /*}*/
-.product_link:hover, .category_product_link:hover{
+.product_link:hover {
     cursor: pointer;
     /*font-weight: bolder;*/
     color: white;

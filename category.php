@@ -87,22 +87,24 @@ if (isset($_GET['category'])) {
         }
         ?>
     </div>
-    <button class="nearBy" id="<?php if (isset($category)) {
-        echo $category;
-    } ?>">
-        Find Nearby shops <?php if (isset($category)) {
-            echo "for $category";
-        } ?></button>
-    <div id="sortBy" hidden>
-        Sort by:
-        <select id="order_by">
-            <option value=" ORDER BY mrp ASC" selected>Price: Low to High</option>
-            <option value=" ORDER BY mrp DESC">Price: High to Low</option>
-            <option value=" ORDER BY rating ASC">Rating: Low to High</option>
-            <option value=" ORDER BY rating DESC">Rating: High to Low</option>
-            <option value=" ORDER BY product_id DESC">Latest: first</option>
-            <option value=" ORDER BY product_id ASC">Latest: last</option>
-        </select>
+    <div id="bar">
+        <button class="nearBy" id="<?php if (isset($category)) {
+            echo $category;
+        } ?>">
+            Find Nearby shops <?php if (isset($category)) {
+                echo "for $category";
+            } ?></button>
+        <div id="sortBy" hidden>
+            Sort by:
+            <select id="order_by">
+                <option value=" ORDER BY mrp ASC" selected>Price: Low to High</option>
+                <option value=" ORDER BY mrp DESC">Price: High to Low</option>
+                <option value=" ORDER BY rating ASC">Rating: Low to High</option>
+                <option value=" ORDER BY rating DESC">Rating: High to Low</option>
+                <option value=" ORDER BY product_id DESC">Latest: first</option>
+                <option value=" ORDER BY product_id ASC">Latest: last</option>
+            </select>
+        </div>
     </div>
     <div id="center_middle"></div>
     <div id="center_bottom"></div>

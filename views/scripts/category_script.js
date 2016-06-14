@@ -41,7 +41,7 @@ $('document').ready(function () {
                     $("#center_middle").html(data).show();
                     $("#sortBy").hide();
 
-                    $(".category_product_link").click(function () {
+                    $(".product_link").click(function () {
                         var id = $(this).attr('id');
                         openProductInfo(id);
                     });
@@ -62,7 +62,7 @@ $('document').ready(function () {
                     console.info(data);
                     $("#center_bottom").html(data);
 
-                    $(".category_product_link").click(function () {
+                    $(".product_link").click(function () {
                         var id = $(this).attr('id');
                         openProductInfo(id);
                     });
@@ -83,7 +83,7 @@ $('document').ready(function () {
 
     });
 
-    $(".category_product_link").click(function () {
+    $(".product_link").click(function () {
         var id = $(this).attr('id');
         openProductInfo(id);
     });
@@ -134,7 +134,7 @@ $('document').ready(function () {
                         console.info(data);
                         $("#center_bottom").html(data);
 
-                        $(".filtered_product_link").click(function () {
+                        $(".product_link").click(function () {
                             var id = $(this).attr("id");
 
                             openProductInfo(id);
@@ -173,7 +173,7 @@ function getFilteredProducts(json) {
             $("#sortBy").show();
             $("#center_bottom").html(data);
 
-            $(".filtered_product_link").click(function () {
+            $(".product_link").click(function () {
                 var id = $(this).attr("id");
 
                 openProductInfo(id);
@@ -219,7 +219,7 @@ function loadProducts() {
                     console.info(data);
                     $("#center_bottom").html(data);
 
-                    $(".filtered_product_link").click(function () {
+                    $(".product_link").click(function () {
                         var id = $(this).attr("id");
 
                         openProductInfo(id);
@@ -297,7 +297,7 @@ function loadInitProducts() {
                 $("#center_middle").html(data).show();
                 $("#sortBy").hide();
 
-                $(".category_product_link").click(function () {
+                $(".product_link").click(function () {
                     var id = $(this).attr('id');
                     openProductInfo(id);
                 });
@@ -318,7 +318,7 @@ function loadInitProducts() {
                 console.info(data);
                 $("#center_bottom").html(data);
 
-                $(".category_product_link").click(function () {
+                $(".product_link").click(function () {
                     var id = $(this).attr('id');
                     openProductInfo(id);
                 });

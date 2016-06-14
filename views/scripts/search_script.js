@@ -61,7 +61,7 @@ $('document').ready(function () {
                         console.info(data);
                         $("#center_bottom").html(data);
 
-                        $(".filtered_product_link").click(function () {
+                        $(".product_link").click(function () {
                             var id = $(this).attr("id");
 
                             openProductInfo(id);
@@ -119,7 +119,7 @@ function loadProducts() {
                     console.info(data);
                     $("#center_bottom").html(data);
 
-                    $(".filtered_product_link").click(function () {
+                    $(".product_link").click(function () {
                         var id = $(this).attr("id");
 
                         openProductInfo(id);
@@ -176,7 +176,7 @@ function getFilteredProducts(json) {
             console.info(data);
             $("#center_bottom").html(data);
 
-            $(".filtered_product_link").click(function () {
+            $(".product_link").click(function () {
                 var id = $(this).attr("id");
 
                 openProductInfo(id);

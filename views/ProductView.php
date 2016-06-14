@@ -70,17 +70,9 @@ class ProductView {
         $count = count($products);
 
         if ($count > 0) {
-            echo "<strong>Products</strong><br>";
+            echo "<strong style='font-size: larger'>Filtered Products</strong><br>";
             for ($i = 0; $i < $count; $i++) {
 
-                // product box
-//                $id = $products[$i]['product_id'];
-//                $name = $products[$i]['product_name'];
-//                $brand = $products[$i]['brand'];
-//
-//                echo "<span class='filtered_product_link' id='$id'>";
-//                echo "<strong>$brand</strong> $name";
-//                echo "</span><br>";
                 self::product_box($products[$i]);
 
             }
@@ -98,7 +90,7 @@ class ProductView {
 
 
         if ($noofP > 0) {
-            echo "<strong>Products</strong><br>";
+            echo "<strong style='font-size: larger'>Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
 
 //                $id = $products[$i]['product_id'];
@@ -127,7 +119,7 @@ class ProductView {
 
 
         if ($noofP > 0) {
-            echo "<strong>Products</strong><br>";
+            echo "<strong style='font-size: larger'>Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
 
                 $id = $products[$i]['product_id'];
@@ -151,7 +143,7 @@ class ProductView {
 
 
         if ($noofP > 0) {
-            echo "<strong>Products</strong><br>";
+            echo "<strong style='font-size: larger'>Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
 
                 self::product_box($products[$i]);
@@ -170,7 +162,7 @@ class ProductView {
         $noofP = count($products);
 
         if ($noofP > 0) {
-            echo "<strong>Top Products</strong><br>";
+            echo "<strong style='font-size: larger'>Top Products</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
                 self::product_box($products[$i]);
