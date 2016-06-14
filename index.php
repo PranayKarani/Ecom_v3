@@ -21,6 +21,7 @@ require_once('views/CategoryView.php');
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="views/styles/index_style.css">
+    <link rel="stylesheet" href="views/styles/common_style.css">
     <link rel="stylesheet" href="views/styles/header_style.css">
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
     <script src="../jquery-2.2.3.min.js"></script>

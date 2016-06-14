@@ -37,7 +37,7 @@
     outline: 1px solid black;
 }
 
-.shop_product_link:hover, .shop_list:hover {
+.shop_list:hover {
     cursor: pointer;
     /*font-weight: bolder;*/
     color: white;

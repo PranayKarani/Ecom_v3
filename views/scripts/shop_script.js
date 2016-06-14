@@ -3,7 +3,7 @@
  */
 $(document).ready(function () {
 
-    $(".shop_product_link").click(function () {
+    $(".product_link").click(function () {
         var id = $(this).attr('id');
         openProductInfo(id);
     });

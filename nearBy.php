@@ -26,6 +26,7 @@ if (isset($_GET['category'])) {
     <meta charset="UTF-8">
     <title>NearBy</title>
     <link rel="stylesheet" href="views/styles/header_style.css">
+    <link rel="stylesheet" href="views/styles/common_style.css">
     <link rel="stylesheet" href="views/styles/nearby_style.css">
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
     <script src="../jquery-2.2.3.min.js"></script>
@@ -57,8 +58,6 @@ if (isset($_GET['category'])) {
 
         <?php
         if (isset($category)) {
-            echo "<h3>Top Products for $category</h3>";
-
             ProductView::showCategoryTopProducts($category);
         }
         ?>
@@ -67,8 +66,6 @@ if (isset($_GET['category'])) {
 
         <?php
         if (isset($category)) {
-
-            echo "<h3>New Products for $category</h3>";
             ProductView::showCategoryNewProducts($category);
         }
         ?>

@@ -28,6 +28,7 @@ if (isset($_GET['category'])) {
     <meta charset="UTF-8">
     <title>Shop</title>
     <link rel="stylesheet" href="views/styles/header_style.css">
+    <link rel="stylesheet" href="views/styles/common_style.css">
     <link rel="stylesheet" href="views/styles/shop_style.css">
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
     <script src="../jquery-2.2.3.min.js"></script>
@@ -58,7 +59,7 @@ if (isset($_GET['category'])) {
 <div id="middle_section">
     <?php
     if (isset($category) && isset($id)) {
-        echo "<h3>$category" . "s in this shop</h3>";
+        echo "<strong style='font-size: larger'>$category" . "s in this shop</strong><br/>";
 
         ProductView::showShopCategoryProducts($id, $category);
     }
@@ -67,7 +68,7 @@ if (isset($_GET['category'])) {
 <div id="bottom_section">
     <?php
     if (isset($id)) {
-        echo "<h3>All products of this shop</h3>";
+        echo "<strong style='font-size: larger'>All products in this shop</strong><br>";
 
         ProductView::showShopProducts($id);
     }

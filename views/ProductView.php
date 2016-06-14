@@ -162,7 +162,7 @@ class ProductView {
         $noofP = count($products);
 
         if ($noofP > 0) {
-            echo "<strong style='font-size: larger'>Top Products</strong><br>";
+            echo "<strong style='font-size: larger'>Top Products for $category</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
                 self::product_box($products[$i]);
@@ -180,7 +180,7 @@ class ProductView {
         $noofP = count($products);
 
         if ($noofP > 0) {
-            echo "<strong style='font-size: larger'>New Products</strong><br>";
+            echo "<strong style='font-size: larger'>New Products for $category</strong><br>";
             for ($i = 0; $i < $noofP; $i++) {
                 // product box
                 self::product_box($products[$i]);
