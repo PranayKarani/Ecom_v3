@@ -182,7 +182,7 @@ class ProductView {
 
     public static function showRatingFilters ($category) {
 
-        $ratings = ProductController::getRatingFilters($category);
+        $ratings = ProductController::getCategoryRatingFilters($category);
         $count = count($ratings);
 
         $cat = str_replace(' ', '_', $category);

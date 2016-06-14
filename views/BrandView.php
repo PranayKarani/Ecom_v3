@@ -20,7 +20,7 @@ class BrandView {
 
     public static function showBrandFilters ($category) {
 
-        $brands = ProductController::getBrandFilters($category);
+        $brands = ProductController::getCategoryBrandFilters($category);
         $count = count($brands);
 
         $cat = str_replace(' ', '_', $category);

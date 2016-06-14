@@ -35,7 +35,7 @@ class CategoryController {
     }
 
     public static function addNewCategory ($json_string) {
-        // TODO also create new 'c__' table
+
         $details = json_decode($json_string);
         $length = count($details);
         $name = '';

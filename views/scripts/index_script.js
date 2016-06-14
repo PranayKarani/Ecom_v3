@@ -19,6 +19,7 @@ $(document).ready(function () {
             function (data) {
                 $("#category_container").html(data);
                 $("#category-products").show();
+                // what happens when you click the category
                 $(".category_link").click(function () {
                     var name = $(this).attr('datatype');
 
