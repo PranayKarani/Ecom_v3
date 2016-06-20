@@ -30,8 +30,12 @@ function initMap() {
     lat = roundFix(lat, precision);
     lng = roundFix(lng, precision);
 
-    var dService = new google.maps.DirectionsService;
-    var dDisplay = new google.maps.DirectionsRenderer;
+    var dService = new google.maps.DirectionsService;// to calculate directions
+    var dDisplay = new google.maps.DirectionsRenderer({
+        draggable: true,
+        map: map,
+    });
+
     var mapDiv = document.getElementById('top_left_bottom_left');
     map = new google.maps.Map(mapDiv, {
         center: {lat: lat, lng: lng},
@@ -64,7 +68,6 @@ function initMap() {
         var marker = new google.maps.Marker({
             map: map,
             position: myLatLng,
-            title: name,
             animation: google.maps.Animation.DROP
         });
 
@@ -83,7 +86,8 @@ function initMap() {
         loc_x = roundFix(loc_x, precision);
         loc_y = roundFix(loc_y, precision);
         var dest = {lat: loc_x, lng: loc_y};
-        calculateDirection(dService, dDisplay, dest);
+        var drive = $("#drive").is(":checked");
+        calculateDirection(dService, dDisplay, dest, drive);
     });
 
 }
@@ -99,14 +103,40 @@ function shopSelect(box) {
     //box.css("outline", "2px solid red");
     console.info(name + ' selected');
 }
-function calculateDirection(dService, dDisplay, dest) {
+function calculateDirection(dService, dDisplay, dest, drive) {
     dService.route({
         origin: {lat: 19.176889, lng: 72.955271},
         destination: dest,
-        travelMode: google.maps.TravelMode.WALKING
+        travelMode: drive ? google.maps.TravelMode.DRIVING : google.maps.TravelMode.WALKING,
+        provideRouteAlternatives: false
+        //UnitSystem: UnitSystem.METRIC
     }, function (response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             dDisplay.setDirections(response);
+            var routes = response.routes;
+            var legs = [];
+            var noofRoutes = routes.length;
+            var noofLegs = 0;
+            var distance = 0;
+            var time = 0;
+
+            for (var i = 0; i < noofRoutes; i++) {
+                legs = routes[i].legs;
+                noofLegs += legs.length;
+                for (var j = 0; j < noofLegs; j++) {
+                    console.info(legs[j]);
+                    distance += legs[j].distance.value;
+                    time += legs[j].duration.value;
+                }
+            }
+
+            var min = roundFix(time / 60, 0);
+            var sec = time % 60;
+
+            console.info("noof of routes: " + noofRoutes);
+            console.info("noof of legs: " + noofLegs);
+            console.info("distance: " + distance + " meters");
+            console.info("duration: " + min + "m " + sec + "s");
         } else {
             alert('Directions request failed due to ' + status);
         }

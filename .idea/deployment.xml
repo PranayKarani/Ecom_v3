@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Localhost" uploadOnCheckin="adee0c1a-ec92-4d8a-b2bd-0984088ca9b2">
+  <component name="PublishConfigData" serverName="Localhost" persistUploadOnCheckin="false">
     <serverData>
       <paths name="FTP">
         <serverdata>
@@ -24,6 +24,5 @@
         </serverdata>
       </paths>
     </serverData>
-    <option name="myUploadOnCheckinName" value="NameName" />
   </component>
 </project>

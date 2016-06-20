@@ -125,9 +125,10 @@ class ProductInfoView {
                 echo "<strong class='shop_name'>$name</strong><br>";
                 echo "Contact: $contact<br>";
                 // TODO show open or not
+                // TODO explore shop option
                 echo "Rate: <strong>$price Rs</strong><br>";
                 echo "<input type='button' value='order'/>";
-                echo "<input class='walkIn' type='button' value='walk-in'/>";
+                echo "<input class='walkIn' type='button' value='get route'/>";
                 echo "</div>";
                 echo "</div>";
 
