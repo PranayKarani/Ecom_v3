@@ -1,0 +1,174 @@
+#top_section {
+    width: 100%;
+    height: 800px;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left {
+    width: 70%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_top {
+    width: 100%;
+    height: 40%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_top_left {
+    width: 40%;
+    height: 100%;
+    text-align: center;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_top_right {
+    width: 60%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_top_right_top {
+    width: 100%;
+    height: 30%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_top_right_bottom {
+    width: 100%;
+    height: 70%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_top_right_bottom_left {
+    width: 10%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_top_right_bottom_right {
+    width: 90%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_bottom {
+    width: 100%;
+    height: 60%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_bottom_left {
+    width: 65%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_left_bottom_right {
+    width: 35%;
+    height: 100%;
+    overflow: scroll;
+    float: left;
+    outline: 1px solid black;
+}
+
+#top_right {
+    width: 30%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+#center_section {
+    width: 100%;
+    height: 300px;
+    float: left;
+    outline: 1px solid black;
+}
+
+#bottom_section {
+    width: 100%;
+    height: 300px;
+    float: left;
+    outline: 1px solid black;
+}
+
+/* Element Styling */
+
+#product_image {
+    width: 80%;
+    padding: 5%;
+}
+
+.thumbnail {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10%;
+
+    float: left;
+    outline: 1px solid black;
+}
+
+.product_quick_info {
+    font-size: larger;
+    list-style: none;
+    text-align: left;
+    margin: 5px 0 10px;
+    padding-left: 10px;
+}
+
+#spec_table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+#spec_table td {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+#spec_table tr:hover {
+    font-weight: bold;
+    cursor: default;
+}
+
+.shop_box {
+    width: 100%;
+    height: 125px;
+    outline: 1px solid black;
+}
+
+.shop_box:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.shop_box_left {
+    width: 30%;
+    /*height: 100%;*/
+    float: left;
+    padding: 5%;
+    /*outline: 1px solid black;*/
+}
+
+.shop_box_right {
+    width: 50%;
+    padding: 5%;
+    float: left;
+    /*outline: 1px solid black;*/
+}

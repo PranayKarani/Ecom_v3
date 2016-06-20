@@ -34,4 +34,12 @@ class ShopController {
 
     }
 
+    public static function getProductShops ($id) {
+
+        $sql = "CALL get_shops_for_product($id)";
+
+        return DBHandler::getAll($sql);
+
+    }
+
 }
