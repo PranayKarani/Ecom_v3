@@ -111,7 +111,7 @@ class ProductInfoView {
                 $loc_x = $shops[$i]['loc_x'];
                 $loc_y = $shops[$i]['loc_y'];
 
-                $image = "http://settlersindia.com/wp-content/uploads/2015/12/shop-icon.png";
+                $image = "res/images/shop/shop.png";
 
                 echo "<div class='shop_box' id='$id'>";
                 echo "<input type='hidden' id='loc_x' value='$loc_x'/>";
@@ -124,9 +124,10 @@ class ProductInfoView {
                 echo "<div class='shop_box_right'>";
                 echo "<strong class='shop_name'>$name</strong><br>";
                 echo "Contact: $contact<br>";
+                // TODO show open or not
                 echo "Rate: <strong>$price Rs</strong><br>";
                 echo "<input type='button' value='order'/>";
-                echo "<input type='button' value='walk-in'/>";
+                echo "<input class='walkIn' type='button' value='walk-in'/>";
                 echo "</div>";
                 echo "</div>";
 

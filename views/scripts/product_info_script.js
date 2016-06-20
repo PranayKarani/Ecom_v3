@@ -15,19 +15,27 @@ $(document).ready(function () {
         loc_y = roundFix(loc_y, precision);
 
         var myLatLng = {lat: loc_x, lng: loc_y};
-        map.panTo(myLatLng, 3000);
-        shopSelect(name);
+        map.panTo(myLatLng);
+        shopSelect($(this));
 
     });
 
 });
 
 
-function initMap(loc_x, loc_y) {
+function initMap() {
+
+    var lat = $(".shop_box:first").find("#loc_x").val();
+    var lng = $(".shop_box:first").find("#loc_y").val();
+    lat = roundFix(lat, precision);
+    lng = roundFix(lng, precision);
+
+    var dService = new google.maps.DirectionsService;
+    var dDisplay = new google.maps.DirectionsRenderer;
     var mapDiv = document.getElementById('top_left_bottom_left');
     map = new google.maps.Map(mapDiv, {
-        center: {lat: 19.182469, lng: 72.95412},
-        zoom: 18,
+        center: {lat: lat, lng: lng},
+        zoom: 15,
         zoomControl: true,
         mapTypeControl: true,
         scaleControl: true,
@@ -38,6 +46,9 @@ function initMap(loc_x, loc_y) {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
         }
     });
+    dDisplay.setMap(map);
+
+    var infoWindow = new google.maps.InfoWindow();
 
     $(".shop_box").each(function () {
         var this_box = $(this);
@@ -53,23 +64,51 @@ function initMap(loc_x, loc_y) {
         var marker = new google.maps.Marker({
             map: map,
             position: myLatLng,
-            title: name
+            title: name,
+            animation: google.maps.Animation.DROP
         });
 
         marker.addListener('click', function () {
-            map.setCenter(myLatLng);
-            shopSelect(name);
+            map.panTo(myLatLng);
+            shopSelect(this_box);
+            infoWindow.setContent(name);
+            infoWindow.open(map, marker)
         });
-
 
     });
 
+    $(".walkIn").click(function () {
+        var loc_x = $(this).parent().parent().find('#loc_x').val();
+        var loc_y = $(this).parent().parent().find('#loc_y').val();
+        loc_x = roundFix(loc_x, precision);
+        loc_y = roundFix(loc_y, precision);
+        var dest = {lat: loc_x, lng: loc_y};
+        calculateDirection(dService, dDisplay, dest);
+    });
+
 }
+
+
 function roundFix(number, precision) {
     var multi = Math.pow(10, precision);
     return Math.round((number * multi).toFixed(precision + 1)) / multi;
 }
 
-function shopSelect(name) {
+function shopSelect(box) {
+    var name = box.find('.shop_name').text();
+    //box.css("outline", "2px solid red");
     console.info(name + ' selected');
+}
+function calculateDirection(dService, dDisplay, dest) {
+    dService.route({
+        origin: {lat: 19.176889, lng: 72.955271},
+        destination: dest,
+        travelMode: google.maps.TravelMode.WALKING
+    }, function (response, status) {
+        if (status === google.maps.DirectionsStatus.OK) {
+            dDisplay.setDirections(response);
+        } else {
+            alert('Directions request failed due to ' + status);
+        }
+    });
 }
