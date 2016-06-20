@@ -101,7 +101,7 @@ class ProductInfoView {
         $s_count = count($shops);
 
         // TODO remove thos for loop later
-        for ($x = 0; $x < 10; $x++) {
+        for ($x = 0; $x < 1; $x++) {
             for ($i = 0; $i < $s_count; $i++) {
 
                 $id = $shops[$i]['shop_id'];
@@ -122,7 +122,7 @@ class ProductInfoView {
                 echo "</div>";
                 // right
                 echo "<div class='shop_box_right'>";
-                echo "<strong >$name</strong><br>";
+                echo "<strong class='shop_name'>$name</strong><br>";
                 echo "Contact: $contact<br>";
                 echo "Rate: <strong>$price Rs</strong><br>";
                 echo "<input type='button' value='order'/>";
