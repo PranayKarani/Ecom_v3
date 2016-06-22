@@ -113,13 +113,14 @@
 }
 
 .thumbnail {
-    width: 80%;
-    padding-left: 10%;
-    padding-right: 10%;
+    width: 70%;
+    padding-left: 15%;
+    padding-right: 15%;
     padding-top: 10%;
 
     float: left;
     outline: 1px solid black;
+    /*transition: all .2s ease-in-out;*/
 }
 
 #top_left_top_right_bottom_right .product_quick_info {
@@ -149,26 +150,82 @@
 .shop_box {
     width: 100%;
     height: 125px;
+    margin-bottom: 20px;
     outline: 1px solid black;
 }
 
-.shop_box:hover {
-    background-color: black;
-    color: white;
+.shop_box_top {
+    width: 100%;
+    height: 70%;
+    float: left;
+    outline: 1px solid black;
+}
+
+.shop_box_top_right:hover {
+    /*color: blue;*/
+    background-color: lightblue;
     cursor: pointer;
 }
 
-.shop_box_left {
-    width: 30%;
-    /*height: 100%;*/
+.shop_box_top_left {
+    width: 20%;
+    height: 70%;
     float: left;
     padding: 5%;
-    /*outline: 1px solid black;*/
+    outline: 1px solid black;
 }
 
-.shop_box_right {
-    width: 50%;
+.shop_box_top_right {
+    width: 60%;
+    height: 70%;
     padding: 5%;
     float: left;
-    /*outline: 1px solid black;*/
+    background-color: #dfefff;
+    outline: 1px solid black;
 }
+
+.shop_box_bottom {
+    width: 100%;
+    height: 30%;
+    float: left;
+    outline: 1px solid black
+}
+
+.order, .walkIn {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+#tab_pane {
+    width: 100%;
+    height: 5%;
+    float: left;
+}
+
+#description_tab {
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    outline: 1px solid black;
+}
+
+#specs_tab {
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    outline: 1px solid black;
+}
+
+#specs_tab_content, #desc_tab_content {
+    width: 100%;
+    height: 95%;
+    float: left;
+}
+
+/*#description_tab:hover, #specs_tab:hover{*/
+/*background-color: #c0efc0;*/
+/*cursor: pointer;*/
+/*}*/

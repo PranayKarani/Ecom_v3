@@ -25,6 +25,33 @@ $(document).ready(function () {
         openProductInfo(id);
     });
 
+    $(".tabs").click(function () {
+
+        var id = $(this).attr('id');
+
+        switch (id) {
+            case 'specs_tab':
+
+                //$("#specs_tab").css("font-size", "x-large");
+                //$("#description_tab").css("font-size", "medium");
+                $("#specs_tab_content").show();
+                $("#desc_tab_content").hide();
+
+                break;
+            case 'description_tab':
+                $("#desc_tab_content").show();
+                $("#specs_tab_content").hide();
+                break;
+        }
+
+    });
+
+
+    $(".thumbnail").click(function(){
+        var src = $(this).attr("src");
+        $("#product_image").attr("src", src);
+    });
+
 });
 
 

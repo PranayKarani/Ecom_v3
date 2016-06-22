@@ -38,7 +38,7 @@ class ProductView {
         $category = $product['category'];
 
         echo "<div class='product_link' id='$id'>";
-        echo "<input type='image' class='product_image' src='res/images/product/default.png'><br>";
+        echo "<input type='image' class='product_image' src='res/images/product/default0.jpg'><br>";
         echo "<strong>$name</strong><br>";
         echo "<span style='font-size: small'>from <strong style='font-weight: bolder'>$brand</strong></span><br>";
         echo "<input type='hidden' value='$category' name='product_category_name'/>";
