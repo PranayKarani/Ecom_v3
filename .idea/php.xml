@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="PhpUnit">
-    <phpunit_settings>
-      <PhpUnitSettings load_method="PHPUNIT_PHAR" custom_loader_path="" phpunit_phar_path="$PROJECT_DIR$/../../phpunit-5.4.6.phar" />
-      <phpunit_by_deployment server_id="ea4bb62d-8cbd-40a8-be1e-a68b4a315920" load_method="PHPUNIT_PHAR" custom_loader_path="" phpunit_phar_path="E:\Pranay\phpunit-5.4.6.phar" />
-    </phpunit_settings>
-  </component>
-</project>
