@@ -28,7 +28,7 @@ class ProductView {
 
     }
 
-    private static function product_box ($product) {
+    public static function product_box ($product) {
 
         $id = $product['product_id'];
         $name = $product['product_name'];

@@ -63,6 +63,12 @@ class ProductController {
 
     }
 
+    public static function getSimilarProducts ($pID) {
+        $sql = "CALL get_similar_products($pID)";
+
+        return DBHandler::getAll($sql);
+    }
+
     /** Search Stuff */
 
     public static function getSearchedProducts ($search_text) {

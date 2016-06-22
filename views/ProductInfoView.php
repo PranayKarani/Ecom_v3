@@ -8,12 +8,14 @@ class ProductInfoView {
 
     private $id;
     private $details;
+    private $similar;
     private $count;
 
     public function __construct ($id) {
 
         $this->id = $id;
         $this->details = ProductController::getProductDetails($id);
+        $this->similar = ProductController::getSimilarProducts($id);
         $this->count = count($this->details);
 
     }
@@ -32,14 +34,19 @@ class ProductInfoView {
 
         $max = $this->details['max_p'];
         $min = $this->details['min_p'];
-        echo "<p>";
         if ($max == $min) {
-            echo "<strong>$max Rs</strong>";
+            echo "<strong>$max Rs</strong><br>";
         } else {
-            echo "<strong>$min Rs - $max Rs</strong>";
+            echo "<strong>$min Rs - $max Rs</strong><br>";
         }
-        echo "</p>";
 
+    }
+
+    public function show_rating_stars () {
+        $rating = $this->details['rating'];
+        for ($i = 0; $i < $rating; $i++) {
+            echo "<input type='image' src='http://www.clipartbest.com/cliparts/aTq/ogj/aTqogjjpc.png' style='width: 10px; margin-top: 5px'/> ";
+        }
     }
 
     public function show_thumbnails () {
@@ -100,7 +107,7 @@ class ProductInfoView {
         $shops = ShopController::getProductShops($this->id);
         $s_count = count($shops);
 
-        // TODO remove thos for loop later
+        // TODO remove this for loop later
         for ($x = 0; $x < 1; $x++) {
             for ($i = 0; $i < $s_count; $i++) {
 
@@ -125,7 +132,7 @@ class ProductInfoView {
                 echo "<strong class='shop_name'>$name</strong><br>";
                 echo "Contact: $contact<br>";
                 // TODO show open or not
-                // TODO explore shop option
+                // TODO explore shop option (go to shop page)
                 echo "Rate: <strong>$price Rs</strong><br>";
                 echo "<input type='button' value='order'/>";
                 echo "<input class='walkIn' type='button' value='get route'/>";
@@ -133,6 +140,21 @@ class ProductInfoView {
                 echo "</div>";
 
             }
+        }
+
+    }
+
+    public function show_similar_products () {
+
+        $s_count = count($this->similar);
+
+        echo "<strong style='font-size: larger'>Similar Products</strong><br>";
+        for ($i = 0; $i < $s_count; $i++) {
+
+            $product = $this->similar[$i];
+
+            ProductView::product_box($product);
+
         }
 
     }

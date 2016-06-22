@@ -10,6 +10,7 @@ require_once('controllers/ShopController.php');
 // Views
 require_once('views/templates/header.php');
 require_once('views/ProductInfoView.php');
+require_once('views/ProductView.php');
 require_once('views/CategoryView.php');
 
 if (isset($_GET['id'])) {
@@ -24,6 +25,7 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <title>Product Info</title>
     <link rel="stylesheet" href="views/styles/header_style.css">
+    <link rel="stylesheet" href="views/styles/common_style.css">
     <link rel="stylesheet" href="views/styles/product_info_style.css">
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtIbBNlZxS0chITJV8eQdmEiTxykZct9E&callback=initMap&signed_in=true"></script>
@@ -47,6 +49,7 @@ if (isset($_GET['id'])) {
                     <?php
                     $productInfoView->show_name_and_brand();
                     $productInfoView->show_price_range();
+                    $productInfoView->show_rating_stars();
                     ?>
                 </div>
                 <div id="top_left_top_right_bottom">
@@ -76,7 +79,7 @@ if (isset($_GET['id'])) {
 
 
 <div id="center_section">
-    similar products
+    <?php $productInfoView->show_similar_products(); ?>
 </div>
 
 

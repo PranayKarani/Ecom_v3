@@ -20,6 +20,11 @@ $(document).ready(function () {
 
     });
 
+    $(".product_link").click(function () {
+        var id = $(this).attr('id');
+        openProductInfo(id);
+    });
+
 });
 
 
@@ -75,7 +80,7 @@ function initMap() {
             map.panTo(myLatLng);
             shopSelect(this_box);
             infoWindow.setContent(name);
-            infoWindow.open(map, marker)
+            infoWindow.open(map, marker);
         });
 
     });
@@ -87,7 +92,7 @@ function initMap() {
         loc_y = roundFix(loc_y, precision);
         var dest = {lat: loc_x, lng: loc_y};
         var drive = $("#drive").is(":checked");
-        calculateDirection(dService, dDisplay, dest, drive);
+        calculateDirection(dService, dDisplay, dest, drive, infoWindow);
     });
 
 }
@@ -103,7 +108,7 @@ function shopSelect(box) {
     //box.css("outline", "2px solid red");
     console.info(name + ' selected');
 }
-function calculateDirection(dService, dDisplay, dest, drive) {
+function calculateDirection(dService, dDisplay, dest, drive, infoWindow) {
     dService.route({
         origin: {lat: 19.176889, lng: 72.955271},
         destination: dest,
@@ -133,10 +138,18 @@ function calculateDirection(dService, dDisplay, dest, drive) {
             var min = roundFix(time / 60, 0);
             var sec = time % 60;
 
+            var km = roundFix(distance / 1000, 2);
+
+            var distance_string = "<strong>" + km + "</strong> km";
+            var time_string = min == 1 ? "<strong>" + min + "</strong> min" : "<strong>" + min + "</strong> mins";
+
+            infoWindow.setContent(distance_string + " (" + time_string + ")");
+            infoWindow.setPosition(dest);
+            infoWindow.open(map);
+
             console.info("noof of routes: " + noofRoutes);
             console.info("noof of legs: " + noofLegs);
-            console.info("distance: " + distance + " meters");
-            console.info("duration: " + min + "m " + sec + "s");
+
         } else {
             alert('Directions request failed due to ' + status);
         }
