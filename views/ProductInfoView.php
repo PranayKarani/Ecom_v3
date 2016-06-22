@@ -98,7 +98,7 @@ class ProductInfoView {
 		$shops = ShopController::getProductShops($this->id);
 		$s_count = count($shops);
 		// TODO remove this for loop later
-		for ($x = 0; $x < 4; $x++) {
+		for ($x = 0; $x < 1; $x++) {
 			for ($i = 0; $i < $s_count; $i++) {
 				$id = $shops[$i]['shop_id'];
 				$name = $shops[$i]['shop_name'];
