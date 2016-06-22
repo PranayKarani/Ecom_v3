@@ -34,12 +34,12 @@ $(document).ready(function () {
 
                 //$("#specs_tab").css("font-size", "x-large");
                 //$("#description_tab").css("font-size", "medium");
-                $("#specs_tab_content").show();
+                $("#specs_tab_content").fadeIn();
                 $("#desc_tab_content").hide();
 
                 break;
             case 'description_tab':
-                $("#desc_tab_content").show();
+                $("#desc_tab_content").fadeIn();
                 $("#specs_tab_content").hide();
                 break;
         }
