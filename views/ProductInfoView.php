@@ -142,7 +142,7 @@ class ProductInfoView {
 		echo "<strong style='font-size: larger'>Similar Products</strong><br>";
 		for ($i = 0; $i < $s_count; $i++) {
 			$product = $this->similar[$i];
-			ProductView::product_box($product);
+			ProductView::product_box($product, false);
 
 		}
 

@@ -58,7 +58,7 @@ $('document').ready(function () {
                         params: json
                     },
                     function (data) {
-                        console.info(data);
+
                         $("#center_bottom").html(data);
 
                         $(".product_link").click(function () {
@@ -80,6 +80,8 @@ $('document').ready(function () {
             loadProducts();
         }
     });
+
+    removeFromCompare();
 
 });
 
@@ -116,7 +118,7 @@ function loadProducts() {
                     params: search
                 },
                 function (data) {
-                    console.info(data);
+
                     $("#center_bottom").html(data);
 
                     $(".product_link").click(function () {
@@ -173,7 +175,7 @@ function getFilteredProducts(json) {
             params: json
         },
         function (data) {
-            console.info(data);
+
             $("#center_bottom").html(data);
 
             $(".product_link").click(function () {

@@ -1,20 +1,40 @@
 .product_image {
     width: 90%;
+    height: 46%; /* 51% */
     padding: 5%;
+    float: left;
 }
 
-.product_link {
+.product_box {
     float: left;
     width: 150px;
-    height: 300px;
+    height: 350px;
     outline: 1px solid lightblue;
     cursor: pointer;
     text-align: center;
 }
 
+.product_link {
+    float: left;
+    width: 100%;
+    height: 85%;
+    outline: 1px solid lightblue;
+    cursor: pointer;
+    text-align: center;
+}
+
+.name_raing_box {
+    width: 100%;
+    float: left;
+    height: 19%;
+    /*background-color: lightcoral;*/
+}
 .quick_info_box {
     width: 100%;
+    height: 30%;
+    float: left;
     text-align: right;
+    /*background-color: lightblue;*/
 }
 
 .product_quick_info {
@@ -33,4 +53,19 @@
 
 .product_link:hover > .quick_info_box > .product_quick_info {
     color: white;
+}
+
+.button_box {
+    width: 100%;
+    height: 15%;
+    float: left;
+    text-align: center;
+    /*background-color: #c0efc0;*/
+}
+
+.add_to_compare, .add_to_wishlist {
+    width: 100%;
+    height: 50%;
+    /*position: absolute;*/
+    /*left: 50px;*/
 }

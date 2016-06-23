@@ -39,7 +39,8 @@ $('document').ready(function () {
                 function (data) {
                     console.info(data);
                     $("#center_middle").html(data).show();
-                    $("#sortBy").hide();
+                    $(".nearBy").css("width", "100%");
+                    $("#order_by").hide();
 
                     $(".product_link").click(function () {
                         var id = $(this).attr('id');
@@ -154,6 +155,8 @@ $('document').ready(function () {
         }
     });
 
+    removeFromCompare();
+
 });
 
 
@@ -170,7 +173,8 @@ function getFilteredProducts(json) {
 
             console.info(data);
             $("#center_middle").hide();
-            $("#sortBy").show();
+            $(".nearBy").css("width", "75%");
+            $("#order_by").show();
             $("#center_bottom").html(data);
 
             $(".product_link").click(function () {
@@ -295,7 +299,8 @@ function loadInitProducts() {
             function (data) {
                 console.info(data);
                 $("#center_middle").html(data).show();
-                $("#sortBy").hide();
+                $(".nearBy").css("width", "100%");
+                $("#order_by").hide();
 
                 $(".product_link").click(function () {
                     var id = $(this).attr('id');
