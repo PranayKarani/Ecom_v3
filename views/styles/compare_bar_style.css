@@ -9,12 +9,13 @@
     width: 25%;
     height: 60%;
     float: left;
+    position: relative;
     outline: 1px solid black;
 }
 
 .compare_product_slot:hover .compared_product {
     cursor: pointer;
-    background-color: lightcoral;
+    background-color: #c0efc0;
 }
 
 .compare_product_button {
@@ -28,6 +29,21 @@
     width: 100%;
     height: 100%;
     float: left;
-    background-color: #c0efc0;
+    /*background-color: #c0efc0;*/
     outline: 1px solid black;
+}
+
+.remove_from_compare {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    padding: 2px;
+    right: 1px;
+    top: 1px;
+    z-index: 99;
+    outline: 1px solid black;
+}
+
+.remove_from_compare:hover {
+    background-color: indianred;
 }

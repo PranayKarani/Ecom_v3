@@ -27,6 +27,7 @@ require_once('views/CategoryView.php');
     <script src="../jquery-2.2.3.min.js"></script>
     <script src="views/scripts/index_script.js"></script>
     <script src="views/scripts/header_script.js"></script>
+	<script src="views/scripts/common_script.js"></script>
 </head>
 <body>
 

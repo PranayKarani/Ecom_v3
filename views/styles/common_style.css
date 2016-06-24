@@ -9,6 +9,7 @@
     float: left;
     width: 150px;
     height: 350px;
+    position: relative;
     outline: 1px solid lightblue;
     cursor: pointer;
     text-align: center;
@@ -17,7 +18,7 @@
 .product_link {
     float: left;
     width: 100%;
-    height: 85%;
+    height: 90%;
     outline: 1px solid lightblue;
     cursor: pointer;
     text-align: center;
@@ -48,7 +49,7 @@
 .product_link:hover {
     cursor: pointer;
     color: white;
-    background-color: black;
+    background-color: darkslateblue;
 }
 
 .product_link:hover > .quick_info_box > .product_quick_info {
@@ -57,15 +58,50 @@
 
 .button_box {
     width: 100%;
-    height: 15%;
+    height: 10%;
     float: left;
     text-align: center;
     /*background-color: #c0efc0;*/
 }
 
-.add_to_compare, .add_to_wishlist {
+.add_to_compare{
     width: 100%;
-    height: 50%;
+    height: 100%;
     /*position: absolute;*/
-    /*left: 50px;*/
+    /*right: 10px;*/
+    top: 10px;
+    z-index: 99;
+}
+.add_to_wishlist {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    padding: 2px;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    outline: 1px solid black;
+}
+.add_to_wishlist:hover{
+    background-color: indianred;
+}
+
+
+.tooltiptext {
+    visibility: hidden;
+    width: 90px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: smaller;
+    padding: 5px;
+    opacity: .7;
+    margin-left: 10px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 199;
+}
+.add_to_wishlist:hover .tooltiptext{
+    visibility: visible;
 }

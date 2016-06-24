@@ -32,6 +32,7 @@ if (isset($_GET['search_text'])) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="../jquery-2.2.3.min.js"></script>
 	<script src="views/scripts/header_script.js"></script>
+	<script src="views/scripts/common_script.js"></script>
 	<script src="views/scripts/compare_bar_script.js"></script>
 	<script src="views/scripts/search_script.js"></script>
 </head>

@@ -51,7 +51,7 @@ function addToCompare(id, category) {
             slot.attr("data-product-category", category);
             slot.attr("data-counter", compare_slot_counter);
 
-            $("#compare_bar").show();
+            $("#compare_bar").slideDown();
 
             console.info(compare_products_array + " counter: " + compare_slot_counter);
         }
@@ -103,11 +103,11 @@ function clearAll() {
     $(".compared_product").html(null);
     compare_products_array.splice(0, 4);
     compare_slot_counter = 0;
-    $("#compare_bar").hide();
+    $("#compare_bar").slideUp();
 }
 
 function removeFromCompare() {
-    $(".compared_product").click(function () {
+    $(".remove_from_compare").click(function () {
 
         var slot = $(this).parent();
         var id = slot.attr('data-product-id');
@@ -124,7 +124,7 @@ function removeFromCompare() {
 
 
         if (compare_products_array.length == 0) {
-            $("#compare_bar").hide();
+            $("#compare_bar").slideUp();
         }
     });
 }

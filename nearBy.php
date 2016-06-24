@@ -32,6 +32,7 @@ if (isset($_GET['category'])) {
     <script src="../jquery-2.2.3.min.js"></script>
     <script src="views/scripts/header_script.js"></script>
     <script src="views/scripts/nearby_script.js"></script>
+	<script src="views/scripts/common_script.js"></script>
 </head>
 <body>
 <?php Header::show() ?>

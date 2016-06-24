@@ -50,12 +50,23 @@ class ProductView {
 		echo "<div class='quick_info_box'>$quick_info</div>";
 		echo "</div>";
 		echo "<div class='button_box'>";
-		echo "<input type='button' value='add to wishlist' class='add_to_wishlist'/>";
-		$compare_category = '"' . $category . '"';
 		if ($compare) {
-			echo "<input type='button' value='add to compare' class='add_to_compare' onclick='addToCompare($id,$compare_category)'/>";
+			$compare_category = '"' . $category . '"';
+			echo "<input type='button' value='compare' class='add_to_compare' onclick='addToCompare($id,$compare_category)'/>";
 		}
 		echo "</div>";
+//		echo "<input type='button' value='add to wishlist' class='add_to_wishlist'/>";
+		echo "<span class='add_to_wishlist' onclick='onWishListClick($id)'>";
+		echo "<input type='image' src='http://image.flaticon.com/icons/png/128/121/121727.png' style='width: 100%'/>";
+		echo "<span class='tooltiptext'>add to wishlist</span>";
+		echo "</span>";
+//		echo "<div style='
+//			position: absolute;
+//			right: 4px;
+//			top: 4px;
+//			padding: 10px;
+//			background-color: brown;
+//		'>X</div>";
 		echo "</div>";
 	}
 
