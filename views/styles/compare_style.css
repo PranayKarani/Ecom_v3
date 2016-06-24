@@ -1,0 +1,13 @@
+#center_section {
+    width: 100%;
+    height: 600px;
+    float: left;
+    outline: 1px solid black;
+}
+
+.column {
+    width: 25%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}

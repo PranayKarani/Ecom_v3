@@ -51,8 +51,9 @@ class ProductView {
 		echo "</div>";
 		echo "<div class='button_box'>";
 		echo "<input type='button' value='add to wishlist' class='add_to_wishlist'/>";
+		$compare_category = '"' . $category . '"';
 		if ($compare) {
-			echo "<input type='button' value='add to compare' class='add_to_compare' onclick='addToCompare($id)'/>";
+			echo "<input type='button' value='add to compare' class='add_to_compare' onclick='addToCompare($id,$compare_category)'/>";
 		}
 		echo "</div>";
 		echo "</div>";

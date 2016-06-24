@@ -5,7 +5,7 @@
 var compare_products_array = [];
 var compare_slot_counter = 0;
 
-function addToCompare(id) {
+function addToCompare(id, category) {
 
     // no more that 4 allowed
     if (compare_products_array.length < 4) {
@@ -48,6 +48,7 @@ function addToCompare(id) {
             );
 
             slot.attr("data-product-id", id);
+            slot.attr("data-product-category", category);
             slot.attr("data-counter", compare_slot_counter);
 
             $("#compare_bar").show();
@@ -62,17 +63,39 @@ function addToCompare(id) {
 function goCompare() {
 
     var IDs = '';
+    var cat = '';
+    $(".compare_product_slot").each(function () {
 
+        var c = $(this).attr('data-product-category');
+        if (cat == '' && c != '') {
+            cat = c;
+            console.info("cat selected: " + cat);
+        }
+    });
+
+    var sameCategory = false;
     $(".compare_product_slot").each(function () {
 
         var id = $(this).attr('data-product-id');
+        var category = $(this).attr('data-product-category');
+
+        if (category != '') {
+            if (cat != category) {
+                sameCategory = true;
+            }
+        }
+
         if (id != null || id != '') {
             IDs += $(this).attr('data-product-id') + " ";
         }
 
     });
 
-    $(location).attr("href", "compare.php?ids=" + IDs);
+    if (sameCategory) {
+        alert("cannot compare products from different category :(");
+    } else {
+        $(location).attr("href", "compare.php?ids=" + IDs);
+    }
 
 }
 
@@ -89,6 +112,7 @@ function removeFromCompare() {
         var slot = $(this).parent();
         var id = slot.attr('data-product-id');
         slot.attr('data-product-id', "");
+        slot.attr('data-product-category', "");
         id = parseInt(id);
         if (compare_slot_counter > slot.attr('data-counter') - 1) {
             compare_slot_counter = slot.attr('data-counter') - 1
