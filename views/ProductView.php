@@ -44,7 +44,7 @@ class ProductView {
 		echo "<span style='font-size: small'>from <strong style='font-weight: bolder'>$brand</strong></span><br>";
 		echo "<input type='hidden' value='$category' name='product_category_name'/>";
 		for ($i = 0; $i < $rating; $i++) {
-			echo "<input type='image' src='http://www.clipartbest.com/cliparts/aTq/ogj/aTqogjjpc.png' style='width: 10px; margin-top: 5px'/> ";
+			echo "<input type='image' src='http://image.flaticon.com/icons/png/512/40/40403.png' style='width: 15px; margin-top: 5px'/> ";
 		}
 		echo "</div>";
 		echo "<div class='quick_info_box'>$quick_info</div>";

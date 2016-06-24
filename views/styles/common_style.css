@@ -10,7 +10,7 @@
     width: 150px;
     height: 350px;
     position: relative;
-    outline: 1px solid lightblue;
+    outline: 1px solid black;
     cursor: pointer;
     text-align: center;
 }
@@ -19,7 +19,6 @@
     float: left;
     width: 100%;
     height: 90%;
-    outline: 1px solid lightblue;
     cursor: pointer;
     text-align: center;
 }
@@ -46,14 +45,15 @@
     padding-left: 10px;
 }
 
-.product_link:hover {
+.product_box:hover {
     cursor: pointer;
-    color: white;
-    background-color: darkslateblue;
+    /*color: white;*/
+    background-color: lightgray;
+    /*outline: 5px solid blue;*/
 }
 
-.product_link:hover > .quick_info_box > .product_quick_info {
-    color: white;
+.product_box:hover .product_link > .quick_info_box > .product_quick_info {
+    color: black;
 }
 
 .button_box {
@@ -77,8 +77,8 @@
     height: 25px;
     position: absolute;
     padding: 2px;
-    right: 0;
-    top: 0;
+    right: 1px;
+    top: 1px;
     z-index: 99;
     outline: 1px solid black;
 }
