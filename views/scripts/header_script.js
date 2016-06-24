@@ -49,13 +49,6 @@ function searchCategories(search) {
     );
 }
 
-function openProductInfo(id) {
-
-    // TODO make it post instead of get
-    window.location.href = "productInfo.php?id=" + id;
-
-}
-
 $('document').ready(function () {
 
     $("#search_suggestions").mouseleave(function () {

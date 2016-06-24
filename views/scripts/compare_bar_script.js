@@ -85,7 +85,7 @@ function goCompare() {
             }
         }
 
-        if (id != null || id != '') {
+        if (id != null && id != '' && id != "") {
             IDs += $(this).attr('data-product-id') + " ";
         }
 
@@ -94,7 +94,7 @@ function goCompare() {
     if (sameCategory) {
         alert("cannot compare products from different category :(");
     } else {
-        $(location).attr("href", "compare.php?ids=" + IDs);
+        $(location).attr("href", "compare.php?ids=" + IDs + "&category="+cat);
     }
 
 }

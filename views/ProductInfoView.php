@@ -41,7 +41,7 @@ class ProductInfoView {
 	public function show_rating_stars () {
 		$rating = $this->details['rating'];
 		for ($i = 0; $i < $rating; $i++) {
-			echo "<input type='image' src='http://www.clipartbest.com/cliparts/aTq/ogj/aTqogjjpc.png' style='width: 10px; margin-top: 5px'/> ";
+			echo "<input type='image' src='http://image.flaticon.com/icons/png/512/40/40403.png' style='width: 15px; margin-top: 5px'/> ";
 		}
 	}
 
