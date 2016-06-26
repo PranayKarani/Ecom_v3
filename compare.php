@@ -43,23 +43,25 @@ if (isset($_GET['category'])) {
 <body>
 <?php Header::show(); ?>
 
-<div id="center_section">
+<div id="content">
+	<div id="center_section">
 
-	<?php
+		<?php
 
-	if (isset($category)) {
-		ProductView::showComparedProducts($ids, $category);
-	} else {
-		die("category not set");
-	}
+		if (isset($category)) {
+			ProductView::showComparedProducts($ids, $category);
+		} else {
+			die("category not set");
+		}
 
-	//	for ($i = 0; $i < $noof_ids; $i++) {
-	//		$x = $i + 1;
-	//		echo "<div class='column' id='col_$x'></div>";
-	//	}
+		//	for ($i = 0; $i < $noof_ids; $i++) {
+		//		$x = $i + 1;
+		//		echo "<div class='column' id='col_$x'></div>";
+		//	}
 
-	?>
+		?>
 
+	</div>
 </div>
 
 </body>

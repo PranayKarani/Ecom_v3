@@ -35,63 +35,63 @@ if (isset($_GET['id'])) {
 <body>
 <?php Header::show(); ?>
 
-<div id="top_section">
-	<div id="top_left">
-		<div id="top_left_top">
-			<div id="top_left_top_left">
-				<!--                TODO to be changed-->
-				<input type="image" id="product_image" src="res/images/product/default0.jpg"/>
-			</div>
-			<div id="top_left_top_right">
-				<div id="top_left_top_right_top">
-					<?php
-					$productInfoView->show_name_and_brand();
-					$productInfoView->show_price_range();
-					$productInfoView->show_rating_stars();
-					?>
+<div id="content">
+	<div id="top_section">
+		<div id="top_left">
+			<div id="top_left_top">
+				<div id="top_left_top_left">
+					<!--                TODO to be changed-->
+					<input type="image" id="product_image" src="res/images/product/default0.jpg"/>
 				</div>
-				<div id="top_left_top_right_bottom">
-					<div id="top_left_top_right_bottom_left">
-						<?php $productInfoView->show_thumbnails(); ?>
+				<div id="top_left_top_right">
+					<div id="top_left_top_right_top">
+						<?php
+						$productInfoView->show_name_and_brand();
+						$productInfoView->show_price_range();
+						$productInfoView->show_rating_stars();
+						?>
 					</div>
-					<div id="top_left_top_right_bottom_right">
-						<?php $productInfoView->show_quick_info(); ?>
-						<?php $productInfoView->show_shop_availability(); ?>
+					<div id="top_left_top_right_bottom">
+						<div id="top_left_top_right_bottom_left">
+							<?php $productInfoView->show_thumbnails(); ?>
+						</div>
+						<div id="top_left_top_right_bottom_right">
+							<?php $productInfoView->show_quick_info(); ?>
+							<?php $productInfoView->show_shop_availability(); ?>
+						</div>
 					</div>
+				</div>
+			</div>
+			<div id="top_left_bottom">
+				<div id="top_left_bottom_left">
+				</div>
+				<div id="top_left_bottom_right">
+					<input type='checkbox' id='drive'/> drive
+					<?php $productInfoView->show_shop_list(); ?>
 				</div>
 			</div>
 		</div>
-		<div id="top_left_bottom">
-			<div id="top_left_bottom_left">
+		<div id="top_right">
+			<div id="tab_pane">
+				<button class='tabs' id="specs_tab">Specs</button>
+				<button class='tabs' id="description_tab">Description</button>
 			</div>
-			<div id="top_left_bottom_right">
-				<input type='checkbox' id='drive'/> drive
-				<?php $productInfoView->show_shop_list(); ?>
+			<div id="specs_tab_content">
+				<?php $productInfoView->show_specs(); ?>
+			</div>
+			<div id="desc_tab_content" hidden>
+				<?php $productInfoView->show_description(); ?>
 			</div>
 		</div>
 	</div>
-	<div id="top_right">
-		<div id="tab_pane">
-			<button class='tabs' id="specs_tab">Specs</button>
-			<button class='tabs' id="description_tab">Description</button>
-		</div>
-		<div id="specs_tab_content">
-			<?php $productInfoView->show_specs(); ?>
-		</div>
-		<div id="desc_tab_content" hidden>
-			<?php $productInfoView->show_description(); ?>
-		</div>
+
+	<div id="center_section">
+		<?php $productInfoView->show_similar_products(); ?>
 	</div>
-</div>
 
-
-<div id="center_section">
-	<?php $productInfoView->show_similar_products(); ?>
-</div>
-
-
-<div id="bottom_section">
-	Reviews or some other crap
+	<div id="bottom_section">
+		Reviews or some other crap
+	</div>
 </div>
 
 </body>

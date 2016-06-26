@@ -30,34 +30,33 @@ require_once('views/CategoryView.php');
 	<script src="views/scripts/common_script.js"></script>
 </head>
 <body>
-
-<a href="admin">admin</a>
-<a href="seller">seller</a>
 <?php Header::show(); ?>
 
-<div id="dept-category">
-    <h2>Browse by Departments and Categories</h2>
-    <div id='dept_container'>
-        <?php DepartmentView::show(); ?>
-    </div>
-    <div id="category-products">
-        <div id='category_container'>
-            <!-- categories will be shown from AjaxManager through jQuery -->
-        </div>
-        <div id='category_products_container'>
+<div id="content">
+	<div id="dept-category">
+		<h2>Browse by Departments and Categories</h2>
+		<div id='dept_container'>
+			<?php DepartmentView::show(); ?>
+		</div>
+		<div id="category-products">
+			<div id='category_container'>
+				<!-- categories will be shown from AjaxManager through jQuery -->
+			</div>
+			<div id='category_products_container'>
 
-        </div>
-    </div>
-</div>
-<div id="top-products">
-    <br>
-    <h2>Top Products</h2>
-    <?php ProductView::showTopProducts(5); ?>
-</div>
-<div id="new-products">
-    <br>
-    <h2>New Products</h2>
-    <?php ProductView::showNewProducts(5); ?>
+			</div>
+		</div>
+	</div>
+	<div id="top-products">
+		<br>
+		<h2>Top Products</h2>
+		<?php ProductView::showTopProducts(5); ?>
+	</div>
+	<div id="new-products">
+		<br>
+		<h2>New Products</h2>
+		<?php ProductView::showNewProducts(5); ?>
+	</div>
 </div>
 
 </body>

@@ -34,77 +34,79 @@ if (isset($_GET['category'])) {
 </head>
 <body>
 <?php Header::show() ?>
-<div id="left_section">
+<div id="content">
+	<div id="left_section">
 
-	<div id="left_top">
-		<?php
-		if (isset($category)) {
-			echo "Filters for <strong style='font-size: x-large'>$category</strong><br><br>";
-		} else {
-			echo ":(";
-		}
-		?>
+		<div id="left_top">
+			<?php
+			if (isset($category)) {
+				echo "Filters for <strong style='font-size: x-large'>$category</strong><br><br>";
+			} else {
+				echo ":(";
+			}
+			?>
 
-		<strong style='font-size: larger'>Brands</strong><br>
-		<?php
-		if (isset($category)) {
-			BrandView::showBrandFilters($category);
-		} else {
-			echo ":(";
-		}
-		?>
-		<strong style='font-size: larger'>Ratings</strong><br>
-		<?php
-		if (isset($category)) {
-			ProductView::showCategoryRatingFilters($category);
-		} else {
-			echo ":(";
-		}
-		?>
+			<strong style='font-size: larger'>Brands</strong><br>
+			<?php
+			if (isset($category)) {
+				BrandView::showBrandFilters($category);
+			} else {
+				echo ":(";
+			}
+			?>
+			<strong style='font-size: larger'>Ratings</strong><br>
+			<?php
+			if (isset($category)) {
+				ProductView::showCategoryRatingFilters($category);
+			} else {
+				echo ":(";
+			}
+			?>
+		</div>
+		<div id="left_bottom">
+
+			<?php
+			if (isset($category)) {
+				CategoryView::showFilters($category);
+			} else {
+				echo ":(";
+			}
+			?>
+		</div>
+
 	</div>
-	<div id="left_bottom">
+	<div id="center_section">
 
-		<?php
-		if (isset($category)) {
-			CategoryView::showFilters($category);
-		} else {
-			echo ":(";
-		}
-		?>
+		<div id="center_top">
+			<?php
+			if (isset($category)) {
+				echo "<strong>$category</strong>";
+			}
+			?>
+		</div>
+		<div id="bar">
+			<button class="nearBy" id="<?php if (isset($category)) {
+				echo $category;
+			} ?>">
+				Find Nearby shops <?php if (isset($category)) {
+					echo "for $category";
+				} ?></button>
+			<!--        <div id="sortBy" hidden>-->
+			<select id="order_by" hidden>
+				<option value=" ORDER BY mrp ASC" selected>Price: Low to High</option>
+				<option value=" ORDER BY mrp DESC">Price: High to Low</option>
+				<option value=" ORDER BY rating ASC">Rating: Low to High</option>
+				<option value=" ORDER BY rating DESC">Rating: High to Low</option>
+				<option value=" ORDER BY product_id DESC">Latest: first</option>
+				<option value=" ORDER BY product_id ASC">Latest: last</option>
+			</select>
+			<!--        </div>-->
+		</div>
+		<?php CompareBar::show(); ?>
+		<div id="center_middle"></div>
+		<div id="center_bottom"></div>
+
 	</div>
-
-</div>
-<div id="center_section">
-
-	<div id="center_top">
-		<?php
-		if (isset($category)) {
-			echo "<strong>$category</strong>";
-		}
-		?>
-	</div>
-	<div id="bar">
-		<button class="nearBy" id="<?php if (isset($category)) {
-			echo $category;
-		} ?>">
-			Find Nearby shops <?php if (isset($category)) {
-				echo "for $category";
-			} ?></button>
-		<!--        <div id="sortBy" hidden>-->
-		<select id="order_by" hidden>
-			<option value=" ORDER BY mrp ASC" selected>Price: Low to High</option>
-			<option value=" ORDER BY mrp DESC">Price: High to Low</option>
-			<option value=" ORDER BY rating ASC">Rating: Low to High</option>
-			<option value=" ORDER BY rating DESC">Rating: High to Low</option>
-			<option value=" ORDER BY product_id DESC">Latest: first</option>
-			<option value=" ORDER BY product_id ASC">Latest: last</option>
-		</select>
-		<!--        </div>-->
-	</div>
-	<?php CompareBar::show(); ?>
-	<div id="center_middle"></div>
-	<div id="center_bottom"></div>
-
 </div>
 </body>
 </html>

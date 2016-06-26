@@ -9,7 +9,8 @@ function searchProducts(search) {
             params: search
         },
         function (data) {
-            $("#search_suggestions").html(data).show();
+            $("#search_suggestions").show();
+            $("#search_product_suggestions").html(data);
             $(".search_product_link").click(function () {
 
                 var id = $(this).attr("id");
@@ -37,7 +38,7 @@ function searchCategories(search) {
             params: search
         },
         function (data) {
-            $("#search_suggestions").append(data).show();
+            $("#search_category_suggestions").html(data);
             $(".search_category_link").click(function () {
 
                 var name = $(this).attr("id");
@@ -77,5 +78,38 @@ $('document').ready(function () {
             }
         });
 
+    var anchor = 0;
+    var currentHeight;
+
+    $("header").mouseover(function () {
+        $("header").css("height", "150");
+    }).mouseleave(function () {
+        $("header").css("height", currentHeight);
+    });
+
+    $(window).scroll(function () {
+
+        var scropo = $(this).scrollTop();// (scro)ll (po)sition
+
+        var value = 60;
+
+        if (scropo > anchor) {
+            // down
+            if (window.pageYOffset > value) {
+                $("header").css("height", "50");
+                currentHeight = 50;
+            }
+        } else {
+            // up
+            if (window.pageYOffset < value) {
+                $("header").css("height", "150");
+                currentHeight = 150;
+            }
+        }
+
+        anchor = scropo;
+
+
+    });
 
 });

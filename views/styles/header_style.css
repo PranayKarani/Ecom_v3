@@ -3,9 +3,18 @@ body {
     margin: 0 auto;
 }
 header{
-    width: 100%;
+    width: 1200px;
     height: 150px;
+    position: fixed;
+    background-color: beige;
+    z-index: 999;
+    top: 0;
     /*outline: 1px solid black;*/
+}
+
+#content {
+    width: 100%;
+    margin-top: 150px;
 }
 #left{
     width: 25%;

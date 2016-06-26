@@ -38,42 +38,45 @@ if (isset($_GET['category'])) {
 </head>
 <body>
 <?php Header::show(); ?>
-<div id="top_section">
-    <div id="top_left"><?php
 
-        if (isset($id)) {
-            ShopView::showShopInfo($id);
-        }
+<div id="content">
+	<div id="top_section">
+		<div id="top_left"><?php
 
-        ?></div>
-    <div id="top_center">Shop Map</div>
-    <div id="top_right">
-        <?php
+			if (isset($id)) {
+				ShopView::showShopInfo($id);
+			}
 
-        if (isset($id)) {
-            ShopView::showSimilarShops($id);
-        }
+			?></div>
+		<div id="top_center">Shop Map</div>
+		<div id="top_right">
+			<?php
 
-        ?>
-    </div>
-</div>
-<div id="middle_section">
-    <?php
-    if (isset($category) && isset($id)) {
-        echo "<strong style='font-size: larger'>$category" . "s in this shop</strong><br/>";
+			if (isset($id)) {
+				ShopView::showSimilarShops($id);
+			}
 
-        ProductView::showShopCategoryProducts($id, $category);
-    }
-    ?>
-</div>
-<div id="bottom_section">
-    <?php
-    if (isset($id)) {
-        echo "<strong style='font-size: larger'>All products in this shop</strong><br>";
+			?>
+		</div>
+	</div>
+	<div id="middle_section">
+		<?php
+		if (isset($category) && isset($id)) {
+			echo "<strong style='font-size: larger'>$category" . "s in this shop</strong><br/>";
 
-        ProductView::showShopProducts($id);
-    }
-    ?>
+			ProductView::showShopCategoryProducts($id, $category);
+		}
+		?>
+	</div>
+	<div id="bottom_section">
+		<?php
+		if (isset($id)) {
+			echo "<strong style='font-size: larger'>All products in this shop</strong><br>";
+
+			ProductView::showShopProducts($id);
+		}
+		?>
+	</div>
 </div>
 
 </body>

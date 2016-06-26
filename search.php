@@ -38,73 +38,76 @@ if (isset($_GET['search_text'])) {
 </head>
 <body>
 <?php Header::show(); ?>
-<div id="left_section">
 
-	<div id="left_top">
+<div id="content">
+	<div id="left_section">
 
-		<?php
-		if (isset($category)) {
-			echo "Filters for <strong style='font-size: x-large'>$category</strong><br><br>";
-		} else {
-			echo ":(";
-		} ?>
-		<strong style='font-size: larger'>Brands</strong><br>
-		<?php
-		if (isset($category)) {
-			BrandView::showBrandFilters($category);
-		} else {
-			echo ":(";
-		} ?>
-		<strong style='font-size: larger'>Ratings</strong><br>
-		<?php
-		if (isset($category)) {
-			ProductView::showCategoryRatingFilters($category);
-		} else {
-			echo ":(";
-		} ?>
-	</div>
-	<div id="left_bottom">
-		<?php
-		if (isset($category)) {
-			CategoryView::showFilters($category);
-		} else {
-			// TODO show common filters
-		}
-		?>
-	</div>
-</div>
-<div id="center_section">
-	<div id="center_top">
-		<button class="nearBy" id="<?php if (isset($category)) {
-			echo $category;
-		} ?>">
-			Find Nearby shops <?php if (isset($category)) {
-				echo "selling $category";
+		<div id="left_top">
+
+			<?php
+			if (isset($category)) {
+				echo "Filters for <strong style='font-size: x-large'>$category</strong><br><br>";
+			} else {
+				echo ":(";
 			} ?>
-		</button>
-		<!--        <div id="sortBy">-->
-		<select id="order_by">
-			<option value=" ORDER BY mrp ASC" selected>Price: Low to High</option>
-			<option value=" ORDER BY mrp DESC">Price: High to Low</option>
-			<option value=" ORDER BY rating ASC">Rating: Low to High</option>
-			<option value=" ORDER BY rating DESC">Rating: High to Low</option>
-			<option value=" ORDER BY product_id DESC">Latest: first</option>
-			<option value=" ORDER BY product_id ASC">Latest: last</option>
-		</select>
-		<!--        </div>-->
+			<strong style='font-size: larger'>Brands</strong><br>
+			<?php
+			if (isset($category)) {
+				BrandView::showBrandFilters($category);
+			} else {
+				echo ":(";
+			} ?>
+			<strong style='font-size: larger'>Ratings</strong><br>
+			<?php
+			if (isset($category)) {
+				ProductView::showCategoryRatingFilters($category);
+			} else {
+				echo ":(";
+			} ?>
+		</div>
+		<div id="left_bottom">
+			<?php
+			if (isset($category)) {
+				CategoryView::showFilters($category);
+			} else {
+				// TODO show common filters
+			}
+			?>
+		</div>
 	</div>
-	<div id="center_middle" hidden>
-	</div>
-	<?php CompareBar::show(); ?>
+	<div id="center_section">
+		<div id="center_top">
+			<button class="nearBy" id="<?php if (isset($category)) {
+				echo $category;
+			} ?>">
+				Find Nearby shops <?php if (isset($category)) {
+					echo "selling $category";
+				} ?>
+			</button>
+			<!--        <div id="sortBy">-->
+			<select id="order_by">
+				<option value=" ORDER BY mrp ASC" selected>Price: Low to High</option>
+				<option value=" ORDER BY mrp DESC">Price: High to Low</option>
+				<option value=" ORDER BY rating ASC">Rating: Low to High</option>
+				<option value=" ORDER BY rating DESC">Rating: High to Low</option>
+				<option value=" ORDER BY product_id DESC">Latest: first</option>
+				<option value=" ORDER BY product_id ASC">Latest: last</option>
+			</select>
+			<!--        </div>-->
+		</div>
+		<div id="center_middle" hidden>
+		</div>
+		<?php CompareBar::show(); ?>
 
-	<div id="center_bottom">
-		<?php
-		if (isset($search_text)) {
-			ProductView::showSearchedProducts($search_text);
-		} else {
-			echo "<script>loadFilteredProducts();</script>";
-		}
-		?>
+		<div id="center_bottom">
+			<?php
+			if (isset($search_text)) {
+				ProductView::showSearchedProducts($search_text);
+			} else {
+				echo "<script>loadFilteredProducts();</script>";
+			}
+			?>
+		</div>
 	</div>
 </div>
 
