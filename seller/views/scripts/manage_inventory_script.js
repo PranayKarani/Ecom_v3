@@ -101,7 +101,6 @@ function productOperations(pID) {
                     "include/ajaxStaticClass.php",
                     {
                         dir: "controllers",
-                        dir: "controllers",
                         class: "SProductController",
                         method: "removeInventoryProduct",
                         params: json
