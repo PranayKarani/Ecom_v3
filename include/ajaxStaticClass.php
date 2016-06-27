@@ -7,6 +7,7 @@ require_once('../include/DBHandler.php');
 require_once('../controllers/DepartmentController.php');
 require_once '../controllers/CategoryController.php';
 require_once '../controllers/ProductController.php';
+require_once '../controllers/ShopController.php';
 
 $dir = $_POST['dir'];
 $class = $_POST['class'];

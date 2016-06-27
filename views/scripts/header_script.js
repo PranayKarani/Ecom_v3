@@ -50,6 +50,27 @@ function searchCategories(search) {
     );
 }
 
+function searchShops(search) {
+    $.post(
+        "include/ajaxStaticClass.php",
+        {
+            dir: "views",
+            class: "ShopView",
+            method: "showSearchedShops",
+            params: search
+        },
+        function (data) {
+            $("#search_shop_suggestions").html(data);
+            $(".search_shop_link").click(function () {
+
+                var id = $(this).attr("id");
+                window.location.href = "shop.php?id=" + id;
+
+            });
+        }
+    );
+}
+
 $('document').ready(function () {
 
     $("#search_suggestions").mouseleave(function () {
@@ -64,6 +85,7 @@ $('document').ready(function () {
             } else {
                 searchProducts(search);
                 searchCategories(search);
+                searchShops(search);
             }
         })
         // on enter press

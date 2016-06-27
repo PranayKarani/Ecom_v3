@@ -2,6 +2,12 @@
 
 class ShopController {
 
+	public static function getSearchedShops ($search_text) {
+		$sql = "CALL get_searched_shops('$search_text')";
+
+		return DBHandler::getAll($sql);
+	}
+
     public static function getShopInfo ($shop_id) {
 
         $sql = "CALL get_shop_details($shop_id)";

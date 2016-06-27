@@ -34,7 +34,8 @@ header{
     float: left;
     outline: 1px solid blue;
 }
-.search_product_link, .search_category_link{
+
+.search_product_link, .search_category_link, .search_shop_link {
     padding: 5px;
 }
 #search_suggestions{
@@ -48,7 +49,8 @@ header{
 #search_bar{
     width: 100%;
 }
-.search_product_link:hover, .search_category_link:hover{
+
+.search_product_link:hover, .search_category_link:hover, .search_shop_link:hover {
     cursor: pointer;
     color: white;
     background-color: black;

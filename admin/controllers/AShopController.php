@@ -2,138 +2,155 @@
 
 class AShopController {
 
-    public static function getSearchedShops ($search_text) {
-        $sql = "CALL get_searched_shops('$search_text')";
+	public static function getSearchedShops ($search_text) {
+		$sql = "CALL get_searched_shops('$search_text')";
 
-        return DBHandler::getAll($sql);
-    }
+		return DBHandler::getAll($sql);
+	}
 
-    public static function getShopDetails ($id) {
-        $sql = "CALL get_shop_details($id)";
+	public static function getShopDetails ($id) {
+		$sql = "CALL get_shop_details($id)";
 
-        return DBHandler::getRow($sql);
-    }
+		return DBHandler::getRow($sql);
+	}
 
-    public static function getShopOwnerDetails ($shop_id) {
-        $sql = "CALL get_shop_owner_details($shop_id)";
+	public static function getShopOwnerDetails ($shop_id) {
+		$sql = "CALL get_shop_owner_details($shop_id)";
 
-        return DBHandler::getRow($sql);
-    }
+		return DBHandler::getRow($sql);
+	}
 
-    public static function getShopProducts ($shop_id) {
+	public static function getShopProducts ($shop_id) {
 
-        $sql = "CALL get_shop_products($shop_id)";
+		$sql = "CALL get_shop_products($shop_id)";
 
-        return DBHandler::getAll($sql);
+		return DBHandler::getAll($sql);
 
-    }
+	}
 
-    public static function getSellersList () {
-        $sql = "SELECT seller_id, seller_name FROM seller";
+	public static function getSellersList () {
+		$sql = "SELECT seller_id, seller_name FROM seller";
 
-        return DBHandler::getAll($sql);
+		return DBHandler::getAll($sql);
 
-    }
+	}
 
+	public static function updateDetails ($json_string) {
 
-    public static function updateDetails ($json_string) {
+		$details = json_decode($json_string);
 
+		$s_id = 0;
+		$shop_name = '';
+		$dept = '';
+		$old_seller = 0;
+		$new_seller = 0;
 
-        $details = json_decode($json_string);
+		$sql = "UPDATE shop_pool SET ";
+		for ($i = 0; $i < count($details); $i++) {
 
+			foreach ($details[$i] as $key => $value) {
 
-        $s_id = 0;
-        $old_seller = 0;
-        $new_seller = 0;
-        $sql = "UPDATE shop_pool SET";
-        for ($i = 0; $i < count($details); $i++) {
+				if ($key == 'seller') {
+					$new_seller = $value;
+					continue;
+				}
+				if ($key == 'old_seller') {
+					$old_seller = $value;
+					continue;
+				}
 
-            foreach ($details[$i] as $key => $value) {
+				if ($key == 'shop_name') {
+					$shop_name = $value;
+					continue;
+				}
 
-                if ($key == 'seller') {
-                    $new_seller = $value;
-                    continue;
-                }
-                if ($key == 'old_seller') {
-                    $old_seller = $value;
-                    continue;
-                }
+				if ($key == 'department') {
+					$dept = $value;
+					continue;
+				}
 
-                if ($key != "shop_id") {
+				if ($key != "shop_id") {
 
-                    if ($i == count($details) - 1) {
-                        $sql .= " $key = '$value' ";
-                    } else {
-                        $sql .= " $key = '$value', ";
-                    }
-                } else {
-                    $s_id = $value;
-                }
-            }
+					$sql .= " $key = '$value', ";
 
-        }
-        $sql .= " WHERE shop_id = $s_id";
+				} else {
+					$s_id = $value;
+				}
+			}
 
-        echo $sql;
+		}
 
-        DBHandler::execute($sql);
+		$sql .= " keywords = '$dept $shop_name' ";
 
-        $sql = "UPDATE market SET seller = $new_seller WHERE shop = $s_id AND seller = $old_seller";
-        echo $sql;
+		$sql .= " WHERE shop_id = $s_id";
 
-        DBHandler::execute($sql);
+		echo $sql;
 
-    }
+		DBHandler::execute($sql);
 
-    public static function addNewShop ($json_string) {
-        $details = json_decode($json_string);
-        $length = count($details);
+		$sql = "UPDATE market SET seller = $new_seller WHERE shop = $s_id AND seller = $old_seller";
+		echo $sql;
 
-        $seller = 0;
-        $shop_id = 0;
-        $keys = '';
-        $values = '';
+		DBHandler::execute($sql);
 
+	}
 
+	public static function addNewShop ($json_string) {
+		$details = json_decode($json_string);
+		$length = count($details);
 
-        for ($i = 0; $i < $length; $i++) {
+		$seller = 0;
+		$shop_name = '';
+		$dept = '';
+		$keys = '';
+		$values = '';
 
-            foreach ($details[$i] as $key => $value) {
+		for ($i = 0; $i < $length; $i++) {
 
-                if($key == 'seller'){
-                    $seller = $value;
-                    continue;
-                }
+			foreach ($details[$i] as $key => $value) {
 
-                if ($i == $length - 1) {
-                    $values .= "'$value'";
-                    $keys .= $key;
-                } else {
-                    $values .= "'$value', ";
-                    $keys .="$key,";
-                }
-            }
+				if ($key == 'seller') {
+					$seller = $value;
+					continue;
+				}
 
-        }
+				if ($key == 'shop_name') {
+					$shop_name = $value;
+					continue;
+				}
 
-        $sql = "INSERT INTO shop_pool($keys) VALUES ($values)";
+				if ($key == 'department') {
+					$dept = $value;
+					continue;
+				}
 
-        echo $sql;
-        $shop_id = DBHandler::execute($sql);
+				$values .= "'$value', ";
+				$keys .= "$key,";
 
-        $sql = "INSERT INTO market VALUES ($seller, $shop_id)";
+			}
 
-        DBHandler::execute($sql);
+		}
 
-    }
+		$keys .= "keywords";
+		$values .= "'$dept $shop_name'";
 
+		$sql = "INSERT INTO shop_pool($keys) VALUES ($values)";
 
-    public static function removeShop($id){
+		echo $sql;
+		$shop_id = DBHandler::execute($sql);
 
-        $sql = "DELETE FROM shop_pool WHERE shop_id = $id";
+		$sql = "INSERT INTO market VALUES ($seller, $shop_id)";
 
-        return DBHandler::execute($sql);
+		DBHandler::execute($sql);
 
-    }
+	}
+
+	public static function removeShop ($id) {
+
+		$sql = "DELETE FROM shop_pool WHERE shop_id = $id";
+
+		return DBHandler::execute($sql);
+
+	}
 
 }

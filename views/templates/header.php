@@ -16,6 +16,7 @@ class Header {
 
 	                <div id="search_product_suggestions"></div>
 	                <div id="search_category_suggestions"></div>
+	                <div id="search_shop_suggestions"></div>
 
                 </div>
             </div>

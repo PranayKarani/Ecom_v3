@@ -2,6 +2,25 @@
 
 class ShopView {
 
+	public static function showSearchedShops ($search) {
+		$shops = ShopController::getSearchedShops($search);
+
+		$noofP = count($shops);
+
+		if ($noofP > 0) {
+			echo "<strong>Shops</strong><br>";
+			for ($i = 0; $i < $noofP; $i++) {
+
+				$id = $shops[$i]['shop_id'];
+				$name = $shops[$i]['shop_name'];
+
+				echo "<div class='search_shop_link' id='$id'>";
+				echo $name;
+				echo "</div>";
+			}
+		}
+	}
+
     public static function showShopInfo ($shop_id) {
 
         $details = ShopController::getShopInfo($shop_id);
