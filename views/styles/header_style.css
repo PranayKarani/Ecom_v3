@@ -55,11 +55,13 @@ header{
 #profile_modal {
     float: left;
     width: 100%;
+    height: 100%;
     /*position: fixed;*/
 }
 
 #view_profile, #logout {
     width: 100%;
+    height: 37.5px;
     float: left;
 }
 

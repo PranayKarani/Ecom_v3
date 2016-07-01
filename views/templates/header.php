@@ -42,7 +42,7 @@ class Header {
 					<button class="btn_right_buttons">cart</button>
 				</div>
 				<div id="header_wishlist" class="header_mini_show">
-					<button class="btn_right_buttons">whislist</button>
+					<button class="btn_right_buttons" id="header_wishlist_button">whislist</button>
 				</div>
 
 			</div>

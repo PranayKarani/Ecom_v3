@@ -44,8 +44,8 @@ class UserController {
 
 	}
 
-	/** Authentication done here
-	 *
+	/**
+	 * Authentication done here
 	 * @param $json
 	 */
 	public static function login ($json) {
@@ -112,4 +112,20 @@ class UserController {
 		setcookie(COOKIE_USER_NAME, "", time() - 6041770, "/");
 		echo "done";
 	}
+
+	/* Wishlist Stuff */
+	public static function addToWishlist ($pID) {
+		if (isset($_COOKIE[COOKIE_USER_ID])) {
+			$uID = $_COOKIE[COOKIE_USER_ID];
+			$sql = "CALL add_to_wishlist($pID, $uID)";
+			DBHandler::execute($sql);
+			$sql = "CALL get_wishlist_count($uID)";
+			$count = DBHandler::getValue($sql);
+			echo $count;
+		} else {
+			echo -1;//login first
+		}
+
+	}
+
 }
