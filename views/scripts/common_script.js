@@ -29,3 +29,18 @@ function openProductInfo(id) {
     window.location.href = "productInfo.php?id=" + id;
 
 }
+
+function postStatic(dir, Class, method, params, func) {
+
+    $.post(
+        "include/ajaxStaticClass.php",
+        {
+            dir: dir,
+            class: Class,
+            method: method,
+            params: params
+        },
+        func
+    )
+
+}

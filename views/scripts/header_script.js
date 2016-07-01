@@ -1,5 +1,6 @@
 var loggedIn = false;
 var user_id = -1;
+var wishlist_count = -1;
 
 function searchProducts(search) {
 
@@ -79,6 +80,21 @@ function onLoginSuccess(name, id) {
     $("#login_modal").slideUp();
     loggedIn = true;
     user_id = id;
+
+    // count wishlist
+    countWishlist(id);
+}
+
+function countWishlist(id) {
+    postStatic("controllers", "UserController", "countWishlist", id, function(data) {
+        data = parseInt(data);
+        if (data > 0) {
+            $("#header_wishlist_button").text("Wishlist: " + data);
+            wishlist_count = data;
+        } else {
+            $("#header_wishlist_button").text("Wishlist");
+        }
+    });
 }
 
 function gotoProfile() {
@@ -148,20 +164,20 @@ $('document').ready(function() {
     var anchor = 0;
     var currentHeight;
 
-    $("header").mouseover(function() {
-        $("header").css("height", "150");
-        $(".header_mini_hide").show();
-        $(".header_mini_show").css("height", "50%");
-    }).mouseleave(function() {
-        $("header").css("height", currentHeight);
-        if (currentHeight < 150) {
-            $(".header_mini_hide").hide();
-            $(".header_mini_show").css("height", "100%");
-        } else {
-            $(".header_mini_hide").show();
-            $(".header_mini_show").css("height", "50%");
-        }
-    });
+    //$("header").mouseover(function() {
+    //    $("header").css("height", "150");
+    //    $(".header_mini_hide").show();
+    //    $(".header_mini_show").css("height", "50%");
+    //}).mouseleave(function() {
+    //    $("header").css("height", currentHeight);
+    //    if (currentHeight < 150) {
+    //        $(".header_mini_hide").hide();
+    //        $(".header_mini_show").css("height", "100%");
+    //    } else {
+    //        $(".header_mini_hide").show();
+    //        $(".header_mini_show").css("height", "50%");
+    //    }
+    //});
 
     $(window).scroll(function() {
 
@@ -231,6 +247,7 @@ $('document').ready(function() {
                     console.info("on signup: " + data);
                     if (parseInt(data) != -1) {
                         onLoginSuccess(name, data);
+                        location.reload();
                     }
                 }
             );
@@ -277,6 +294,7 @@ $('document').ready(function() {
                         var id = parseInt(u_data.id);
                         var name = u_data.name;
                         onLoginSuccess(name, id);
+                        location.reload();
                     }
                 }
             );
@@ -291,9 +309,7 @@ $('document').ready(function() {
 
     $("#header_login_button").click(function() {
 
-        if (loggedIn) {
-            gotoProfile();
-        } else {
+        if (!loggedIn) {
             $("#login_modal").slideDown();
         }
 
@@ -314,25 +330,22 @@ $('document').ready(function() {
     });
 
     $("#logout").click(function() {
-        $.post(
-            "include/ajaxStaticClass.php",
-            {
-                dir: "controllers",
-                class: "UserController",
-                method: "logOut",
-                params: null
-            },
-            function(data) {
-                console.info("flush cookies: " + data);
-                if (data == "done") {
-                    $("#header_login_button").text("login");
-                    $("#profile_modal").hide();
-                    loggedIn = false;
-                    user_id = -1;
-
-                }
+        postStatic("controllers", "UserController", "logOut", null, function(data) {
+            console.info("flush cookies: " + data);
+            if (data == "done") {
+                $("#header_login_button").text("login");
+                $("#profile_modal").hide();
+                loggedIn = false;
+                user_id = -1;
+                $(location).attr("href", "index.php");
             }
-        );
+        });
+    });
+
+
+    /* Wishlist */
+    $("#header_wishlist_button").click(function() {
+        $(location).attr("href", "wishlist.php");
     });
 
 });

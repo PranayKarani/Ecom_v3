@@ -22,7 +22,7 @@ class ProductView {
 		}
 	}
 
-	public static function product_box ($product, $compare) {
+	public static function product_box ($product, $compare, $WLremove = null) {
 		$id = $product['product_id'];
 		$name = $product['product_name'];
 		$brand = $product['brand'];
@@ -41,7 +41,7 @@ class ProductView {
 		echo "<span style='font-size: small'>from <strong style='font-weight: bolder'>$brand</strong></span><br>";
 		echo "<input type='hidden' value='$category' name='product_category_name'/>";
 		for ($i = 0; $i < $rating; $i++) {
-			echo "<input type='image' src='http://image.flaticon.com/icons/png/512/40/40403.png' style='width: 15px; margin-top: 5px'/> ";
+			echo "<input type='image' src='res/images/extra/ratingStar.png' style='width: 15px; margin-top: 5px'/> ";
 		}
 		echo "</div>";
 		echo "<div class='quick_info_box'>$quick_info</div>";
@@ -53,8 +53,13 @@ class ProductView {
 		}
 		echo "</div>";
 
-		echo "<span class='add_to_wishlist' onclick='onWishListClick($id)' title='add to wishlist'>";
-		echo "<input type='image' src='http://image.flaticon.com/icons/png/128/121/121727.png' style='width: 100%'/>";
+		if ($WLremove != null) {
+			echo "<span class='add_to_wishlist' onclick='removeFromWishlist($id)' title='remove from wishlist'>";
+			echo "<input type='image' src='res/images/extra/cross.png' style='width: 100%'/>";
+		} else {
+			echo "<span class='add_to_wishlist' onclick='onWishListClick($id)' title='add to wishlist'>";
+			echo "<input type='image' src='res/images/extra/heart.png' style='width: 100%'/>";
+		}
 //		echo "<span class='tooltiptext'>add to wishlist</span>";
 		echo "</span>";
 
@@ -148,7 +153,7 @@ class ProductView {
 				unset($tmp_ids[$i]);
 				$string = '"'.implode(" ", $tmp_ids).'"';
 				$cat = '"'.$category.'"';
-				echo "<input type='image' src='https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png' class='remove_from_compare' onclick='removeThis($id,$string,$cat)'/>";
+				echo "<input type='image' src='res/images/extra/cross.png' class='remove_from_compare' onclick='removeThis($id,$string,$cat)'/>";
 				echo "<input type='image' class='compare_product_image' src='res/images/product/default0.jpg'>";
 			}
 			echo "</td>";
@@ -195,6 +200,24 @@ class ProductView {
 
 	}
 
+	private static function viewComparedProduct ($product) {
+		// view product
+		echo "<tr>";
+		echo "<td style='border: none'></td>";
+		for ($i = 0; $i < 4; $i++) {
+
+			if (isset($product[$i])) {
+
+				$value = $product[$i]['product_id'];
+				$link = "productInfo.php?id=$value";
+				echo "<td style='text-align: center'><a href='$link'>view this product</a></td>";
+//				echo "<td><input type='button' value='view product' onclick='openProductInfo($value)' style='width: 98%;'/></td>";
+			}
+
+		}
+		echo "</tr>";
+	}
+
 	private static function getCompareRow ($name, $product, $key, $isrange, $rating = null) {
 
 		echo "<tr>";
@@ -220,7 +243,7 @@ class ProductView {
 					$value = $product[$i][$key];
 					echo "<td>";
 					for ($x = 0; $x < $value; $x++) {
-						echo "<input type='image' src='http://image.flaticon.com/icons/png/512/40/40403.png' style='width: 15px; margin-top: 5px'/> ";
+						echo "<input type='image' src='res/images/extra/ratingStar.png' style='width: 15px; margin-top: 5px'/> ";
 					}
 					echo "</td>";
 
@@ -235,24 +258,6 @@ class ProductView {
 		}
 		echo "</tr>";
 
-	}
-
-	private static function viewComparedProduct ($product) {
-		// view product
-		echo "<tr>";
-		echo "<td style='border: none'></td>";
-		for ($i = 0; $i < 4; $i++) {
-
-			if (isset($product[$i])) {
-
-				$value = $product[$i]['product_id'];
-				$link = "productInfo.php?id=$value";
-				echo "<td style='text-align: center'><a href='$link'>view this product</a></td>";
-//				echo "<td><input type='button' value='view product' onclick='openProductInfo($value)' style='width: 98%;'/></td>";
-			}
-
-		}
-		echo "</tr>";
 	}
 
 	/** Search Stuff */
