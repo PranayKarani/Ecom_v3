@@ -39,7 +39,7 @@ class Header {
 					<button class="btn_right_buttons">more</button>
 				</div>
 				<div id="header_cart" class="header_mini_show">
-					<button class="btn_right_buttons">cart</button>
+					<button class="btn_right_buttons" id="header_cart_button">cart</button>
 				</div>
 				<div id="header_wishlist" class="header_mini_show">
 					<button class="btn_right_buttons" id="header_wishlist_button">whislist</button>

@@ -62,7 +62,11 @@ class ProductInfoView {
 
 	public function show_shop_availability () {
 		$a_score = $this->details['a_score'];
-		echo "<strong>Available in <strong style='font-size: larger'>$a_score</strong> shops</strong>";
+		if ($a_score > 1) {
+			echo "<strong>Available in <strong style='font-size: larger'>$a_score</strong> shops</strong>";
+		} else {
+			echo "<strong>Available in <strong style='font-size: larger'>$a_score</strong> shop</strong>";
+		}
 
 	}
 

@@ -10,6 +10,7 @@ class UserController {
 		$values = '';
 
 		$name = '';
+		$email = '';
 
 		for ($i = 0; $i < count($details); $i++) {
 
@@ -18,6 +19,10 @@ class UserController {
 
 				if ($key == 'customer_name') {
 					$name = $value;
+				}
+
+				if ($key == 'customer_email') {
+					$email = $value;
 				}
 
 				$keys .= "$key, ";
@@ -31,15 +36,26 @@ class UserController {
 		$keys .= 'waste';
 		$values .= '1';
 
-		$sql = "INSERT INTO customer($keys) VALUES($values)";
+		$sql = "SELECT COUNT(customer_name) FROM customer WHERE customer_email = '$email'";
+		$result = DBHandler::getValue($sql);
 
-		$result = DBHandler::execute($sql);
-		if ($result != null) {
-			setcookie(COOKIE_USER_ID, $result);
-			setcookie(COOKIE_USER_NAME, $name);
-			echo $result;
+		if ($result > 0) {
+
+			echo -2;
+
 		} else {
-			echo -1;
+
+			$sql = "INSERT INTO customer($keys) VALUES($values)";
+
+			$result = DBHandler::execute($sql);
+			if ($result != null) {
+				setcookie(COOKIE_USER_ID, $result, time() + 6120770, "/");
+				setcookie(COOKIE_USER_NAME, $name, time() + 6120770, "/");
+				echo $result;
+			} else {
+				echo -1;
+			}
+
 		}
 
 	}
@@ -109,12 +125,22 @@ class UserController {
 	}
 
 	public static function logOut () {
-		setcookie(COOKIE_USER_ID, "", time() - 6120770, "/");
-		setcookie(COOKIE_USER_NAME, "", time() - 6041770, "/");
+
+		self::unsetCookie(COOKIE_USER_ID);
+		self::unsetCookie(COOKIE_USER_NAME);
+
 		echo "done";
 	}
 
 	/* Wishlist Stuff */
+
+	private static function unsetCookie ($name) {
+		if (isset($_COOKIE[$name])) {
+			unset($_COOKIE[$name]);
+			setcookie($name, '', time() - 3600, "/");
+		}
+	}
+
 	public static function addToWishlist ($pID) {
 		if (isset($_COOKIE[COOKIE_USER_ID])) {
 			$uID = $_COOKIE[COOKIE_USER_ID];

@@ -7,6 +7,32 @@ class DBHandler{
 
     private function __construct () {}
 
+    public static function execute($sql, $params = null){
+
+        try {
+            $db_handler = self::getHandler();
+            $stmt_handler = $db_handler->prepare($sql);
+            $stmt_handler->execute($params);
+
+	        $last = $db_handler->lastInsertId();
+
+	        if (isset($last)) {
+		        return $last;
+	        } else {
+		        return null;
+	        }
+
+        } catch (PDOException $e) {
+            self::close();
+            trigger_error($e->errorInfo);
+        }
+
+	    return null;
+
+    }
+
+    // for INSERT, UPDATE, DELETE
+
     private static function getHandler(){
 
         if(!isset(self::$handler)){
@@ -28,22 +54,14 @@ class DBHandler{
         return self::$handler;
     }
 
-    // for INSERT, UPDATE, DELETE
-    public static function execute($sql, $params = null){
+    // get multiple row
 
-        try {
-            $db_handler = self::getHandler();
-            $stmt_handler = $db_handler->prepare($sql);
-            $stmt_handler->execute($params);
-
-        } catch (PDOException $e) {
-            self::close();
-            trigger_error($e->errorInfo);
-        }
-
+    private static function close(){
+        self::$handler = null;
     }
 
-    // get multiple row
+    // get single row
+
     public static function getAll ($sql, $params = null) {
 
         $result = null;
@@ -63,7 +81,8 @@ class DBHandler{
         return $result;
     }
 
-    // get single row
+    // get value
+
     public static function getRow ($sql, $params = null) {
         $result = null;
 
@@ -82,7 +101,6 @@ class DBHandler{
         return $result;
     }
 
-    // get value
     public static function getValue ($sql, $params = null) {
         $result = null;
 
@@ -101,10 +119,6 @@ class DBHandler{
         }
 
         return $result;
-    }
-
-    private static function close(){
-        self::$handler = null;
     }
 
 }

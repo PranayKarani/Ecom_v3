@@ -245,9 +245,17 @@ $('document').ready(function() {
                 },
                 function(data) {
                     console.info("on signup: " + data);
-                    if (parseInt(data) != -1) {
-                        onLoginSuccess(name, data);
-                        location.reload();
+                    data = parseInt(data);
+                    switch (data) {
+                        case -1:
+                            // signup fail OR query cannot be excuted correctly
+                            break;
+                        case -2: // user already exists
+                            alert("user already registered with this email");
+                            break;
+                        default:
+                            onLoginSuccess(name, data);
+                            break;
                     }
                 }
             );
@@ -346,6 +354,11 @@ $('document').ready(function() {
     /* Wishlist */
     $("#header_wishlist_button").click(function() {
         $(location).attr("href", "wishlist.php");
+    });
+
+    /* Cart */
+    $("#header_cart_button").click(function() {
+        alert("Coming Soon :)");
     });
 
 });

@@ -122,6 +122,15 @@ function initMap() {
         calculateDirection(dService, dDisplay, dest, drive, infoWindow);
     });
 
+    $(".order").click(function() {
+        console.info(loggedIn);
+        if (loggedIn) {
+            alert("Coming soon :)");
+        } else {
+            $("#login_modal").slideDown();
+        }
+    });
+
 }
 
 
