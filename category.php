@@ -7,6 +7,7 @@ require_once('controllers/CategoryController.php');
 require_once('controllers/ProductController.php');
 // Views
 require_once('views/templates/header.php');
+require_once('views/templates/LoginModal.php');
 require_once('views/templates/CompareBar.php');
 require_once('views/BrandView.php');
 require_once('views/CategoryView.php');
@@ -108,5 +109,8 @@ if (isset($_GET['category'])) {
 
 	</div>
 </div>
+
+<?php LoginModal::show(); ?>
+
 </body>
 </html>

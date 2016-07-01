@@ -7,6 +7,7 @@ require_once('controllers/CategoryController.php');
 require_once('controllers/BrandController.php');
 // Views
 require_once('views/templates/header.php');
+require_once('views/templates/LoginModal.php');
 require_once('views/templates/CompareBar.php');
 require_once('views/CategoryView.php');
 require_once('views/BrandView.php');
@@ -110,6 +111,8 @@ if (isset($_GET['search_text'])) {
 		</div>
 	</div>
 </div>
+
+<?php LoginModal::show(); ?>
 
 </body>
 </html>

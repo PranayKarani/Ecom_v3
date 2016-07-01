@@ -6,6 +6,7 @@ require_once('controllers/ProductController.php');
 require_once('controllers/ShopController.php');
 // Views
 require_once('views/templates/header.php');
+require_once('views/templates/LoginModal.php');
 require_once('views/ProductInfoView.php');
 require_once('views/ProductView.php');
 require_once('views/CategoryView.php');
@@ -93,6 +94,8 @@ if (isset($_GET['id'])) {
 		Reviews or some other crap
 	</div>
 </div>
+
+<?php LoginModal::show(); ?>
 
 </body>
 </html>

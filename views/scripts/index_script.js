@@ -1,12 +1,12 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
     // Hide category container on mouse leave
-    $("#dept-category").mouseleave(function () {
+    $("#dept-category").mouseleave(function() {
         $("#category-products").slideUp();
     });
 
     // fetch and show category of the selected department
-    $(".dept_link").click(function () {
+    $(".dept_link").click(function() {
         var dpt_name = $(this).text();
         $.post(
             "include/ajaxStaticClass.php",
@@ -16,11 +16,11 @@ $(document).ready(function () {
                 method: "show",
                 params: dpt_name
             },
-            function (data) {
+            function(data) {
                 $("#category_container").html(data);
                 $("#category-products").show();
                 // what happens when you click the category
-                $(".category_link").click(function () {
+                $(".category_link").click(function() {
                     var name = $(this).attr('datatype');
 
                     $.post(
@@ -31,9 +31,9 @@ $(document).ready(function () {
                             method: "showCategoryTopProducts",
                             params: name
                         },
-                        function(data){
+                        function(data) {
                             $("#category_products_container").html(data);
-                            $(".product_link").click(function () {
+                            $(".product_link").click(function() {
 
                                 var id = $(this).attr("id");
 
@@ -44,7 +44,7 @@ $(document).ready(function () {
                     );
                 });
 
-                $(".view_all").click(function () {
+                $(".view_all").click(function() {
 
 
                     var name = $(this).attr("id");
@@ -59,7 +59,7 @@ $(document).ready(function () {
     });
 
 
-    $(".product_link").click(function(){
+    $(".product_link").click(function() {
 
         var id = $(this).attr("id");
 
