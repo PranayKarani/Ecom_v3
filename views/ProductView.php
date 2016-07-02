@@ -151,8 +151,8 @@ class ProductView {
 				$id = $ids[$i];
 				$tmp_ids = $ids;
 				unset($tmp_ids[$i]);
-				$string = '"'.implode(" ", $tmp_ids).'"';
-				$cat = '"'.$category.'"';
+				$string = '"' . implode(" ", $tmp_ids) . '"';
+				$cat = '"' . $category . '"';
 				echo "<input type='image' src='res/images/extra/cross.png' class='remove_from_compare' onclick='removeThis($id,$string,$cat)'/>";
 				echo "<input type='image' class='compare_product_image' src='res/images/product/default0.jpg'>";
 			}

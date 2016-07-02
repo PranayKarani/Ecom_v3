@@ -4,7 +4,7 @@ body {
 }
 header{
     width: 1200px;
-    height: 150px;
+    height: 125px;
     position: fixed;
     background-color: beige;
     z-index: 999;
@@ -14,24 +14,36 @@ header{
 
 #content {
     width: 100%;
-    margin-top: 150px;
+    margin-top: 125px;
 }
+
+
+/* Left Stuff */
 #left{
-    width: 25%;
+    width: 20%;
     height: 100%;
     float: left;
     outline: 1px solid red;
 }
+
+/* Center Stuff */
+
 #center{
-    width: 50%;
+    width: 60%;
     height: 100%;
     float: left;
     outline: 1px solid green;
 }
+#header_department-category{
+    width: 100%;
+    float: left;
+    background: red;
+    outline: 1px solid black;
+}
 
 /* Right Stuff */
 #right{
-    width: 25%;
+    width: 20%;
     height: 100%;
     float: left;
     position: relative;

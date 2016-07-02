@@ -22,6 +22,9 @@ class Header {
 					<div id="search_shop_suggestions"></div>
 
 				</div>
+				<div id="header_department-category">
+					Department + Category
+				</div>
 			</div>
 			<div id="right">
 

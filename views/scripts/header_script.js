@@ -1,6 +1,7 @@
 var loggedIn = false;
 var user_id = -1;
 var wishlist_count = -1;
+var header_height;
 
 function searchProducts(search) {
 
@@ -105,6 +106,8 @@ function gotoProfile() {
 
 $('document').ready(function() {
 
+    header_height = $("header").css("height");
+
     // auto login
     // check if signed in
     $.post(
@@ -197,10 +200,10 @@ $('document').ready(function() {
         } else {
             // up
             if (window.pageYOffset < value) {
-                $("header").css("height", "150");
+                $("header").css("height", header_height);
                 $(".header_mini_hide").show();
                 $(".header_mini_show").css("height", "50%");
-                currentHeight = 150;
+                currentHeight = header_height;
             }
         }
 
