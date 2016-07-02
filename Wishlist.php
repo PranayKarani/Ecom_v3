@@ -38,8 +38,11 @@ if (isset($_COOKIE[COOKIE_USER_ID])) {
 
 <div id="content">
 	<h3>Wishlist</h3>
-	<div id="wishlist_products">
+	<div id="page_controls" style="text-align: center"></div>
+	<div id="page">
+		<div id="wishlist_products">
 
+		</div>
 	</div>
 </div>
 

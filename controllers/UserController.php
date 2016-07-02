@@ -159,8 +159,32 @@ class UserController {
 		echo $count;
 	}
 
-	public static function getWishlistProducts ($uID) {
-		$sql = "CALL get_wishlist_products($uID)";
+	public static function getWishlistProducts ($json) {
+
+		$data = json_decode($json);
+
+		$uID = '';
+		$selected_page = '';
+
+		for ($i = 0; $i < count($data); $i++) {
+
+			$x = $data[$i];
+			foreach ($x as $key => $value) {
+
+				if ($key == 'uID') {
+					$uID = $value;
+				}
+				if ($key == 'selected_page') {
+					$selected_page = $value;
+				}
+
+			}
+
+		}
+
+		$offset = (RPP * $selected_page);
+		$rpp = RPP;
+		$sql = "CALL get_wishlist_products($uID, $rpp, $offset)";
 		$data = DBHandler::getAll($sql);
 
 		$product_array = array();

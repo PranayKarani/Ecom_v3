@@ -93,6 +93,7 @@ function countWishlist(id) {
             wishlist_count = data;
         } else {
             $("#header_wishlist_button").text("Wishlist");
+            wishlist_count = 0;
         }
     });
 }
