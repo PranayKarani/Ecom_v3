@@ -76,6 +76,7 @@ if (isset($_GET['search_text'])) {
 			?>
 		</div>
 	</div>
+
 	<div id="center_section">
 		<div id="center_top">
 			<button class="nearBy" id="<?php if (isset($category)) {

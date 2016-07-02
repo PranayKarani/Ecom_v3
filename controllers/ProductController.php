@@ -71,6 +71,29 @@ class ProductController {
 
     /** Search Stuff */
 
+	public static function getSearchedProductsDropDown ($search_text) {
+
+		$search_text = stripslashes($search_text);
+
+		$replacements = array( '+', '-', '*', '~', '@', '%', '(', ')', '<', '>', '\'', '"', '\\' );
+		$search_text = str_replace($replacements, '', $search_text);
+
+//        $search_text = preg_replace('#[+*()%-~@\'"]#', '', $search_text);
+
+		$text = explode(' ', trim($search_text));
+		$strict_search_text = '';
+		for ($i = 0; $i < count($text); $i++) {
+			$txt = $text[$i];
+
+			if (!empty(trim($txt))) {
+				$strict_search_text .= " +$txt";
+			}
+		}
+		$sql = "CALL get_searched_products('$strict_search_text','$search_text', 5)";
+
+		return DBHandler::getAll($sql);
+	}
+
     public static function getSearchedProducts ($search_text) {
 
         $search_text = stripslashes($search_text);

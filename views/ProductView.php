@@ -262,7 +262,7 @@ class ProductView {
 
 	/** Search Stuff */
 	public static function showSearchDropdownProducts ($search) {
-		$products = ProductController::getSearchedProducts($search);
+		$products = ProductController::getSearchedProductsDropDown($search);
 		$noofP = count($products);
 		if ($noofP > 0) {
 			echo "<strong style='font-size: larger'>Products</strong><br>";
