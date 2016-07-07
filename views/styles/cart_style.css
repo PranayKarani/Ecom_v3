@@ -1,0 +1,17 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+#left_section {
+    width: 80%;
+    float: left;
+    outline: 1px solid black
+}
+
+#right_section {
+    width: 20%;
+    float: left;
+    outline: 1px solid black
+}

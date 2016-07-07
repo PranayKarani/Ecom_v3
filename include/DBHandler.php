@@ -24,7 +24,7 @@ class DBHandler{
 
         } catch (PDOException $e) {
             self::close();
-            trigger_error($e->errorInfo);
+//            trigger_error($e->errorInfo);
         }
 
 	    return null;

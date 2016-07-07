@@ -4,6 +4,7 @@ require_once('include/DBHandler.php');
 // Controllers
 require_once('controllers/ProductController.php');
 require_once('controllers/ShopController.php');
+//require_once('controllers/UserController.php');
 // Views
 require_once('views/templates/header.php');
 require_once('views/templates/LoginModal.php');

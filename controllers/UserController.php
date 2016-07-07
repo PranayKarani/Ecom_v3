@@ -60,11 +60,7 @@ class UserController {
 
 	}
 
-	/**
-	 * Authentication done here
-	 *
-*@param $json
-	 */
+	/* Authentication done here */
 	public static function login ($json) {
 
 		$details = json_decode($json);
@@ -108,9 +104,7 @@ class UserController {
 
 	}
 
-	/**
-	 * Check whether user is logged in or not i.e. if cookie is set or not
-	 */
+	/* Check whether user is logged in or not i.e. if cookie is set or not */
 	public static function isLoggedIn () {
 		if (isset($_COOKIE[COOKIE_USER_ID])) {
 			$data = array(
@@ -132,7 +126,7 @@ class UserController {
 		echo "done";
 	}
 
-	/* Wishlist Stuff */
+	/** Others */
 
 	private static function unsetCookie ($name) {
 		if (isset($_COOKIE[$name])) {
@@ -140,6 +134,8 @@ class UserController {
 			setcookie($name, '', time() - 3600, "/");
 		}
 	}
+
+	/** Wishlist Stuff */
 
 	public static function addToWishlist ($pID) {
 		if (isset($_COOKIE[COOKIE_USER_ID])) {
@@ -220,6 +216,146 @@ class UserController {
 		}
 
 		$sql = "CALL remove_from_wishlist($uID,$pID)";
+
+		DBHandler::execute($sql);
+
+	}
+
+	/** Cart */
+
+	public static function addToCart ($json) {
+
+		$data = json_decode($json);
+
+		$pID = 0;
+		$shopID = 0;
+		$price = 0;
+
+		for ($i = 0; $i < count($data); $i++) {
+
+			$x = $data[$i];
+			foreach ($x as $key => $value) {
+
+				if ($key == 'pID') {
+					$pID = $value;
+				}
+				if ($key == 'shopID') {
+					$shopID = $value;
+				}
+				if ($key == 'price') {
+					$price = $value;
+				}
+
+			}
+
+		}
+
+		if (isset($_COOKIE[COOKIE_USER_ID])) {
+			$uID = $_COOKIE[COOKIE_USER_ID];
+
+			$sql = "INSERT INTO cart_pool VALUES ($uID, $pID, $shopID, 1, $price,$price)";
+
+			DBHandler::execute($sql);
+
+			self::countCart($uID);
+		} else {
+			echo -1;//login first
+		}
+
+	}
+
+	public static function countCart ($uID) {
+		$sql = "SELECT count(product) FROM cart_pool WHERE customer = $uID";
+		$count = DBHandler::getValue($sql);
+		echo $count;
+	}
+
+	public static function getCartProducts ($uID) {
+
+		$sql = "CALL get_cart_products($uID)";
+
+		return DBhandler::getAll($sql);
+
+	}
+
+	public static function getCartDetails ($uID) {
+
+		$sql = "CALL get_cart_details($uID)";
+
+		return DBHandler::getRow($sql);
+
+	}
+
+	public static function removeFromCart ($json) {
+
+		$data = json_decode($json);
+
+		$pID = 0;
+		$sID = 0;
+		$uID = 0;
+
+		for ($i = 0; $i < count($data); $i++) {
+
+			$x = $data[$i];
+			foreach ($x as $key => $value) {
+
+				if ($key == 'pID') {
+					$pID = $value;
+				}
+				if ($key == 'sID') {
+					$sID = $value;
+				}
+				if ($key == 'uID') {
+					$uID = $value;
+				}
+
+			}
+
+		}
+
+		$sql = "DELETE FROM cart_pool WHERE customer = $uID AND product = $pID AND shop = $sID";
+
+		DBHandler::execute($sql);
+
+	}
+
+	public static function updateQty ($json) {
+
+		$data = json_decode($json);
+
+		$pID = 0;
+		$sID = 0;
+		$uID = 0;
+		$qty = 0;
+		$price = 0;
+
+		for ($i = 0; $i < count($data); $i++) {
+
+			$x = $data[$i];
+			foreach ($x as $key => $value) {
+
+				if ($key == 'pID') {
+					$pID = $value;
+				}
+				if ($key == 'sID') {
+					$sID = $value;
+				}
+				if ($key == 'uID') {
+					$uID = $value;
+				}
+				if ($key == 'qty') {
+					$qty = $value;
+				}
+				if ($key = 'price') {
+					$price = $value;
+				}
+
+			}
+
+		}
+
+		$bill_price = $price * $qty;
+		$sql = "UPDATE cart_pool SET qty = $qty, bill_price = $bill_price WHERE customer = $uID AND product = $pID AND shop = $sID";
 
 		DBHandler::execute($sql);
 

@@ -44,3 +44,19 @@ function postStatic(dir, Class, method, params, func) {
     )
 
 }
+
+function getJsonString(
+...
+obj
+)
+{
+
+    var arr = [];
+
+    for (var i = 0; i < obj.length; i++) {
+        arr.push(obj[i]);
+    }
+
+    return JSON.stringify(arr);
+
+}

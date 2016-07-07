@@ -101,9 +101,14 @@ class ProductInfoView {
 	public function show_shop_list () {
 		$shops = ShopController::getProductShops($this->id);
 		$s_count = count($shops);
+
 		// TODO remove this for loop later
 		for ($x = 0; $x < 1; $x++) {
 			for ($i = 0; $i < $s_count; $i++) {
+
+				$open = false;
+				$homeDelivery = false;
+
 				$id = $shops[$i]['shop_id'];
 				$name = $shops[$i]['shop_name'];
 				$contact = $shops[$i]['shop_contact'];
@@ -111,30 +116,94 @@ class ProductInfoView {
 				$loc_x = $shops[$i]['loc_x'];
 				$loc_y = $shops[$i]['loc_y'];
 				$image = "res/images/shop/shop.png";
-				// TODO show open or not
+
+				$timeNow = strtotime(date("H:i:s", time()));
+
+				$open_time = $shops[$i]['open_time'];
+				$close_time = $shops[$i]['close_time'];
+				$str_open_time = strtotime($open_time);
+				$str_close_time = strtotime($close_time);
+
+				$open_time_string = date("h:i a", $str_open_time);
+				$close_time_string = date("h:i a", $str_close_time);
+
+				$hD = $shops[$i]['home_delivery'];
+
+				$homeDelivery = $hD == 1 ? true : false;
+
+				if ($timeNow > $str_open_time && $timeNow < $str_close_time) {
+
+					// OPEN
+					$open = true;
+
+				} // else CLOSED
+
 				// TODO explore shop option (go to shop page)
-				echo "<div class='shop_box' id='$id'>";
-				// top
-				echo "<div class='shop_box_top'>";
-				echo "<input type='hidden' id='loc_x' value='$loc_x'/>";
-				echo "<input type='hidden' id='loc_y' value='$loc_y'/>";
-				// top left
-				echo "<div class='shop_box_top_left'>";
-				echo "<input type='image' src='$image' style='width: 100%;  float: left;'/>";
-				echo "</div>";
-				// top right
-				echo "<div class='shop_box_top_right'>";
-				echo "<strong class='shop_name'>$name</strong><br>";
-				echo "Contact: $contact<br>";
-				echo "Rate: <strong>$price Rs</strong><br>";
-				echo "</div>";
-				echo "</div>";
-				// bottom
-				echo "<div class='shop_box_bottom'>";
-				echo "<input class='order' type='button' value='order'/>";
-				echo "<input class='walkIn' type='button' value='get route'/>";
-				echo "</div>";
-				echo "</div>";
+				if ($open) {
+					echo "<div class='shop_box_open' id='$id'>";
+
+					// top
+					echo "<div class='shop_box_top_open'>";
+					echo "<input type='hidden' id='loc_x' value='$loc_x'/>";
+					echo "<input type='hidden' id='loc_y' value='$loc_y'/>";
+					// top left
+					echo "<div class='shop_box_top_left_open'>";
+					echo "<input type='image' src='$image' style='width: 100%;  float: left;'/>";
+					echo "</div>";
+					// top right
+					echo "<div class='shop_box_top_right_open'>";
+					echo "<strong class='shop_name'>$name</strong><br>";
+					echo "<span style='font-size: small'>Contact: $contact</span><br>";
+					echo "Rate: <strong>$price Rs</strong><br>";
+					echo "<span style='font-size: smaller'>($open_time_string - $close_time_string)</span><br>";
+					echo "</div>";
+					echo "</div>";
+
+					// bottom
+					echo "<div class='shop_box_bottom_open'>";
+					if ($homeDelivery) {
+						echo "<input class='order' type='button' value='order for home delivery'/>";
+					} else {
+						echo "<input class='order' type='button' value='no home delivery :(' disabled/>";
+					}
+					echo "<input class='walkIn' type='button' value='get route'/>";
+					echo "<input class='cart' type='button' value='add to cart' onclick='addToCart($id, $this->id, $price)'/>";
+					echo "</div>";
+					echo "</div>";
+
+				} else {
+
+					echo "<div class='shop_box_close' id='$id'>";
+					// top
+					echo "<div class='shop_box_top_close'>";
+					echo "<input type='hidden' id='loc_x' value='$loc_x'/>";
+					echo "<input type='hidden' id='loc_y' value='$loc_y'/>";
+					// top left
+					echo "<div class='shop_box_top_left_close'>";
+					echo "<input type='image' src='$image' style='width: 100%;  float: left;'/>";
+					echo "</div>";
+					// top right
+					echo "<div class='shop_box_top_right_close'>";
+					echo "<strong class='shop_name'>$name</strong><br>";
+					echo "<span style='font-size: small'>Contact: $contact</span><br>";
+					echo "Rate: <strong>$price Rs</strong><br>";
+					echo "<span style='font-size: smaller'>($open_time_string - $close_time_string)</span><br>";
+					echo "<strong style='color: red;'>CLOSED</strong><br>";
+					echo "</div>";
+					echo "</div>";
+
+					// bottom
+					echo "<div class='shop_box_bottom_close'>";
+					if ($homeDelivery) {
+						echo "<input class='order' type='button' value='order for home delivery' disabled/>";
+					} else {
+						echo "<input class='order' type='button' value='home delivery unavailable' disabled/>";
+					}
+					echo "<input class='walkIn' type='button' value='get route'/>";
+					echo "<input class='cart' type='button' value='add to cart' onclick='addToCart($id, $this->id, $price)'/>";
+					echo "</div>";
+					echo "</div>";
+				}
 
 			}
 		}

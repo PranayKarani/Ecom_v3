@@ -5,7 +5,7 @@ var map;
 var precision = 10;
 $(document).ready(function () {
 
-    $(".shop_box").click(function () {
+    $(".shop_box_open").click(function () {
 
         var loc_x = $(this).find('#loc_x').val();
         var loc_y = $(this).find('#loc_y').val();
@@ -54,18 +54,27 @@ $(document).ready(function () {
 
 });
 
+window.initMap = function () {
 
-function initMap() {
+    var first_shop_open = $(".shop_box_open:first");
+    var first_shop_close = $(".shop_box_close:first");
 
-    var lat = $(".shop_box:first").find("#loc_x").val();
-    var lng = $(".shop_box:first").find("#loc_y").val();
+    var lat = first_shop_open.find("#loc_x").val();
+    if(lat == null){
+        lat = first_shop_close.find("#loc_x").val();
+    }
+
+    var lng = first_shop_open.find("#loc_y").val();
+    if(lng == null){
+        lng = first_shop_close.find("#loc_y").val();
+    }
     lat = roundFix(lat, precision);
     lng = roundFix(lng, precision);
 
     var dService = new google.maps.DirectionsService;// to calculate directions
     var dDisplay = new google.maps.DirectionsRenderer({
         draggable: true,
-        map: map,
+        map: map
     });
 
     var mapDiv = document.getElementById('top_left_bottom_left');
@@ -86,7 +95,7 @@ function initMap() {
 
     var infoWindow = new google.maps.InfoWindow();
 
-    $(".shop_box").each(function () {
+    $(".shop_box_open").each(function () {
         var this_box = $(this);
         var loc_x = $(this).find('#loc_x').val();
         var loc_y = $(this).find('#loc_y').val();
@@ -131,8 +140,7 @@ function initMap() {
         }
     });
 
-}
-
+};
 
 function roundFix(number, precision) {
     var multi = Math.pow(10, precision);
@@ -144,6 +152,7 @@ function shopSelect(box) {
     //box.css("outline", "2px solid red");
     console.info(name + ' selected');
 }
+
 function calculateDirection(dService, dDisplay, dest, drive, infoWindow) {
     dService.route({
         origin: {lat: 19.176889, lng: 72.955271},
@@ -190,4 +199,28 @@ function calculateDirection(dService, dDisplay, dest, drive, infoWindow) {
             alert('Directions request failed due to ' + status);
         }
     });
+}
+
+function addToCart(shopID,pID, price){
+
+    var arr = [];
+    arr.push({shopID: shopID});
+    arr.push({pID: pID});
+    arr.push({price: price});
+
+    var json = JSON.stringify(arr);
+
+    postStatic("controllers", "UserController", "addToCart", json, function(data) {
+        data = parseInt(data);
+        if(data == -1){
+            $("#login_modal").slideDown();
+        } else {
+            if(data > 0){
+                $("#header_cart_button").text("Cart: " + data);
+            } else {
+                $("#header_cart_button").text("Cart");
+            }
+        }
+    });
+
 }

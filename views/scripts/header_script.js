@@ -82,6 +82,9 @@ function onLoginSuccess(name, id) {
     loggedIn = true;
     user_id = id;
 
+    // count cart
+    countCart(id);
+
     // count wishlist
     countWishlist(id);
 }
@@ -94,6 +97,19 @@ function countWishlist(id) {
             wishlist_count = data;
         } else {
             $("#header_wishlist_button").text("Wishlist");
+            wishlist_count = 0;
+        }
+    });
+}
+
+function countCart(id) {
+    postStatic("controllers", "UserController", "countCart", id, function(data) {
+        data = parseInt(data);
+        if (data > 0) {
+            $("#header_cart_button").text("Cart: " + data);
+            wishlist_count = data;
+        } else {
+            $("#header_cart_button").text("Cart");
             wishlist_count = 0;
         }
     });
@@ -357,12 +373,20 @@ $('document').ready(function() {
 
     /* Wishlist */
     $("#header_wishlist_button").click(function() {
-        $(location).attr("href", "wishlist.php");
+        if (loggedIn) {
+            $(location).attr("href", "wishlist.php");
+        } else {
+            $('#login_modal').slideDown();
+        }
     });
 
     /* Cart */
     $("#header_cart_button").click(function() {
-        alert("Coming Soon :)");
+        if (loggedIn) {
+            $(location).attr("href", "cart.php");
+        } else {
+            $('#login_modal').slideDown();
+        }
     });
 
 });
