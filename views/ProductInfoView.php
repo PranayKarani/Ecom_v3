@@ -138,6 +138,7 @@ class ProductInfoView {
 
 				} // else CLOSED
 
+//				echo date("h:i:a", time());
 				// TODO explore shop option (go to shop page)
 				if ($open) {
 					echo "<div class='shop_box_open' id='$id'>";
@@ -151,7 +152,7 @@ class ProductInfoView {
 					echo "<input type='image' src='$image' style='width: 100%;  float: left;'/>";
 					echo "</div>";
 					// top right
-					echo "<div class='shop_box_top_right_open'>";
+					echo "<div class='shop_box_top_right_open' data-id='$id'>";
 					echo "<strong class='shop_name'>$name</strong><br>";
 					echo "<span style='font-size: small'>Contact: $contact</span><br>";
 					echo "Rate: <strong>$price Rs</strong><br>";

@@ -3,9 +3,9 @@
  */
 var map;
 var precision = 10;
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $(".shop_box_open").click(function () {
+    $(".shop_box_top_open").mouseover(function() {
 
         var loc_x = $(this).find('#loc_x').val();
         var loc_y = $(this).find('#loc_y').val();
@@ -16,16 +16,21 @@ $(document).ready(function () {
 
         var myLatLng = {lat: loc_x, lng: loc_y};
         map.panTo(myLatLng);
-        shopSelect($(this));
+        //shopSelect($(this));
 
     });
 
-    $(".product_link").click(function () {
+    $(".shop_box_top_right_open").click(function() {
+        var id = $(this).attr("data-id");
+        openShopPage(id, null);
+    });
+
+    $(".product_link").click(function() {
         var id = $(this).attr('id');
         openProductInfo(id);
     });
 
-    $(".tabs").click(function () {
+    $(".tabs").click(function() {
 
         var id = $(this).attr('id');
 
@@ -47,25 +52,25 @@ $(document).ready(function () {
     });
 
 
-    $(".thumbnail").click(function(){
+    $(".thumbnail").click(function() {
         var src = $(this).attr("src");
         $("#product_image").attr("src", src);
     });
 
 });
 
-window.initMap = function () {
+window.initMap = function() {
 
     var first_shop_open = $(".shop_box_open:first");
     var first_shop_close = $(".shop_box_close:first");
 
     var lat = first_shop_open.find("#loc_x").val();
-    if(lat == null){
+    if (lat == null) {
         lat = first_shop_close.find("#loc_x").val();
     }
 
     var lng = first_shop_open.find("#loc_y").val();
-    if(lng == null){
+    if (lng == null) {
         lng = first_shop_close.find("#loc_y").val();
     }
     lat = roundFix(lat, precision);
@@ -95,7 +100,7 @@ window.initMap = function () {
 
     var infoWindow = new google.maps.InfoWindow();
 
-    $(".shop_box_open").each(function () {
+    $(".shop_box_open").each(function() {
         var this_box = $(this);
         var loc_x = $(this).find('#loc_x').val();
         var loc_y = $(this).find('#loc_y').val();
@@ -112,16 +117,18 @@ window.initMap = function () {
             animation: google.maps.Animation.DROP
         });
 
-        marker.addListener('click', function () {
+        marker.addListener('click', function() {
             map.panTo(myLatLng);
             shopSelect(this_box);
             infoWindow.setContent(name);
             infoWindow.open(map, marker);
+
+
         });
 
     });
 
-    $(".walkIn").click(function () {
+    $(".walkIn").click(function() {
         var loc_x = $(this).parent().parent().find('#loc_x').val();
         var loc_y = $(this).parent().parent().find('#loc_y').val();
         loc_x = roundFix(loc_x, precision);
@@ -149,8 +156,24 @@ function roundFix(number, precision) {
 
 function shopSelect(box) {
     var name = box.find('.shop_name').text();
-    //box.css("outline", "2px solid red");
-    console.info(name + ' selected');
+    var id = box.attr("id");
+    console.info(name + ' selected ' + box.offset().top);
+    $('#top_left_bottom_right').animate(
+        {
+            scrollTop: box.offset().top - 300
+        }, 500
+    );
+    box.animate(
+        {
+            outlineWidth: '10px',
+            outlineColor: 'red'
+        }, 300
+    ).delay(100).animate(
+        {
+            outlineWidth: '0px',
+            outlineColor: '#f37736'
+        }, 600
+    )
 }
 
 function calculateDirection(dService, dDisplay, dest, drive, infoWindow) {
@@ -160,7 +183,7 @@ function calculateDirection(dService, dDisplay, dest, drive, infoWindow) {
         travelMode: drive ? google.maps.TravelMode.DRIVING : google.maps.TravelMode.WALKING,
         provideRouteAlternatives: false
         //UnitSystem: UnitSystem.METRIC
-    }, function (response, status) {
+    }, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             dDisplay.setDirections(response);
             var routes = response.routes;
@@ -201,7 +224,7 @@ function calculateDirection(dService, dDisplay, dest, drive, infoWindow) {
     });
 }
 
-function addToCart(shopID,pID, price){
+function addToCart(shopID, pID, price) {
 
     var arr = [];
     arr.push({shopID: shopID});
@@ -212,10 +235,10 @@ function addToCart(shopID,pID, price){
 
     postStatic("controllers", "UserController", "addToCart", json, function(data) {
         data = parseInt(data);
-        if(data == -1){
+        if (data == -1) {
             $("#login_modal").slideDown();
         } else {
-            if(data > 0){
+            if (data > 0) {
                 $("#header_cart_button").text("Cart: " + data);
             } else {
                 $("#header_cart_button").text("Cart");

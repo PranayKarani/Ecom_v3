@@ -69,7 +69,7 @@ function searchShops(search) {
             $(".search_shop_link").click(function() {
 
                 var id = $(this).attr("id");
-                window.location.href = "shop.php?id=" + id;
+                openShopPage(id, null);
 
             });
         }

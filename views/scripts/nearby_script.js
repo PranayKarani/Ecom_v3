@@ -13,9 +13,7 @@ $('document').ready(function () {
         var id = $(this).attr('id');
         var category = $(".data").attr('id');
 
-        var url = "shop.php?category=" + category + "&id=" + id;
-
-        $(location).attr('href', url);
+        openShopPage(id, category);
 
     });
 

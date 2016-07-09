@@ -15,3 +15,8 @@ table, th, td {
     float: left;
     outline: 1px solid black
 }
+
+.product_name:hover, .shop_name:hover {
+    font-weight: bold;
+    cursor: pointer;
+}

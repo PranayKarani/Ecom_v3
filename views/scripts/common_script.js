@@ -30,6 +30,20 @@ function openProductInfo(id) {
 
 }
 
+function openShopPage(sID, category) {
+
+    var cat = category || 0;
+
+    var url;
+    if (cat != 0) {
+        url = "shop.php?category=" + category + "&id=" + sID;
+    } else {
+        url = "shop.php?id=" + sID;
+    }
+    $(location).attr('href', url);
+
+}
+
 function postStatic(dir, Class, method, params, func) {
 
     $.post(
@@ -45,11 +59,7 @@ function postStatic(dir, Class, method, params, func) {
 
 }
 
-function getJsonString(
-...
-obj
-)
-{
+function getJsonString(...obj) {
 
     var arr = [];
 
