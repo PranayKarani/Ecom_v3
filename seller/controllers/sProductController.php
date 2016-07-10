@@ -1,5 +1,7 @@
 <?php
 
+use seller\DBHandler;
+
 class SProductController {
 
 	public static function getSearchedProducts ($search_text) {
@@ -118,6 +120,7 @@ class SProductController {
 		$shop = 0;
 		$product = 0;
 		$qty = 0;
+		$price = 0;
 
 		$sql = "UPDATE inventory_pool SET";
 
@@ -135,6 +138,9 @@ class SProductController {
 				}
 				if ($key == 'qty') {
 					$qty = $value;
+				}
+				if ($key == 'price') {
+					$price = $value;
 				}
 
 				$sql .= " $key = '$value', ";
@@ -158,8 +164,14 @@ class SProductController {
 
 			DBHandler::execute($sql);
 		} else {
-			echo "Product Limint exceeded";
+			echo "Product Limit exceeded";
 		}
+
+		// update price in cart_pool for all customers
+		$sql = "UPDATE cart_pool SET bill_price = $price WHERE shop = $shop AND product = $product";
+		DBHandler::execute($sql);
+
+
 
 	}
 

@@ -66,16 +66,16 @@ class CartView {
 	}
 
 	public static function showCartDetails () {
-		// count product qty
-		// count home deliveries
-		// total bill
+
+		//TODO count home deliveries
+
 		$uID = $_COOKIE[COOKIE_USER_ID];
 		$details = UserController::getCartDetails($uID);
 
 		echo "<pre>";
 		print_r($details);
 		echo "</pre>";
-		echo "<button>Check Out or something else</button>";
+		echo "<button onclick='checkOut()'>Check Out or something else</button>";
 
 	}
 

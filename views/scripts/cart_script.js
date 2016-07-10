@@ -69,3 +69,12 @@ function loadCartDetails() {
         $("#right_section").html(data);
     });
 }
+
+function checkOut() {
+
+    postStatic("controllers", "UserController", "checkOut", null, function(data) {
+        console.info(data);
+        loadCart();
+    })
+
+}

@@ -361,4 +361,71 @@ class UserController {
 
 	}
 
+	public static function checkOut () {
+//		$data = json_decode($json);
+//
+//		$pID = 0;
+//		$sID = 0;
+//		$uID = 0;
+//		$qty = 0;
+//		$price = 0;
+//		$method = 0;
+//
+//		for ($i = 0; $i < count($data); $i++) {
+//
+//			$x = $data[$i];
+//			foreach ($x as $key => $value) {
+//
+//				if ($key == 'pID') {
+//					$pID = $value;
+//				}
+//				if ($key == 'sID') {
+//					$sID = $value;
+//				}
+//				if ($key == 'uID') {
+//					$uID = $value;
+//				}
+//
+//			}
+//
+//		}
+//
+//		$sql = "INSERT INTO order_pool VALUES(0, $uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME())";
+//		DBHandler::execute($sql);
+//
+//		$sql = "DELETE FROM cart_pool WHERE customer = $uID AND product = $pID AND shop = $sID";
+//		DBHandler::execute($sql);
+
+		$uID = $_COOKIE[COOKIE_USER_ID];
+
+		$sql = "CALL get_cart_products($uID)";
+
+		$result = DBHandler::getAll($sql);
+
+		$insert_sql = "INSERT INTO order_pool(customer, product, shop, qty, price, method, date, time) VALUES ";
+
+		for ($i = 0; $i < count($result); $i++) {
+
+			$x = $result[$i];
+			$pID = $x['product_id'];
+			$sID = $x['shop_id'];
+			$qty = $x['qty'];
+			$price = $x['price_now'];
+			$method = $x['home_delivery'];
+
+			if ($i == count($result) - 1) {
+				$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME())";
+			} else {
+				$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME()),";
+			}
+
+		}
+
+		DBHandler::execute($insert_sql);
+
+		$delete_sql = "DELETE FROM cart_pool WHERE customer = $uID";
+		DBHandler::execute($delete_sql);
+
+	}
+
 }
