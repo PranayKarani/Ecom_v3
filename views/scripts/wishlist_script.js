@@ -93,6 +93,10 @@ function loadWishlistProducts(pg_no) {
 
     postStatic("views", "WishlistView", "showWishlistProducts", json, function(data) {
         $("#wishlist_products").html(data);
+        $(".product_link").click(function() {
+            var id = $(this).attr('id');
+            openProductInfo(id);
+        });
     });
 }
 
