@@ -2,6 +2,9 @@
 
 namespace admin;
 
+use PDO;
+use PDOException;
+
 class DBHandler {
 
 

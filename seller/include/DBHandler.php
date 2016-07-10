@@ -2,6 +2,9 @@
 
 namespace seller;
 
+use PDO;
+use PDOException;
+
 class DBHandler {
 
 

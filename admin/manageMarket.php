@@ -1,22 +1,14 @@
 <?php
 
-require_once('include/config.php');
-require_once('include/DBHandler.php');
+use admin\SearchBox;
 
-// Controllers
-require_once 'controllers/AProductController.php';
-require_once 'controllers/ADepartmentController.php';
-require_once 'controllers/ACategoryController.php';
-require_once 'controllers/ABrandController.php';
-require_once 'controllers/AShopController.php';
+require_once 'include/DBHandler.php';
+require_once 'include/config.php';
 
-// Views
-require_once('views/templates/SearchBox.php');
-require_once('views/AProductView.php');
-require_once('views/ADepartmentView.php');
-require_once('views/ACategoryView.php');
-require_once('views/ABrandView.php');
-require_once('views/AShopView.php');
+require_once 'init.php';
+
+require_once 'views/templates/SearchBox.php';
+
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];

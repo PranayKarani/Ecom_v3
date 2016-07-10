@@ -25,7 +25,7 @@ class ACategoryController {
     }
 
     public static function getSearchedCategories ($search_text) {
-        $sql = "CALL get_searched_categories('$search_text')";
+	    $sql = "CALL get_searched_categories('$search_text',50)";
 
         return DBHandler::getAll($sql);
     }

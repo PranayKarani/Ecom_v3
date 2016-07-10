@@ -1,5 +1,7 @@
 <?php
 
+use seller\DBHandler;
+
 class SSellerController {
 
     public static function authorize($username, $password){

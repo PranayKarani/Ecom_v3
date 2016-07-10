@@ -1,17 +1,11 @@
 <?php
 
-require_once('include/config.php');
-require_once('include/DBHandler.php');
+require_once 'include/DBHandler.php';
+require_once 'include/config.php';
 
-// Controllers
-require_once 'controllers/SProductController.php';
-require_once 'controllers/SSellerController.php';
-//require_once 'controllers/ABrandController.php';
+require_once 'init.php';
 
-// Views
 require_once 'views/templates/SearchBox.php';
-require_once 'views/SSearchView.php';
-require_once 'views/SShopView.php';
 
 
 if (isset($_GET['id'])) {
