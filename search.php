@@ -49,21 +49,16 @@ if (isset($_GET['search_text'])) {
 			if (isset($category)) {
 				echo "Filters for <strong style='font-size: x-large'>$category</strong><br><br>";
 			} else {
-				echo ":(";
+				echo "invalid search";
 			} ?>
-			<strong style='font-size: larger'>Brands</strong><br>
 			<?php
 			if (isset($category)) {
 				BrandView::showBrandFilters($category);
-			} else {
-				echo ":(";
 			} ?>
-			<strong style='font-size: larger'>Ratings</strong><br>
+
 			<?php
 			if (isset($category)) {
 				ProductView::showCategoryRatingFilters($category);
-			} else {
-				echo ":(";
 			} ?>
 		</div>
 		<div id="left_bottom">

@@ -170,8 +170,13 @@ $('document').ready(function() {
             if (ev.which === 13) {
                 var s_text = $(this).val();
                 if (s_text.length > 0) {
-                    var category = $(".search_product_link:first").find("input[name='product_category_name']").val();
-                    var link = "search.php?category=" + category + "&search_text=" + s_text;
+                    var category = $(".search_product_link:first").find("input[name='product_category_name']").val() || null;
+                    var link;
+                    if (category != null) {
+                        link = "search.php?category=" + category + "&search_text=" + s_text;
+                    } else {
+                        link = "search.php?&search_text=" + s_text;
+                    }
                     $(location).attr('href', link);
                 }
             }

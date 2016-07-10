@@ -324,16 +324,23 @@ class ProductView {
 	public static function showCategoryRatingFilters ($category) {
 		$ratings = ProductController::getCategoryRatingFilters($category);
 		$count = count($ratings);
-		$cat = str_replace(' ', '_', $category);
-		$table = "c__" . strtolower(trim($cat));
-		echo "<div>";
-		for ($j = 0; $j < $count; $j++) {
-			$n = $ratings[$j]['rating'];
-			$c = $ratings[$j]['c'];
-			echo "<input type='checkbox' class='filter_checkbox' name='rating' datatype='$table' value='$n'/>$n ";
-			echo "<span style='font-size: small; color: grey'>[$c]</span><br/>";
+
+		if ($count > 0) {
+			$cat = str_replace(' ', '_', $category);
+			$table = "c__" . strtolower(trim($cat));
+
+			echo "<strong style='font-size: larger'>Ratings</strong><br>";
+			echo "<div>";
+			for ($j = 0; $j < $count; $j++) {
+				$n = $ratings[$j]['rating'];
+				$c = $ratings[$j]['c'];
+				echo "<input type='checkbox' class='filter_checkbox' name='rating' datatype='$table' value='$n'/>$n ";
+				echo "<span style='font-size: small; color: grey'>[$c]</span><br/>";
+			}
+			echo "</div><br>";
+		} else {
+			echo ":(<br/>";
 		}
-		echo "</div><br>";
 	}
 
 	/** Shop Stuff */
