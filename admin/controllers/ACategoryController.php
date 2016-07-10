@@ -1,5 +1,7 @@
 <?php
 
+use admin\DBHandler;
+
 class ACategoryController {
 
     public static function getCategories ($dept_name) {

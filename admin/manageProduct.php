@@ -1,5 +1,7 @@
 <?php
 
+use admin\SearchBox;
+
 require_once('include/config.php');
 require_once('include/DBHandler.php');
 

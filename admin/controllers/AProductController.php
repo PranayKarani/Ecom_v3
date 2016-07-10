@@ -1,5 +1,7 @@
 <?php
 
+use admin\DBHandler;
+
 class AProductController {
 
     private static $lastID;

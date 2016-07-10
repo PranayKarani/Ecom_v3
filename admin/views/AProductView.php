@@ -12,9 +12,7 @@ class AProductView {
         $this->brand_list = ABrandController::getBrands();
     }
 
-    /**
-     * Show UI for adding basic details for the new product
-     */
+	/* Show UI for adding basic details for the new product */
     public static function show_ui_for_new ($category) {
 
         $filters = ACategoryController::getCategoryFilters($category);
@@ -67,8 +65,7 @@ class AProductView {
 
     /**
      * Shows basic product details are editable. e.g brand, price etc.
-     * This is function is for admin
-     * @param $p_id
+     * This is function is for admim
      */
     public function show_basic_for_admin () {
 

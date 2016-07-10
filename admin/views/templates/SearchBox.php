@@ -1,5 +1,7 @@
 <?php
 
+namespace admin;
+
 class SearchBox {
 
     public static function show ($placeholder) {

@@ -1,11 +1,7 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: PranayKarani
- * Date: 29/05/2016
- * Time: 11:13 AM
- */
+use admin\DBHandler;
+
 class ADepartmentController {
 
     public static function getAllDepartments () {

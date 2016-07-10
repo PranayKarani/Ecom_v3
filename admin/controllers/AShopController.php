@@ -1,5 +1,7 @@
 <?php
 
+use admin\DBHandler;
+
 class AShopController {
 
 	public static function getSearchedShops ($search_text) {

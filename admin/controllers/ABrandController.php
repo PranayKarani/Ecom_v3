@@ -1,5 +1,7 @@
 <?php
 
+use admin\DBHandler;
+
 class ABrandController {
 
     public static function getBrands () {

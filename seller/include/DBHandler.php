@@ -1,5 +1,7 @@
 <?php
 
+namespace seller;
+
 class DBHandler {
 
 
@@ -8,28 +10,6 @@ class DBHandler {
     private function __construct () {
     }
 
-    private static function getHandler () {
-
-        if (!isset(self::$handler)) {
-
-            try {
-
-                self::$handler = new PDO(PDO_DSN, USER, PASS);
-                // configure PDO to throw exceptions
-                self::$handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-            } catch (PDOException $e) {
-                self::close();
-                trigger_error($e->errorInfo);
-            }
-
-        }
-
-        return self::$handler;
-    }
-
-    // for INSERT, UPDATE, DELETE
     public static function execute ($sql, $params = null) {
 
         try {
@@ -54,7 +34,36 @@ class DBHandler {
 
     }
 
+	// for INSERT, UPDATE, DELETE
+
+	private static function getHandler () {
+
+		if (!isset(self::$handler)) {
+
+			try {
+
+				self::$handler = new PDO(PDO_DSN, USER, PASS);
+				// configure PDO to throw exceptions
+				self::$handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+			} catch (PDOException $e) {
+				self::close();
+				trigger_error($e->errorInfo);
+			}
+
+		}
+
+		return self::$handler;
+	}
+
     // get multiple row
+
+	private static function close () {
+		self::$handler = null;
+	}
+
+	// get single row
+
     public static function getAll ($sql, $params = null) {
 
         $result = null;
@@ -74,7 +83,8 @@ class DBHandler {
         return $result;
     }
 
-    // get single row
+	// get value
+
     public static function getRow ($sql, $params = null) {
         $result = null;
 
@@ -93,7 +103,6 @@ class DBHandler {
         return $result;
     }
 
-    // get value
     public static function getValue ($sql, $params = null) {
         $result = null;
 
@@ -112,10 +121,6 @@ class DBHandler {
         }
 
         return $result;
-    }
-
-    private static function close () {
-        self::$handler = null;
     }
 
 }
