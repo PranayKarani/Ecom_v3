@@ -237,7 +237,12 @@ $('document').ready(function() {
      * Login and Sign Up stuff
      */
 
-        // Sign Up
+        // hide message on input
+    $("#login_email").focusin(function() {
+        $("#login_message").hide();
+    });
+
+    // Sign Up
     $("#signup_button").click(function() {
         var fieldEmpty = false;
 
@@ -271,12 +276,13 @@ $('document').ready(function() {
                 function(data) {
                     console.info("on signup: " + data);
                     data = parseInt(data);
+                    var message = $("#login_message");
                     switch (data) {
                         case -1:
-                            // signup fail OR query cannot be excuted correctly
+                            message.text("incomplete details").show();
                             break;
                         case -2: // user already exists
-                            alert("user already registered with this email");
+                            message.text("Incorrect email or pasword").show();
                             break;
                         default:
                             onLoginSuccess(name, data);
@@ -320,8 +326,10 @@ $('document').ready(function() {
                 },
                 function(data) {
 
+
                     if (data == -1) {
-                        alert("incorrect email or password");
+                        var message = $("#login_message");
+                        message.text("Incorrect email or pasword").show();
                     } else {
                         var u_data = JSON.parse(data);
                         var id = parseInt(u_data.id);

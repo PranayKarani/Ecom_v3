@@ -22,7 +22,8 @@ class LoginModal {
 					<strong>Log in</strong><br/>
 					Email: <input type="text" id="login_email"/><br/>
 					Password: <input type="password" id="login_password"/><br/>
-					<input type="button" value="log in" id="login_button"/>
+					<input type="button" value="log in" id="login_button"/><br/>
+					<h3 style="color: red" id="login_message" hidden></h3>
 				</div>
 			</div>
 		</div>

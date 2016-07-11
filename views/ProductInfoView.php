@@ -107,7 +107,6 @@ class ProductInfoView {
 			for ($i = 0; $i < $s_count; $i++) {
 
 				$open = false;
-				$homeDelivery = false;
 
 				$id = $shops[$i]['shop_id'];
 				$name = $shops[$i]['shop_name'];
