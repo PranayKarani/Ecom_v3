@@ -30,7 +30,7 @@ class ProductController {
 
     public static function getFilteredProducts ($json) {
 
-        $data = json_decode($json);
+	    $data = json_decode($json, true);
         $count = count($data);
 
 

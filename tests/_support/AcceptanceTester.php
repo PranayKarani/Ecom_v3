@@ -20,4 +20,21 @@ class AcceptanceTester extends \Codeception\Actor {
 	/**
 	 * Define custom actions here
 	 */
+
+	public function login ($email, $password) {
+		$i = $this;
+		$i->cantSeeElement("#login_modal");
+		$i->wait(3);
+		$i->canSeeElement("#login_modal");
+		$i->fillField('#login_email', $email);
+		$i->fillField('#login_password', $password);
+		$i->click('#login_button');
+		$i->expectTo("yell... WHERE IS MY UID!!?? WHERE IS IT !!!???");
+		$i->wait(2);
+		$uid = $i->grabCookie('UID');
+		$uname = $i->grabCookie('UN');
+		$i->see($uname);
+		codecept_debug("my uid is $uid.");
+	}
+
 }
