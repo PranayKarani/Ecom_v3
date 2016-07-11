@@ -19,7 +19,11 @@ class ProductController {
     }
 
     public static function getProductDetails ($id) {
-        $sql = "CALL get_product_details($id)";
+	    $sql = "SELECT category FROM product_pool WHERE product_id = $id";
+	    $category = DBHandler::getValue($sql);
+	    $table_name = 'c__' . str_replace(' ', '_', trim($category));
+
+	    $sql = "CALL get_product_details($id,'$table_name')";
 
         return DBHandler::getRow($sql);
     }
