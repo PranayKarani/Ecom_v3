@@ -46,8 +46,6 @@ if (isset($_GET['category'])) {
 				echo ":(";
 			}
 			?>
-
-			<strong style='font-size: larger'>Brands</strong><br>
 			<?php
 			if (isset($category)) {
 				BrandView::showBrandFilters($category);
@@ -55,7 +53,6 @@ if (isset($_GET['category'])) {
 				echo ":(";
 			}
 			?>
-			<strong style='font-size: larger'>Ratings</strong><br>
 			<?php
 			if (isset($category)) {
 				ProductView::showCategoryRatingFilters($category);
