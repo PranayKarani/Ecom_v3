@@ -47,28 +47,4 @@ class productsCest {
 		
 	}
 	
-	/**
-	 * Testing whether crap search gives expected results in search dropdown
-	 *
-	 * @param UnitTester $I
-	 */
-	public function crapSearchDropdownTest (UnitTester $I) {
-		
-		$search_text = "dgksadfgafa";
-		$I->amGoingTo("enter random-crap [$search_text] text into search");
-		$data = ProductController::getSearchedProductsDropDown($search_text);
-		$I->assertIsEmpty($data);
-		
-		$search_text = "'";
-		$I->amGoingTo("enter invalid character [$search_text] into search");
-		$data = ProductController::getSearchedProductsDropDown($search_text);
-		$I->assertIsEmpty($data);
-		
-		$search_text = "Ma@cbook Pr#o";
-		$I->amGoingTo("enter $search_text into search");
-		$data = ProductController::getSearchedProductsDropDown($search_text);
-		$I->assertNotEmpty($data);
-
-	}
-
 }

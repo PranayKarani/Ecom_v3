@@ -171,6 +171,7 @@ $('document').ready(function() {
                 var s_text = $(this).val();
                 if (s_text.length > 0) {
                     var category = $(".search_product_link:first").find("input[name='product_category_name']").val() || null;
+                    var shop = $(".search_shop_link:first").attr("id");
                     var link;
                     if (category != null) {
                         link = "search.php?category=" + category + "&search_text=" + s_text;
