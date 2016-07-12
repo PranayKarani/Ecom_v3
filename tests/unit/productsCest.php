@@ -5,6 +5,7 @@ require_once 'include/DBHandler.php';
 require_once 'controllers/ProductController.php';
 
 class productsCest {
+
 	/**
 	 * Product authentication i.e. verifing the products details return for the given product_id
 	 *
@@ -14,17 +15,59 @@ class productsCest {
 
 		$I->amGoingTo("match name product_name with ID");
 		$pID = 25;
-		$actual_pname = "Bravia";
+		$exp_pname = "Bravia";
 		$pname = ProductController::getProductDetails($pID)['product_name'];
 		codecept_debug($pname);
-		$I->assertEquals($actual_pname, $pname);
+		$I->assertEquals($exp_pname, $pname);
 
 		$I->amGoingTo("match category with ID");
 		$pID = 18;
-		$actual_category = "laptop";
+		$exp_category = "laptop";
 		$category = ProductController::getProductDetails($pID)['category'];
 		codecept_debug($category);
-		$I->assertEquals($actual_category, $category);
+		$I->assertEquals($exp_category, $category);
+		
+	}
+	
+	/**
+	 * Testing whether the correct sql query is generated my getFilteredProducts for the gievn json input
+	 *
+	 * @param UnitTester $I
+	 */
+	public function filterVerify (UnitTester $I) {
+		
+		$json = '[{"table":"c__laptop"},{"string":"os=\'OS X\' AND\n"}]';
+		codecept_debug($json);
+		$exp_sql = "SELECT * FROM product_pool JOIN c__laptop ON product_pool.product_id = c__laptop.product WHERE os='OS X' AND category = 'laptop' ORDER BY brand";
+		$exp_data = DBHandler::getAll($exp_sql);
+		
+		$data = ProductController::getFilteredProducts($json);
+		
+		$I->assertEquals($data, $exp_data);
+		
+	}
+	
+	/**
+	 * Testing whether crap search gives expected results in search dropdown
+	 *
+	 * @param UnitTester $I
+	 */
+	public function crapSearchDropdownTest (UnitTester $I) {
+		
+		$search_text = "dgksadfgafa";
+		$I->amGoingTo("enter random-crap [$search_text] text into search");
+		$data = ProductController::getSearchedProductsDropDown($search_text);
+		$I->assertIsEmpty($data);
+		
+		$search_text = "'";
+		$I->amGoingTo("enter invalid character [$search_text] into search");
+		$data = ProductController::getSearchedProductsDropDown($search_text);
+		$I->assertIsEmpty($data);
+		
+		$search_text = "Ma@cbook Pr#o";
+		$I->amGoingTo("enter $search_text into search");
+		$data = ProductController::getSearchedProductsDropDown($search_text);
+		$I->assertNotEmpty($data);
 
 	}
 

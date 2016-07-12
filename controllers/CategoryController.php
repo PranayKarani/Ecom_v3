@@ -15,12 +15,15 @@ class CategoryController {
 
         $search = stripslashes($search);
 //        $search = preg_replace('#[+*()%-~@\'"]#', '', $search);
-        $replacements = array( '+', '-', '*', '~', '@', '%', '(', ')', '<', '>', '\'', '"', '\\' );
-        $search = str_replace($replacements, '', $search);
-
-        $sql = "CALL get_searched_categories('$search',3)";
-
-        return DBHandler::getAll($sql);
+	    $search = str_replace(unserialize(ESC_STR), '', $search);
+	
+	    if ($search != '') {
+		    $sql = "CALL get_searched_categories('$search',3)";
+		
+		    return DBHandler::getAll($sql);
+	    } else {
+		    return null;
+	    }
 
     }
 

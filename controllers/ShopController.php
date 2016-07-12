@@ -3,9 +3,18 @@
 class ShopController {
 
 	public static function getSearchedShops ($search_text) {
-		$sql = "CALL get_searched_shops('$search_text')";
+		
+		$search_text = stripslashes($search_text);
+		$search_text = str_replace(unserialize(ESC_STR), '', $search_text);
+		
+		if ($search_text != '') {
+			$sql = "CALL get_searched_shops('$search_text')";
+			
+			return DBHandler::getAll($sql);
+		} else {
+			return null;
+		}
 
-		return DBHandler::getAll($sql);
 	}
 
     public static function getShopInfo ($shop_id) {

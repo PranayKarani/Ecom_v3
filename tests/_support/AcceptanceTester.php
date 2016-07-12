@@ -23,6 +23,12 @@ class AcceptanceTester extends \Codeception\Actor {
 
 	public function login ($email, $password) {
 		$i = $this;
+		
+		if ($i->loadSessionSnapshot('login')) {
+			return;
+		}
+		
+		$i->amOnPage('/');
 		$i->cantSeeElement("#login_modal");
 		$i->wait(3);
 		$i->canSeeElement("#login_modal");
@@ -35,6 +41,9 @@ class AcceptanceTester extends \Codeception\Actor {
 		$uname = $i->grabCookie('UN');
 		$i->see($uname);
 		codecept_debug("my uid is $uid.");
+		
+		$i->saveSessionSnapshot('login');
+
 	}
 
 }

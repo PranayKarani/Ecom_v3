@@ -2,7 +2,6 @@
 $i = new AcceptanceTester($scenario);
 $i->wantTo('logout');
 $i->maximizeWindow();
-$i->amOnPage('/');
 
 // login first
 $i->login('superman@dailyplanet.com', '123');
