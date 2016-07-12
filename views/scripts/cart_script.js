@@ -75,6 +75,7 @@ function checkOut() {
     postStatic("controllers", "UserController", "checkOut", null, function(data) {
         console.info(data);
         loadCart();
+        countCart(user_id);
     })
 
 }
