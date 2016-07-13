@@ -85,32 +85,30 @@ function loadWishlist() {
 }
 
 function loadWishlistProducts(pg_no) {
-    var arr = [];
-    arr.push({uID: uID});
-    arr.push({selected_page: pg_no});
 
-    var json = JSON.stringify(arr);
-
-    postStatic("views", "WishlistView", "showWishlistProducts", json, function(data) {
+    postStatic("views", "WishlistView", "showWishlistProducts", pg_no, function(data) {
         $("#wishlist_products").html(data);
         $(".product_link").click(function() {
             var id = $(this).attr('id');
             openProductInfo(id);
         });
+        $(".wishlist_thumbnail").click(function() {
+
+            var x = $(this);
+            var inWL = x.attr('data-in');
+            var id = x.attr('data-id');
+
+            x = $(".wishlist_thumbnail[name~=" + id + "]");
+            if (inWL == 1) {
+
+                removeFromWishlist(id, x);
+
+            } else {
+
+                addToWishlist(id, x);
+
+            }
+
+        });
     });
-}
-
-function removeFromWishlist(id) {
-
-    var arr = [];
-    arr.push({uID: uID});
-    arr.push({pID: id});
-
-    var json = JSON.stringify(arr);
-    postStatic("controllers", "UserController", "removeFromWishlist", json, function(data) {
-        console.info("remove from wishlist: " + data);
-        loadWishlist();
-    });
-
-
 }

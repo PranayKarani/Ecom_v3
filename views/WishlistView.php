@@ -1,17 +1,17 @@
 <?php
 
 class WishlistView {
-
-	public static function showWishlistProducts ($json) {
+	
+	public static function showWishlistProducts ($pg_no) {
 
 		require_once('ProductView.php');
-
-		$products_array = UserController::getWishlistProducts($json);
+		
+		$products_array = UserController::getWishlistProducts($pg_no);
 
 		for ($i = 0; $i < count($products_array); $i++) {
 
 			$product = ProductController::getProductDetails($products_array[$i]);
-			ProductView::product_box($product, false, true);
+			ProductView::product_box($product, false);
 
 		}
 

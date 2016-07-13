@@ -138,8 +138,9 @@ class UserController {
 	/** Wishlist Stuff */
 
 	public static function addToWishlist ($pID) {
-		if (isset($_COOKIE[COOKIE_USER_ID])) {
-			$uID = $_COOKIE[COOKIE_USER_ID];
+		$uID = cookieSet(COOKIE_USER_ID);
+		
+		if ($uID != null) {
 			$sql = "CALL add_to_wishlist($pID, $uID)";
 			DBHandler::execute($sql);
 			self::countWishlist($uID);
@@ -154,30 +155,11 @@ class UserController {
 		$count = DBHandler::getValue($sql);
 		echo $count;
 	}
-
-	public static function getWishlistProducts ($json) {
-
-		$data = json_decode($json);
-
-		$uID = '';
-		$selected_page = '';
-
-		for ($i = 0; $i < count($data); $i++) {
-
-			$x = $data[$i];
-			foreach ($x as $key => $value) {
-
-				if ($key == 'uID') {
-					$uID = $value;
-				}
-				if ($key == 'selected_page') {
-					$selected_page = $value;
-				}
-
-			}
-
-		}
-
+	
+	public static function getWishlistProducts ($selected_page) {
+		
+		$uID = cookieSet(COOKIE_USER_ID);
+		
 		$offset = (RPP * $selected_page);
 		$rpp = RPP;
 		$sql = "CALL get_wishlist_products($uID, $rpp, $offset)";
@@ -193,32 +175,15 @@ class UserController {
 		return $product_array;
 
 	}
-
-	public static function removeFromWishlist ($json) {
-		$data = json_decode($json);
-
-		$uID = -1;
-		$pID = -1;
-
-		for ($i = 0; $i < count($data); $i++) {
-//			$uID = $data[$i]['uID'];
-//			$pID = $data[$i]['pID'];
-			foreach ($data[$i] as $key => $value) {
-
-				if ($key == 'uID') {
-					$uID = $value;
-				}
-				if ($key == 'pID') {
-					$pID = $value;
-				}
-
-			}
-		}
+	
+	public static function removeFromWishlist ($pID) {
+		
+		$uID = cookieSet(COOKIE_USER_ID);
 
 		$sql = "CALL remove_from_wishlist($uID,$pID)";
 
 		DBHandler::execute($sql);
-
+		self::countWishlist($uID);
 	}
 
 	/** Cart */

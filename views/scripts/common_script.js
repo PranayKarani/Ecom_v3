@@ -1,7 +1,7 @@
 /**
  * Created by PranayKarani on 24/06/2016.
  */
-function onWishListClick(id) {
+function addToWishlist(id, x) {
 
     $.post(
         "include/ajaxStaticClass.php",
@@ -17,9 +17,28 @@ function onWishListClick(id) {
                 $("#login_modal").slideDown();
             } else {
                 $("#header_wishlist_button").text("Wishlist: " + data);
+                x.attr('src', 'res/images/extra/cross.png');
+                x.attr('data-in', 1);
             }
         }
     );
+
+}
+
+function removeFromWishlist(id, x) {
+
+    postStatic("controllers", "UserController", "removeFromWishlist", id, function(data) {
+
+        if (typeof loadWishlist == 'function') {
+            loadWishlist();
+        } else {
+            $("#header_wishlist_button").text("Wishlist: " + data);
+            x.attr('src', 'res/images/extra/heart.png');
+            x.attr('data-in', 0);
+        }
+
+    });
+
 
 }
 
@@ -70,3 +89,32 @@ function getJsonString(...obj) {
     return JSON.stringify(arr);
 
 }
+
+function wishlistThumbnailLoader() {
+
+    $(".wishlist_thumbnail").click(function() {
+
+        var x = $(this);
+        var inWL = x.attr('data-in');
+        var id = x.attr('data-id');
+
+        x = $(".wishlist_thumbnail[name~=" + id + "]");
+        if (inWL == 1) {
+
+            removeFromWishlist(id, x);
+
+        } else {
+
+            addToWishlist(id, x);
+
+        }
+
+    });
+
+}
+
+$(document).ready(function() {
+
+    wishlistThumbnailLoader();
+
+});

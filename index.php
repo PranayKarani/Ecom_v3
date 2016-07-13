@@ -2,6 +2,7 @@
 
 require_once('include/config.php');
 require_once('include/DBHandler.php');
+require_once('include/common.php');
 
 // Controllers
 require_once('controllers/DepartmentController.php');
@@ -49,14 +50,10 @@ require_once('views/CategoryView.php');
 		</div>
 	</div>
 	<div id="top-products">
-		<br>
-		<h2>Top Products</h2>
-		<?php ProductView::showTopProducts(5); ?>
+		<!--		--><?php //ProductView::showTopProducts(5); ?>
 	</div>
 	<div id="new-products">
-		<br>
-		<h2>New Products</h2>
-		<?php ProductView::showNewProducts(5); ?>
+		<!--		--><?php //ProductView::showNewProducts(5); ?>
 	</div>
 </div>
 

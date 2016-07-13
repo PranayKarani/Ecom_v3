@@ -1,6 +1,7 @@
 <?php
 require_once('include/config.php');
 require_once('include/DBHandler.php');
+require_once('include/common.php');
 // Controllers
 require_once('controllers/BrandController.php');
 require_once('controllers/CategoryController.php');

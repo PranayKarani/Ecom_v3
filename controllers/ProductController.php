@@ -4,7 +4,22 @@ class ProductController {
 	
 	public static function getNewProducts ($lmt) {
 		
-		$sql = "SELECT * FROM product_pool ORDER BY product_id DESC LIMIT $lmt";
+		$uID = cookieSet(COOKIE_USER_ID);
+		
+		if ($uID != null) {
+			
+			$sql = "
+	SELECT *,(
+		SELECT count(product)
+		FROM wishlist_pool
+		WHERE customer = $uID AND product = product_pool.product_id
+		) AS w 
+    FROM product_pool 
+    ORDER BY product_id DESC LIMIT $lmt";
+		} else {
+			
+			$sql = "SELECT * FROM product_pool ORDER BY product_id DESC LIMIT $lmt";
+		}
 		
 		return DBHandler::getAll($sql);
 		
@@ -12,17 +27,33 @@ class ProductController {
 	
 	public static function getTopProducts ($lmt) {
 		
-		$sql = "SELECT * FROM product_pool ORDER BY rating DESC, product_name ASC LIMIT $lmt";
+		$uID = cookieSet(COOKIE_USER_ID);
+		
+		if ($uID != null) {
+			$sql = "
+	SELECT *,(
+		SELECT count(product)
+		FROM wishlist_pool
+		WHERE customer = $uID AND product = product_pool.product_id
+		) AS w 
+    FROM product_pool 
+    ORDER BY rating ASC, product_name ASC LIMIT $lmt";
+		} else {
+			
+			$sql = "SELECT * FROM product_pool ORDER BY rating DESC, product_name ASC LIMIT $lmt";
+		}
 		
 		return DBHandler::getAll($sql);
 	}
 	
 	public static function getProductDetails ($id) {
+		
 		$sql = "SELECT category FROM product_pool WHERE product_id = $id";
 		$category = DBHandler::getValue($sql);
 		$table_name = 'c__' . str_replace(' ', '_', trim($category));
+		$uID = cookieSet(COOKIE_USER_ID);
 		
-		$sql = "CALL get_product_details($id,'$table_name')";
+		$sql = "CALL get_product_details($id,'$table_name',$uID)";
 		
 		return DBHandler::getRow($sql);
 	}
@@ -72,9 +103,9 @@ class ProductController {
 	}
 	
 	/** Search Stuff */
-
-	public static function getSearchedProductsDropDown ($search_text) {
-
+	
+	public static function getSearchedProducts ($search_text) {
+		
 		$search_text = stripslashes($search_text);
 		
 		$search_text = str_replace(unserialize(ESC_STR), '', $search_text);
@@ -98,26 +129,6 @@ class ProductController {
 			return null;
 			
 		}
-	}
-	
-	public static function getSearchedProducts ($search_text) {
-		
-		$search_text = stripslashes($search_text);
-		
-		$search_text = str_replace(unserialize(ESC_STR), '', $search_text);
-
-		$text = explode(' ', trim($search_text));
-		$strict_search_text = '';
-		for ($i = 0; $i < count($text); $i++) {
-			$txt = $text[$i];
-
-			if (!empty(trim($txt))) {
-				$strict_search_text .= " +$txt";
-			}
-		}
-		$sql = "CALL get_searched_products('$strict_search_text','$search_text', 5)";
-
-		return DBHandler::getAll($sql);
 	}
 	
 	public static function getOrderedSearchedProducts ($json) {
@@ -233,5 +244,5 @@ LIMIT 5;";
 		return DBHandler::getAll($sql);
 		
 	}
-
+	
 }

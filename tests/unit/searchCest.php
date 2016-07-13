@@ -17,17 +17,17 @@ class searchCest {
 		
 		$search_text = "dgksadfgafa";
 		$I->amGoingTo("enter random-crap [$search_text] text into search");
-		$data = ProductController::getSearchedProductsDropDown($search_text);
+		$data = ProductController::getSearchedProducts($search_text);
 		$I->assertIsEmpty($data);
 		
 		$search_text = "'";
 		$I->amGoingTo("enter invalid character [$search_text] into search");
-		$data = ProductController::getSearchedProductsDropDown($search_text);
+		$data = ProductController::getSearchedProducts($search_text);
 		$I->assertIsEmpty($data);
 		
 		$search_text = "Ma@cbook Pr#o";
 		$I->amGoingTo("enter $search_text into search");
-		$data = ProductController::getSearchedProductsDropDown($search_text);
+		$data = ProductController::getSearchedProducts($search_text);
 		$I->assertNotEmpty($data);
 		
 	}
@@ -107,9 +107,9 @@ class searchCest {
 	}
 	
 	/**
-	 * Testing search functions in CategoryController class
+	 * Testing search functions in ShopController class
 	 *
-	 * @param UnitTester $I
+*@param UnitTester $I
 	 */
 	public function searchInShopControllerTest (UnitTester $I) {
 		

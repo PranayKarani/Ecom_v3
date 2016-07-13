@@ -67,4 +67,14 @@ $(document).ready(function() {
 
     });
 
+    postStatic("views", "ProductView", "showTopProducts", 5, function(data) {
+        $("#top-products").html(data);
+        wishlistThumbnailLoader();
+    });
+
+    postStatic("views", "ProductView", "showNewProducts", 5, function(data) {
+        $("#new-products").html(data);
+        wishlistThumbnailLoader();
+    });
+
 });
