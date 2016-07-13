@@ -2,6 +2,7 @@
 
 require_once 'include/config.php';
 require_once 'include/DBHandler.php';
+require_once 'include/common.php';
 require_once 'controllers/ProductController.php';
 require_once 'controllers/CategoryController.php';
 require_once 'controllers/ShopController.php';

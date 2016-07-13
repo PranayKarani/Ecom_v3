@@ -25,10 +25,10 @@ $(document).ready(function() {
         openShopPage(id, null);
     });
 
-    $(".product_link").click(function() {
-        var id = $(this).attr('id');
-        openProductInfo(id);
-    });
+    // $(".product_link").click(function() {
+    //     var id = $(this).attr('id');
+    //     openProductInfo(id);
+    // });
 
     $(".tabs").click(function() {
 

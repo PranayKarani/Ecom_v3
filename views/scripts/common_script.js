@@ -1,6 +1,8 @@
 /**
  * Created by PranayKarani on 24/06/2016.
  */
+
+/** Wishlist Stuff */
 function addToWishlist(id, x) {
 
     $.post(
@@ -19,6 +21,7 @@ function addToWishlist(id, x) {
                 $("#header_wishlist_button").text("Wishlist: " + data);
                 x.attr('src', 'res/images/extra/cross.png');
                 x.attr('data-in', 1);
+                x.attr('title', 'remove from wishlist');
             }
         }
     );
@@ -35,12 +38,35 @@ function removeFromWishlist(id, x) {
             $("#header_wishlist_button").text("Wishlist: " + data);
             x.attr('src', 'res/images/extra/heart.png');
             x.attr('data-in', 0);
+            x.attr('title', 'add to wishlist');
         }
 
     });
 
 
 }
+
+function toggleThumbnail(x) {// x = this element
+
+
+    var inWL = x.getAttribute('data-in');
+    var id = x.getAttribute('data-id');
+
+    x = $(".wishlist_thumbnail[name~=" + id + "]");
+    if (inWL == 1) {
+
+        removeFromWishlist(id, x);
+
+    } else {
+
+        addToWishlist(id, x);
+
+    }
+
+
+}
+
+
 
 function openProductInfo(id) {
 
@@ -62,6 +88,8 @@ function openShopPage(sID, category) {
     $(location).attr('href', url);
 
 }
+
+/** Other */
 
 function postStatic(dir, Class, method, params, func) {
 
@@ -90,31 +118,3 @@ function getJsonString(...obj) {
 
 }
 
-function wishlistThumbnailLoader() {
-
-    $(".wishlist_thumbnail").click(function() {
-
-        var x = $(this);
-        var inWL = x.attr('data-in');
-        var id = x.attr('data-id');
-
-        x = $(".wishlist_thumbnail[name~=" + id + "]");
-        if (inWL == 1) {
-
-            removeFromWishlist(id, x);
-
-        } else {
-
-            addToWishlist(id, x);
-
-        }
-
-    });
-
-}
-
-$(document).ready(function() {
-
-    wishlistThumbnailLoader();
-
-});

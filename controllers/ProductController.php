@@ -5,21 +5,12 @@ class ProductController {
 	public static function getNewProducts ($lmt) {
 		
 		$uID = cookieSet(COOKIE_USER_ID);
-		
-		if ($uID != null) {
-			
-			$sql = "
-	SELECT *,(
-		SELECT count(product)
-		FROM wishlist_pool
-		WHERE customer = $uID AND product = product_pool.product_id
-		) AS w 
-    FROM product_pool 
-    ORDER BY product_id DESC LIMIT $lmt";
-		} else {
-			
-			$sql = "SELECT * FROM product_pool ORDER BY product_id DESC LIMIT $lmt";
+		$w = "";
+		if ($uID > 0) {
+			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
 		}
+		
+		$sql = "SELECT *$w FROM product_pool ORDER BY product_id DESC LIMIT $lmt";
 		
 		return DBHandler::getAll($sql);
 		
@@ -28,20 +19,12 @@ class ProductController {
 	public static function getTopProducts ($lmt) {
 		
 		$uID = cookieSet(COOKIE_USER_ID);
-		
-		if ($uID != null) {
-			$sql = "
-	SELECT *,(
-		SELECT count(product)
-		FROM wishlist_pool
-		WHERE customer = $uID AND product = product_pool.product_id
-		) AS w 
-    FROM product_pool 
-    ORDER BY rating ASC, product_name ASC LIMIT $lmt";
-		} else {
-			
-			$sql = "SELECT * FROM product_pool ORDER BY rating DESC, product_name ASC LIMIT $lmt";
+		$w = "";
+		if ($uID > 0) {
+			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
 		}
+		
+		$sql = "SELECT *$w FROM product_pool ORDER BY rating DESC, product_name ASC LIMIT $lmt";
 		
 		return DBHandler::getAll($sql);
 	}
@@ -84,7 +67,14 @@ class ProductController {
 		$category = str_replace('c__', '', $table);
 		$category = str_replace('_', ' ', $category);
 		
-		$sql = "SELECT * FROM product_pool JOIN $table ON product_pool.product_id = $table.product WHERE ";
+		// wishlist stuff
+		$uID = cookieSet(COOKIE_USER_ID);
+		$w = "";
+		if ($uID != null) {
+			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
+		}
+		
+		$sql = "SELECT *$w FROM product_pool JOIN $table ON product_pool.product_id = $table.product WHERE ";
 		$sql .= $conditions;
 		if ($order == '') {
 			$sql .= "category = '$category' ORDER BY brand";
@@ -97,7 +87,8 @@ class ProductController {
 	}
 	
 	public static function getSimilarProducts ($pID) {
-		$sql = "CALL get_similar_products($pID)";
+		$uID = cookieSet(COOKIE_USER_ID);
+		$sql = "CALL get_similar_products($pID,$uID)";
 		
 		return DBHandler::getAll($sql);
 	}
@@ -110,6 +101,8 @@ class ProductController {
 		
 		$search_text = str_replace(unserialize(ESC_STR), '', $search_text);
 		
+		$uID = cookieSet(COOKIE_USER_ID);
+		
 		if ($search_text != '') {
 			
 			$text = explode(' ', trim($search_text));
@@ -121,7 +114,8 @@ class ProductController {
 					$strict_search_text .= " +$txt";
 				}
 			}
-			$sql = "CALL get_searched_products('$strict_search_text','$search_text', 5)";
+			
+			$sql = "CALL get_searched_products('$strict_search_text','$search_text', 5, $uID)";
 			
 			return DBHandler::getAll($sql);
 			
@@ -164,9 +158,15 @@ class ProductController {
 			}
 		}
 		
-		$sql = "SELECT * FROM product_pool
+		$uID = cookieSet(COOKIE_USER_ID);
+		$w = "";
+		if ($uID != null) {
+			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
+		}
+		
+		$sql = "SELECT *$w FROM product_pool
 WHERE MATCH(keywords) AGAINST('$strict_search_text' IN BOOLEAN MODE)
-UNION SELECT *
+UNION SELECT *$w
       FROM product_pool
       WHERE keywords LIKE '%$search_text%'
  $order
@@ -183,7 +183,13 @@ LIMIT 5;";
 		$cat = str_replace(' ', '_', $category);
 		$table = "c__" . strtolower(trim($cat));
 		
-		$sql = "SELECT * FROM product_pool JOIN $table ON product_pool.product_id = $table.product WHERE category = '$category'";
+		$uID = cookieSet(COOKIE_USER_ID);
+		$w = "";
+		if ($uID != null) {
+			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
+		}
+		
+		$sql = "SELECT *$w FROM product_pool JOIN $table ON product_pool.product_id = $table.product WHERE category = '$category'";
 		
 		return DBHandler::getAll($sql);
 		
@@ -191,7 +197,12 @@ LIMIT 5;";
 	
 	public static function getCategoryTopProducts ($category) {
 		
-		$sql = "SELECT * FROM product_pool WHERE category = '$category' ORDER BY rating DESC, product_name ASC LIMIT 5";
+		$uID = cookieSet(COOKIE_USER_ID);
+		$w = "";
+		if ($uID != null) {
+			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
+		}
+		$sql = "SELECT *$w FROM product_pool WHERE category = '$category' ORDER BY rating DESC, product_name ASC LIMIT 5";
 		
 		return DBHandler::getAll($sql);
 		
@@ -199,7 +210,12 @@ LIMIT 5;";
 	
 	public static function getCategoryNewProducts ($category) {
 		
-		$sql = "SELECT * FROM product_pool WHERE category = '$category' ORDER BY product_id DESC LIMIT 5";
+		$uID = cookieSet(COOKIE_USER_ID);
+		$w = "";
+		if ($uID != null) {
+			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
+		}
+		$sql = "SELECT *$w FROM product_pool WHERE category = '$category' ORDER BY product_id DESC LIMIT 5";
 		
 		return DBHandler::getAll($sql);
 		
@@ -224,14 +240,16 @@ LIMIT 5;";
 	/** Shop Stuff */
 	
 	public static function getShopProducts ($shop_id) {
-		$sql = "CALL get_shop_products($shop_id)";
+		$uID = cookieSet(COOKIE_USER_ID);
+		$sql = "CALL get_shop_products($shop_id, $uID)";
 		
 		return DBHandler::getAll($sql);
 	}
 	
 	public static function getShopCategoryProducts ($shop_id, $category) {
 		
-		$sql = "CALL get_shop_category_products('$category', $shop_id)";
+		$uID = cookieSet(COOKIE_USER_ID);
+		$sql = "CALL get_shop_category_products('$category', $shop_id, $uID)";
 		
 		return DBHandler::getAll($sql);
 		
@@ -239,7 +257,8 @@ LIMIT 5;";
 	
 	public static function getShopSearchedProducts ($shop_id, $search_txt) {
 		
-		$sql = "CALL get_shop_searched_products($shop_id, '$search_txt')";
+		$uID = cookieSet(COOKIE_USER_ID);
+		$sql = "CALL get_shop_searched_products($shop_id, '$search_txt', $uID)";
 		
 		return DBHandler::getAll($sql);
 		

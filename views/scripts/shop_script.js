@@ -3,10 +3,10 @@
  */
 $(document).ready(function () {
 
-    $(".product_link").click(function () {
-        var id = $(this).attr('id');
-        openProductInfo(id);
-    });
+    // $(".product_link").click(function () {
+    //     var id = $(this).attr('id');
+    //     openProductInfo(id);
+    // });
 
     $(".shop_list").click(function () {
 

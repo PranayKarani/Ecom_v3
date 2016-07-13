@@ -33,13 +33,13 @@ $(document).ready(function() {
                         },
                         function(data) {
                             $("#category_products_container").html(data);
-                            $(".product_link").click(function() {
-
-                                var id = $(this).attr("id");
-
-                                openProductInfo(id);
-
-                            });
+                            // $(".product_link").click(function() {
+                            //
+                            //     var id = $(this).attr("id");
+                            //
+                            //     openProductInfo(id);
+                            //
+                            // });
                         }
                     );
                 });
@@ -59,22 +59,22 @@ $(document).ready(function() {
     });
 
 
-    $(".product_link").click(function() {
-
-        var id = $(this).attr("id");
-
-        openProductInfo(id);
-
-    });
+    // $(".product_link").click(function() {
+    //
+    //     var id = $(this).attr("id");
+    //
+    //     openProductInfo(id);
+    //
+    // });
 
     postStatic("views", "ProductView", "showTopProducts", 5, function(data) {
         $("#top-products").html(data);
-        wishlistThumbnailLoader();
+
     });
 
     postStatic("views", "ProductView", "showNewProducts", 5, function(data) {
         $("#new-products").html(data);
-        wishlistThumbnailLoader();
+
     });
 
 });

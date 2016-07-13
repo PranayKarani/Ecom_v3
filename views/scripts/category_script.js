@@ -42,10 +42,10 @@ $('document').ready(function () {
                     $(".nearBy").css("width", "100%");
                     $("#order_by").hide();
 
-                    $(".product_link").click(function () {
-                        var id = $(this).attr('id');
-                        openProductInfo(id);
-                    });
+                    // $(".product_link").click(function () {
+                    //     var id = $(this).attr('id');
+                    //     openProductInfo(id);
+                    // });
 
                 }
             );
@@ -63,10 +63,10 @@ $('document').ready(function () {
                     console.info(data);
                     $("#center_bottom").html(data);
 
-                    $(".product_link").click(function () {
-                        var id = $(this).attr('id');
-                        openProductInfo(id);
-                    });
+                    // $(".product_link").click(function () {
+                    //     var id = $(this).attr('id');
+                    //     openProductInfo(id);
+                    // });
 
                 }
             );
@@ -84,10 +84,10 @@ $('document').ready(function () {
 
     });
 
-    $(".product_link").click(function () {
-        var id = $(this).attr('id');
-        openProductInfo(id);
-    });
+    // $(".product_link").click(function () {
+    //     var id = $(this).attr('id');
+    //     openProductInfo(id);
+    // });
 
     $(".nearBy").click(function () {
 
@@ -135,11 +135,11 @@ $('document').ready(function () {
                         console.info(data);
                         $("#center_bottom").html(data);
 
-                        $(".product_link").click(function () {
-                            var id = $(this).attr("id");
-
-                            openProductInfo(id);
-                        });
+                        // $(".product_link").click(function () {
+                        //     var id = $(this).attr("id");
+                        //
+                        //     openProductInfo(id);
+                        // });
 
                     }
                 );
@@ -177,11 +177,11 @@ function getFilteredProducts(json) {
             $("#order_by").show();
             $("#center_bottom").html(data);
 
-            $(".product_link").click(function () {
-                var id = $(this).attr("id");
-
-                openProductInfo(id);
-            });
+            // $(".product_link").click(function () {
+            //     var id = $(this).attr("id");
+            //
+            //     openProductInfo(id);
+            // });
 
         }
     );
@@ -223,11 +223,11 @@ function loadProducts() {
                     console.info(data);
                     $("#center_bottom").html(data);
 
-                    $(".product_link").click(function () {
-                        var id = $(this).attr("id");
-
-                        openProductInfo(id);
-                    });
+                    // $(".product_link").click(function () {
+                    //     var id = $(this).attr("id");
+                    //
+                    //     openProductInfo(id);
+                    // });
 
                 }
             );
@@ -302,10 +302,10 @@ function loadInitProducts() {
                 $(".nearBy").css("width", "100%");
                 $("#order_by").hide();
 
-                $(".product_link").click(function () {
-                    var id = $(this).attr('id');
-                    openProductInfo(id);
-                });
+                // $(".product_link").click(function () {
+                //     var id = $(this).attr('id');
+                //     openProductInfo(id);
+                // });
 
             }
         );
@@ -323,10 +323,10 @@ function loadInitProducts() {
                 console.info(data);
                 $("#center_bottom").html(data);
 
-                $(".product_link").click(function () {
-                    var id = $(this).attr('id');
-                    openProductInfo(id);
-                });
+                // $(".product_link").click(function () {
+                //     var id = $(this).attr('id');
+                //     openProductInfo(id);
+                // });
 
             }
         );

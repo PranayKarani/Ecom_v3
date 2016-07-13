@@ -403,4 +403,6 @@ $('document').ready(function() {
         }
     });
 
+    // wishlistThumbnailLoader();
+
 });

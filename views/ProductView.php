@@ -23,7 +23,7 @@ class ProductView {
 		}
 	}
 	
-	public static function product_box ($product, $compare, $WLremove = null) {
+	public static function product_box ($product, $compare) {
 		$id = $product['product_id'];
 		$name = $product['product_name'];
 		$brand = $product['brand'];
@@ -37,8 +37,8 @@ class ProductView {
 		if (strlen($name) > $str_length) {
 			$name = substr($name, 0, $str_length) . "...";
 		}
-		echo "<div class='product_box'>";
-		echo "<div class='product_link' id='$id'>";
+		echo "<div class='product_box' >";
+		echo "<div class='product_link' id='$id' onclick='openProductInfo($id)'>";
 		echo "<input type='image' class='product_image' src='res/images/product/default0.jpg'>";
 		echo "<div class='name_raing_box'>";
 		echo "$name<br>";
@@ -60,24 +60,40 @@ class ProductView {
 		if (isset($inWish)) {
 			
 			if ($inWish > 0) {
-				echo "<span class='add_to_wishlist' title='remove from wishlist'>";
-				echo "<input class='wishlist_thumbnail' type='image' name='$id' data-id='$id' src='res/images/extra/cross.png' style='width: 100%' data-in='1'/>";
+				echo "<span class='add_to_wishlist'>";
+				echo "<input 
+						class='wishlist_thumbnail' 
+						type='image' 
+						name='$id' 
+						data-id='$id' 
+						data-in='1' 
+						onclick='toggleThumbnail(this)' 
+						src='res/images/extra/cross.png' 
+						style='width: 100%;outline: none' 
+						title='remove from wishlist'/>";
+				echo "</span>";
 			} else {
-				echo "<span class='add_to_wishlist' title='add to wishlist'>";
-				echo "<input class='wishlist_thumbnail' type='image' name='$id' data-id='$id' src='res/images/extra/heart.png' style='width: 100%' data-in='0'/>";
+				echo "<span class='add_to_wishlist'>";
+				echo "<input 
+						class='wishlist_thumbnail' 
+						type='image' 
+						name='$id' 
+						data-id='$id' 
+						data-in='0' 
+						onclick='toggleThumbnail(this)' 
+						src='res/images/extra/heart.png' 
+						style='width: 100%;outline: none' 
+						title='add to wishlist'/>";
+				echo "</span>";
 			}
 			
 		} else {// means, not logged in
+			echo "<span class='add_to_wishlist' title='add to wishlist'>";
+			echo "NA";
+			echo "</span>";
 			
 		}
 
-//		if ($WLremove != null) {
-//			echo "<span class='add_to_wishlist' onclick='removeFromWishlist($id)' title='remove from wishlist'>";
-//			echo "<input type='image' src='res/images/extra/cross.png' style='width: 100%'/>";
-//		} else {
-//			echo "<span class='add_to_wishlist' onclick='onWishListClick($id)' title='add to wishlist'>";
-//			echo "<input type='image' src='res/images/extra/heart.png' style='width: 100%'/>";
-//		}
 //		echo "<span class='tooltiptext'>add to wishlist</span>";
 		echo "</span>";
 		
@@ -117,15 +133,6 @@ class ProductView {
 		if ($noofP > 0) {
 			echo "<strong style='font-size: larger'>Products</strong><br>";
 			for ($i = 0; $i < $noofP; $i++) {
-//                $id = $products[$i]['product_id'];
-//                $name = $products[$i]['product_name'];
-//                $category = $products[$i]['category'];
-//                $brand = $products[$i]['brand'];
-//
-//                echo "<span class='product_link' id='$id'>";
-//                echo "<input type='hidden' value='$category' name='product_category_name'/>";
-//                echo "<strong>$brand</strong> $name";
-//                echo "</span><br>";
 				self::product_box($products[$i], true);
 			}
 		} else {
