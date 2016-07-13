@@ -18,7 +18,51 @@ class ProductInfoView {
 		$this->count = count($this->details);
 
 	}
-
+	
+	public function show_image () {
+		echo '<input type="image" id="product_image" src="res/images/product/default0.jpg"/>';
+	}
+	
+	public function show_wishlist_thumbnail () {
+		
+		if (isset($this->details['w'])) {
+			
+			if ($this->details['w'] > 0) {
+				echo "<span class='add_to_wishlist'>";
+				echo "<input 
+						class='wishlist_thumbnail' 
+						type='image' 
+						name='$this->id' 
+						data-id='$this->id' 
+						data-in='1' 
+						onclick='toggleThumbnail(this)' 
+						src='res/images/extra/cross.png' 
+						style='width: 100%;outline: none' 
+						title='remove from wishlist'/>";
+				echo "</span>";
+			} else {
+				echo "<span class='add_to_wishlist'>";
+				echo "<input 
+						class='wishlist_thumbnail' 
+						type='image' 
+						name='$this->id' 
+						data-id='$this->id' 
+						data-in='0' 
+						onclick='toggleThumbnail(this)' 
+						src='res/images/extra/heart.png' 
+						style='width: 100%;outline: none' 
+						title='add to wishlist'/>";
+				echo "</span>";
+			}
+			
+		} else {// means, not logged in
+			echo "<span class='add_to_wishlist' title='add to wishlist'>";
+			echo "NA";
+			echo "</span>";
+			
+		}
+	}
+	
 	public function show_name_and_brand () {
 		$name = $this->details['product_name'];
 		$brand = $this->details['brand'];

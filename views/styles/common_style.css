@@ -136,3 +136,7 @@
     float: right;
 
 }
+
+input[type=image] {
+    outline: none;
+}

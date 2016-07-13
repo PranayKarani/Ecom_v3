@@ -23,6 +23,7 @@
     width: 40%;
     height: 100%;
     text-align: center;
+    position: relative;
     float: left;
     outline: 1px solid black;
 }

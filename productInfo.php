@@ -44,7 +44,10 @@ if (isset($_GET['id'])) {
 			<div id="top_left_top">
 				<div id="top_left_top_left">
 					<!--                TODO to be changed-->
-					<input type="image" id="product_image" src="res/images/product/default0.jpg"/>
+					<?php
+					$productInfoView->show_image();
+					$productInfoView->show_wishlist_thumbnail();
+					?>
 				</div>
 				<div id="top_left_top_right">
 					<div id="top_left_top_right_top">
