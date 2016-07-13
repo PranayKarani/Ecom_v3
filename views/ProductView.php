@@ -88,7 +88,7 @@ class ProductView {
 			}
 			
 		} else {// means, not logged in
-			echo "<span class='add_to_wishlist' title='add to wishlist'>";
+			echo "<span class='add_to_wishlist' title='login to add to wishlist' onclick='showLoginModal()'>";
 			echo "NA";
 			echo "</span>";
 			

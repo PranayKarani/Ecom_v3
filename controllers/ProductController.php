@@ -199,7 +199,7 @@ LIMIT 5;";
 		
 		$uID = cookieSet(COOKIE_USER_ID);
 		$w = "";
-		if ($uID != null) {
+		if ($uID > 0) {
 			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
 		}
 		$sql = "SELECT *$w FROM product_pool WHERE category = '$category' ORDER BY rating DESC, product_name ASC LIMIT 5";
@@ -212,7 +212,7 @@ LIMIT 5;";
 		
 		$uID = cookieSet(COOKIE_USER_ID);
 		$w = "";
-		if ($uID != null) {
+		if ($uID > 0) {
 			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
 		}
 		$sql = "SELECT *$w FROM product_pool WHERE category = '$category' ORDER BY product_id DESC LIMIT 5";

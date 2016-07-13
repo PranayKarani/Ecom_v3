@@ -89,6 +89,10 @@ function openShopPage(sID, category) {
 
 }
 
+function showLoginModal() {
+    $("#login_modal").slideDown();
+}
+
 /** Other */
 
 function postStatic(dir, Class, method, params, func) {
