@@ -28,7 +28,9 @@ td {
 
 .compare_product_image{
     width: 100%;
-    /*padding: 5%;*/
+    padding: 2%;
+    box-sizing: border-box;
+    outline: none;
 }
 
 .remove_from_compare {

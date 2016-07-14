@@ -129,3 +129,6 @@ function getJsonString(...obj) {
 
 }
 
+function goBack() {
+    window.History.back();
+}

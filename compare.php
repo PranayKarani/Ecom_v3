@@ -19,7 +19,7 @@ require_once('views/ProductView.php');
 
 $ids = array();
 $noof_ids = 0;
-if (isset($_GET['ids'])) {
+if (isset($_GET['ids']) && !empty($_GET['ids'])) {
 	$ids = explode(' ', trim($_GET['ids']));
 	$noof_ids = count($ids);
 }
@@ -51,18 +51,17 @@ if (isset($_GET['category'])) {
 	<div id="center_section">
 
 		<?php
-
+		
 		if (isset($category)) {
-			ProductView::showComparedProducts($ids, $category);
+			if ($noof_ids > 0) {
+				ProductView::showComparedProducts($ids, $category);
+			} else {
+				echo "<div style='font-size: 96px;font-family: \"Segoe\"; width: 100%;padding: 2%; text-align: center'><span>Nothing to compare</span></div>";
+			}
 		} else {
 			die("category not set");
 		}
-
-		//	for ($i = 0; $i < $noof_ids; $i++) {
-		//		$x = $i + 1;
-		//		echo "<div class='column' id='col_$x'></div>";
-		//	}
-
+		
 		?>
 
 	</div>
