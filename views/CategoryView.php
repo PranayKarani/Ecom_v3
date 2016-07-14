@@ -10,8 +10,8 @@ class CategoryView {
 
 			$cat_name = $category_array[$i]['category_name'];
 			
-			echo "<div class='category_link' data-name='$cat_name'>";
-			echo "<div class='category_link_name'>";
+			echo "<div class='category_link'>";
+			echo "<div class='category_link_name' data-name='$cat_name'>";
 			echo "$cat_name";
 			echo "</div>";
 			echo "<div class='category_link_viewall'>";
@@ -85,8 +85,8 @@ class CategoryView {
 			
 			$cat_name = $category_array[$i]['category_name'];
 			
-			echo "<div class='header_category_link' data-name='$cat_name'>";
-			echo "<div class='header_category_link_name'>";
+			echo "<div class='header_category_link'>";
+			echo "<div class='header_category_link_name' data-name='$cat_name'>";
 			echo "$cat_name";
 			echo "</div>";
 			echo "<div class='header_category_link_viewall'>";

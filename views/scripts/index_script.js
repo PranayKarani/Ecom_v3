@@ -13,7 +13,7 @@ $(document).ready(function() {
             $("#category_container").html(data);
             $("#category_products_container").html(null);
             $("#category-products").slideDown();
-            $(".category_link").click(function() {
+            $(".category_link_name").click(function() {
 
                 var cat_name = $(this).attr('data-name');
                 postStatic("views", "ProductView", "showCategoryTopProducts", cat_name, function(data) {

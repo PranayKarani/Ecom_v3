@@ -245,7 +245,7 @@ $('document').ready(function() {
             $("#header_category_container").html(data);
             $("#header_category_products_container").html(null);
             $("#header_category_products").slideDown();
-            $(".header_category_link").click(function() {
+            $(".header_category_link_name").click(function() {
                 var cat_name = $(this).attr('data-name');
 
                 postStatic("views", "ProductView", "showCategoryTopProducts", cat_name, function(data) {

@@ -1,3 +1,9 @@
 footer{
-    outline: 1px solid black;
+    width: 1200px;
+    height: 100px;
+    float: left;
+    text-align: center;
+    background-color: pink;
+    z-index: 999;
+    margin-top: 10px;
 }

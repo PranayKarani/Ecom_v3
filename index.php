@@ -11,6 +11,7 @@ require_once 'controllers/ProductController.php';
 
 // Views
 require_once('views/templates/header.php');
+require_once('views/templates/footer.php');
 require_once('views/templates/LoginModal.php');
 require_once('views/DepartmentView.php');
 require_once('views/ProductView.php');
@@ -25,11 +26,12 @@ require_once('views/CategoryView.php');
 	<link rel="stylesheet" href="views/styles/index_style.css">
 	<link rel="stylesheet" href="views/styles/common_style.css">
 	<link rel="stylesheet" href="views/styles/header_style.css">
+	<link rel="stylesheet" href="views/styles/footer_style.css">
 	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
 	<script src="../jquery-2.2.3.min.js"></script>
-	<script src="views/scripts/index_script.js"></script>
 	<script src="views/scripts/header_script.js"></script>
 	<script src="views/scripts/common_script.js"></script>
+	<script src="views/scripts/index_script.js"></script>
 </head>
 <body>
 <?php Header::show(); ?>
@@ -54,7 +56,7 @@ require_once('views/CategoryView.php');
 		<!--		--><?php //ProductView::showNewProducts(5); ?>
 	</div>
 </div>
-
+<?php Footer::show(); ?>
 <?php LoginModal::show(); ?>
 
 </body>

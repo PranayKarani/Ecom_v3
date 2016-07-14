@@ -12,6 +12,7 @@ require_once('controllers/DepartmentController.php');
 
 // Views
 require_once('views/templates/header.php');
+require_once('views/templates/footer.php');
 require_once('views/templates/LoginModal.php');
 require_once 'views/DepartmentView.php';
 require_once('views/ProductView.php');
@@ -32,6 +33,7 @@ if (isset($_GET['category'])) {
 	<meta charset="UTF-8">
 	<title>Compare</title>
 	<link rel="stylesheet" href="views/styles/header_style.css">
+	<link rel="stylesheet" href="views/styles/footer_style.css">
 	<link rel="stylesheet" href="views/styles/common_style.css">
 	<link rel="stylesheet" href="views/styles/compare_style.css">
 
@@ -65,7 +67,7 @@ if (isset($_GET['category'])) {
 
 	</div>
 </div>
-
+<?php Footer::show(); ?>
 <?php LoginModal::show(); ?>
 
 </body>

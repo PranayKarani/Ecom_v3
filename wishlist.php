@@ -10,6 +10,7 @@ require_once('controllers/DepartmentController.php');
 
 // Views
 require_once('views/templates/header.php');
+require_once('views/templates/footer.php');
 require_once('views/templates/LoginModal.php');
 require_once('views/ProductView.php');
 require_once 'views/DepartmentView.php';
@@ -27,6 +28,7 @@ if (isset($_COOKIE[COOKIE_USER_ID])) {
 	<meta charset="UTF-8">
 	<title>Shop</title>
 	<link rel="stylesheet" href="views/styles/header_style.css">
+	<link rel="stylesheet" href="views/styles/footer_style.css">
 	<link rel="stylesheet" href="views/styles/common_style.css">
 
 	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
@@ -48,6 +50,8 @@ if (isset($_COOKIE[COOKIE_USER_ID])) {
 		</div>
 	</div>
 </div>
+
+<?php Footer::show(); ?>
 
 <?php LoginModal::show(); ?>
 
