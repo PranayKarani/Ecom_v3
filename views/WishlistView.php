@@ -6,11 +6,11 @@ class WishlistView {
 
 		require_once('ProductView.php');
 		
-		$products_array = UserController::getWishlistProducts($pg_no);
-
-		for ($i = 0; $i < count($products_array); $i++) {
-
-			$product = ProductController::getProductDetails($products_array[$i]);
+		$product_id_array = UserController::getWishlistProducts($pg_no);
+		
+		for ($i = 0; $i < count($product_id_array); $i++) {
+			
+			$product = ProductController::getProductDetails($product_id_array[$i]);
 			ProductView::product_box($product, false);
 
 		}

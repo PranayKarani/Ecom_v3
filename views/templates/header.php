@@ -12,6 +12,7 @@ class Header {
 				<div id="left">
 					<a href="admin">admin</a>
 					<a href="seller">seller</a><br/>
+					<a href="index.php" style="font-size: 32px;">home</a>
 				</div>
 				<div id="header_center">
 					

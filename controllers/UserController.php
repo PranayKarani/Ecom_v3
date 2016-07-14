@@ -164,15 +164,17 @@ class UserController {
 		$rpp = RPP;
 		$sql = "CALL get_wishlist_products($uID, $rpp, $offset)";
 		$data = DBHandler::getAll($sql);
-
-		$product_array = array();
+		
+		$product_id_array = array();
 		for ($i = 0; $i < count($data); $i++) {
 			foreach ($data[$i] as $key => $value) {
-				$product_array[$i] = $value;
+				if ($key == 'product') {
+					$product_id_array[$i] = $value;
+				}
 			}
 		}
-
-		return $product_array;
+		
+		return $product_id_array;
 
 	}
 	

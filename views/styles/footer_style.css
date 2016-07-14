@@ -6,4 +6,5 @@ footer{
     background-color: pink;
     z-index: 999;
     margin-top: 10px;
+    bottom: 0;
 }
