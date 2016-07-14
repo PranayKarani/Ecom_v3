@@ -6,11 +6,13 @@ require_once('include/common.php');
 
 // Controllers
 require_once('controllers/ProductController.php');
+require_once('controllers/DepartmentController.php');
 
 // Views
 require_once('views/templates/header.php');
 require_once('views/templates/LoginModal.php');
 require_once('views/ProductView.php');
+require_once 'views/DepartmentView.php';
 require_once('views/WishlistView.php');
 
 if (isset($_COOKIE[COOKIE_USER_ID])) {

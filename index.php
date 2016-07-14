@@ -42,10 +42,8 @@ require_once('views/CategoryView.php');
 		</div>
 		<div id="category-products">
 			<div id='category_container'>
-				<!-- categories will be shown from AjaxManager through jQuery -->
 			</div>
 			<div id='category_products_container'>
-
 			</div>
 		</div>
 	</div>

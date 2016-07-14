@@ -8,11 +8,13 @@ require_once('include/common.php');
 require_once('controllers/ProductController.php');
 require_once('controllers/CategoryController.php');
 require_once('controllers/ShopController.php');
+require_once('controllers/DepartmentController.php');
 
 // Views
 require_once('views/templates/header.php');
 require_once('views/templates/LoginModal.php');
 require_once('views/ProductView.php');
+require_once 'views/DepartmentView.php';
 require_once('views/CategoryView.php');
 require_once('views/ShopView.php');
 

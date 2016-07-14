@@ -9,10 +9,14 @@ class CategoryView {
 		for ($i = 0; $i < count($category_array); $i++) {
 
 			$cat_name = $category_array[$i]['category_name'];
-
-			echo "<div class='category_link' datatype='$cat_name'>";
+			
+			echo "<div class='category_link' data-name='$cat_name'>";
+			echo "<div class='category_link_name'>";
 			echo "$cat_name";
-			echo " <button class='view_all' id='$cat_name'>view all</button>";
+			echo "</div>";
+			echo "<div class='category_link_viewall'>";
+			echo " <a href='category.php?category=$cat_name'>view all</a>";
+			echo "</div>";
 			echo "</div>";
 
 		}
@@ -70,5 +74,28 @@ class CategoryView {
 		}
 
 	}
-
+	
+	/** For Header category stuff */
+	
+	public static function showInHeader ($dept_name) {
+		
+		$category_array = CategoryController::getCategories($dept_name);
+		
+		for ($i = 0; $i < count($category_array); $i++) {
+			
+			$cat_name = $category_array[$i]['category_name'];
+			
+			echo "<div class='header_category_link' data-name='$cat_name'>";
+			echo "<div class='header_category_link_name'>";
+			echo "$cat_name";
+			echo "</div>";
+			echo "<div class='header_category_link_viewall'>";
+			echo " <a href='category.php?category=$cat_name'>view all</a>";
+			echo "</div>";
+			echo "</div>";
+			
+		}
+		
+	}
+	
 }

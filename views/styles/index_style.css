@@ -13,11 +13,11 @@ h2{
     width: 25%;
     height: 100%;
     float: left;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     outline: 1px solid black;
-}
-.dept_link:hover, .category_link:hover{
-    background-color: silver;
-    cursor: pointer;
 }
 #category-products{
     width: 100%;
@@ -40,9 +40,32 @@ h2{
 .category_link{
     width: 100%;
     height: 50px;
-    /*float: left;*/
+    float: left;
     outline: 1px solid black;
 }
+
+.category_link_name {
+    width: 70%;
+    height: 100%;
+    float: left;
+    padding: 5%;
+    box-sizing: border-box;
+    /*outline: 1px solid black;*/
+}
+
+.category_link_viewall {
+    width: 30%;
+    height: 100%;
+    float: left;
+    padding: 5%;
+    box-sizing: border-box;
+}
+
+.dept_link:hover, .category_link_name:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
 #new-products, #top-products{
     clear: both;
 }

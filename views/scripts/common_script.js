@@ -93,6 +93,13 @@ function showLoginModal() {
     $("#login_modal").slideDown();
 }
 
+function openCategoryPage(x) {
+    var name = x.getAttribute('id');
+    var url = "category.php?category=" + name;
+    //window.location.href = "category.php?category=" + name;
+    $(location).attr('href', url);
+}
+
 /** Other */
 
 function postStatic(dir, Class, method, params, func) {

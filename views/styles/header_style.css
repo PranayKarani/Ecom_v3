@@ -2,9 +2,10 @@ body {
     width: 1200px;
     margin: 0 auto;
 }
-header{
+
+header {
     width: 1200px;
-    height: 125px;
+    height: auto;
     position: fixed;
     background-color: beige;
     z-index: 999;
@@ -17,9 +18,16 @@ header{
     margin-top: 125px;
 }
 
+/* Top Stuff */
+#header_top {
+    width: 100%;
+    height: 125px;
+    float: left;
+    outline: 1px solid purple;
+}
 
 /* Left Stuff */
-#left{
+#left {
     width: 20%;
     height: 100%;
     float: left;
@@ -28,20 +36,24 @@ header{
 
 /* Center Stuff */
 
-#center{
+#header_center {
     width: 60%;
     height: 100%;
     float: left;
+    position: relative;
     outline: 1px solid green;
+    box-sizing: border-box;
 }
-#header_department-category{
+
+#header_department-category {
     width: 100%;
+    height: 75px;
     float: left;
     outline: 1px solid black;
 }
 
 /* Right Stuff */
-#right{
+#right {
     width: 20%;
     height: 100%;
     float: left;
@@ -88,27 +100,99 @@ header{
     height: 100%;
 }
 
+/* bottom stuff */
+#header_bottom {
+    width: 100%;
+    float: left;
+    outline: 1px solid orange;
+}
 
+#header_category_products {
+    width: 100%;
+    height: auto;
+    float: left;
+    background-color: #f1d5f9;
+    outline: 1px solid black;
+}
 
+#header_category_container {
+    width: 25%;
+    height: auto;
+    float: left;
+    outline: 1px solid black;
+}
 
+#header_category_products_container {
+    width: 75%;
+    height: 100%;
+    float: left;
+    outline: 1px solid black;
+}
+
+.header_category_link {
+    width: 100%;
+    height: 50px;
+    float: left;
+    outline: 1px solid black;
+}
+
+.header_category_link_name {
+    width: 70%;
+    height: 100%;
+    float: left;
+    padding: 5%;
+    box-sizing: border-box;
+    /*outline: 1px solid black;*/
+}
+
+.header_category_link_viewall {
+    width: 30%;
+    height: 100%;
+    float: left;
+    padding: 5%;
+    box-sizing: border-box;
+}
 
 .search_product_link, .search_category_link, .search_shop_link {
     padding: 5px;
 }
-#search_suggestions{
+
+#search_suggestions {
     width: 100%;
     float: left;
-    position: relative;
+    position: absolute;
     background-color: aliceblue;
     outline: 1px solid black;
     z-index: 99;
 }
-#search_bar{
+
+#search_bar {
     width: 100%;
+    height: 50px;
+    padding-left: 10px;
+    box-sizing: border-box;
 }
 
 .search_product_link:hover, .search_category_link:hover, .search_shop_link:hover {
     cursor: pointer;
     color: white;
     background-color: black;
+}
+
+/* Department + Category */
+.header_dept_link {
+    width: 25%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ff8c87;
+    outline: 1px solid black;
+}
+
+.header_dept_link:hover, .header_category_link_name:hover {
+    font-weight: bold;
+    cursor: pointer;
 }
