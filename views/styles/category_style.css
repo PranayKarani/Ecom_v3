@@ -1,23 +1,16 @@
 #left_section {
     width: 25%;
-    /*height: 200px;*/
     float: left;
     outline: 1px solid black;
 }
 
-#left_top {
-    width: 100%;
-    outline: 1px solid black;
-}
-
-#left_bottom {
+#left_top, #left_bottom {
     width: 100%;
     outline: 1px solid black;
 }
 
 #center_section {
     width: 75%;
-    /*height: 200px;*/
     float: left;
     outline: 1px dotted black;
 }
