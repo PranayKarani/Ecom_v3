@@ -180,8 +180,8 @@ class ProductInfoView {
 					$open = true;
 
 				} // else CLOSED
-
-//				echo date("h:i:a", time());
+				
+				echo date("h:i:a", time());
 				// TODO explore shop option (go to shop page)
 				if ($open) {
 					echo "<div class='shop_box_open' id='$id'>";

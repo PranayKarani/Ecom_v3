@@ -76,6 +76,7 @@ if (isset($_GET['id'])) {
 				</div>
 				<div id="top_left_bottom_right">
 					<input type='checkbox' id='drive'/> drive
+					<input type='checkbox' id='show_close'/> show closed shops
 					<?php $productInfoView->show_shop_list(); ?>
 				</div>
 			</div>

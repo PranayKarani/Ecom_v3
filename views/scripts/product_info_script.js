@@ -25,11 +25,6 @@ $(document).ready(function() {
         openShopPage(id, null);
     });
 
-    // $(".product_link").click(function() {
-    //     var id = $(this).attr('id');
-    //     openProductInfo(id);
-    // });
-
     $(".tabs").click(function() {
 
         var id = $(this).attr('id');
@@ -37,8 +32,6 @@ $(document).ready(function() {
         switch (id) {
             case 'specs_tab':
 
-                //$("#specs_tab").css("font-size", "x-large");
-                //$("#description_tab").css("font-size", "medium");
                 $("#specs_tab_content").fadeIn();
                 $("#desc_tab_content").hide();
 
@@ -99,6 +92,12 @@ window.initMap = function() {
     dDisplay.setMap(map);
 
     var infoWindow = new google.maps.InfoWindow();
+    var openImage = {
+        url: "res/images/extra/open.png"
+    };
+    var closeImage = {
+        url: "res/images/extra/close.png"
+    };
 
     $(".shop_box_open").each(function() {
         var this_box = $(this);
@@ -114,7 +113,7 @@ window.initMap = function() {
         var marker = new google.maps.Marker({
             map: map,
             position: myLatLng,
-            animation: google.maps.Animation.DROP
+            icon: openImage
         });
 
         marker.addListener('click', function() {
@@ -144,6 +143,52 @@ window.initMap = function() {
             alert("Coming soon :)");
         } else {
             $("#login_modal").slideDown();
+        }
+    });
+
+    var closeMarkers = [];
+    $(".shop_box_close").each(function() {
+        var this_box = $(this);
+        var loc_x = $(this).find('#loc_x').val();
+        var loc_y = $(this).find('#loc_y').val();
+        var name = $(this).find('.shop_name').text();
+
+        loc_x = roundFix(loc_x, precision);
+        loc_y = roundFix(loc_y, precision);
+
+        var myLatLng = {lat: loc_x, lng: loc_y};
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            icon: closeImage
+        });
+
+        marker.addListener('click', function() {
+            map.panTo(myLatLng);
+            shopSelect(this_box);
+            infoWindow.setContent(name);
+            infoWindow.open(map, marker);
+
+
+        });
+
+        closeMarkers.push(marker);
+
+    });
+
+    $("#show_close").click(function() {
+        var checked = $(this).is(":checked");
+
+        if (checked) {
+
+            for (var i = 0; i < closeMarkers.length; i++) {
+                closeMarkers[i].setMap(map);
+            }
+
+        } else {
+            for (var i = 0; i < closeMarkers.length; i++) {
+                closeMarkers[i].setMap(null);
+            }
         }
     });
 
