@@ -360,7 +360,7 @@ class ProductView {
 			for ($j = 0; $j < $count; $j++) {
 				$n = $ratings[$j]['rating'];
 				$c = $ratings[$j]['c'];
-				echo "<input type='checkbox' class='filter_checkbox' name='rating' datatype='$table' value='$n'/>$n ";
+				echo "<input type='checkbox' class='filter_checkbox' name='rating' data-table='$table' data-group='rating' value='$n'/>$n ";
 				echo "<span style='font-size: small; color: grey'>[$c]</span><br/>";
 			}
 			echo "</div><br>";

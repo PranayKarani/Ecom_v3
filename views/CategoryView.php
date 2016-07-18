@@ -43,15 +43,28 @@ class CategoryView {
 	}
 
 	public static function showFilters ($category) {
-
+		
+		// price range filter
+		$range = CategoryController::getPriceFilterRange($category);
+		$min_price = $range['min'];
+		$max_price = $range['max'];
+		echo "<div>";
+		echo "<strong style='font-size: larger'>price range</strong><br>";
+		echo "<input type='number' value='$min_price' id='min_price' min='$min_price' max='$max_price' data-price='$min_price'/> Rs to ";
+		echo "<input type='number' value='$max_price' id='max_price' min='$min_price' max='$max_price' data-price='$max_price'/> Rs<br/>";
+		echo "<input type='button' value='go' id='price_range_filter_go' onclick='loadProducts()'/>";
+		echo "<input type='button' value='reset' id='price_range_filter_reset' onclick='resetFilterPrice()'/>";
+		echo "</div><br/>";
+		
+		// category filters
 		$filters = CategoryController::getFilters($category);
 		$filters = $filters == "" ? null : explode(' ', $filters);
 		$filter_count = count($filters);
-
+		
 		if ($filter_count != null) {
 			$cat = str_replace(' ', '_', $category);
 			$table = "c__" . strtolower(trim($cat));
-
+			
 			for ($i = 0; $i < $filter_count; $i++) {
 				$name = $filters[$i];
 
@@ -63,10 +76,10 @@ class CategoryView {
 				for ($j = 0; $j < $count; $j++) {
 					$n = $result[$j][$name];
 					$c = $result[$j]['c'];
-					echo "<input type='checkbox' class='filter_checkbox' name='$name' datatype='$table' value='$n'/>$n ";
+					echo "<input type='checkbox' class='filter_checkbox' name='$name' data-table='$table' value='$n' data-group='$name'/>$n ";
 					echo "<span style='font-size: small; color: grey'>[$c]</span><br/>";
 				}
-				echo "</div><br>";
+				echo "</div><br/>";
 
 			}
 		} else {

@@ -44,5 +44,13 @@ class CategoryController {
         return DBHandler::getAll($sql);
 
     }
-
+	
+	public static function getPriceFilterRange ($category) {
+		
+		$sql = "CALL get_price_range_filter('$category')";
+		
+		return DBHandler::getRow($sql);
+		
+	}
+	
 }

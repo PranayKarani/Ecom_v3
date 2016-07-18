@@ -74,7 +74,7 @@ class ProductController {
 			$w = ",(SELECT count(product) FROM wishlist_pool WHERE customer = $uID AND product = product_pool.product_id) AS w";
 		}
 		
-		$sql = "SELECT *$w FROM product_pool JOIN $table ON product_pool.product_id = $table.product WHERE ";
+		$sql = "SELECT DISTINCT product_pool.* $w FROM product_pool JOIN $table ON product_pool.product_id = $table.product JOIN inventory_pool ON product_pool.product_id = inventory_pool.product WHERE ";
 		$sql .= $conditions;
 		if ($order == '') {
 			$sql .= "category = '$category' ORDER BY brand";

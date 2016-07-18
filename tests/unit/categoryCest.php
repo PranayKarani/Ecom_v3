@@ -45,4 +45,20 @@ class categoryCest {
 		
 	}
 	
+	public function getPriceRangeFilterTest (UnitTester $I) {
+		
+		$category = "laptop";
+		
+		$exp_min = 20000;
+		$data = CategoryController::getPriceFilterRange($category);
+		codecept_debug($data);
+		$min = $data['min'];
+		$max = $data['max'];
+		
+		codecept_debug("min: $min, max: $max");
+		
+		$I->assertEquals($exp_min, $min);
+		
+	}
+	
 }

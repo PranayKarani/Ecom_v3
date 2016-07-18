@@ -32,7 +32,7 @@ class BrandView {
 		    for ($j = 0; $j < $count; $j++) {
 			    $n = $brands[$j]['brand'];
 			    $c = $brands[$j]['c'];
-			    echo "<input type='checkbox' class='filter_checkbox' name='brand' datatype='$table' value='$n'/>$n ";
+			    echo "<input type='checkbox' class='filter_checkbox' name='brand' data-table='$table' data-group='brands' value='$n'/>$n ";
 			    echo "<span style='font-size: small; color: grey'>[$c]</span><br/>";
 		    }
 		    echo "</div><br>";

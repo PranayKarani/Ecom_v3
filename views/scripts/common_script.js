@@ -100,6 +100,17 @@ function openCategoryPage(x) {
     $(location).attr('href', url);
 }
 
+function resetFilterPrice() {
+    var min = $("#min_price");
+    var max = $("#max_price");
+    var min_price = min.attr("data-price");
+    var max_price = max.attr("data-price");
+
+    min.val(min_price);
+    max.val(max_price);
+
+}
+
 /** Other */
 
 function postStatic(dir, Class, method, params, func) {
