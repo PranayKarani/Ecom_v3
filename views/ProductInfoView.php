@@ -28,7 +28,7 @@ class ProductInfoView {
 		if (isset($this->details['w'])) {
 			
 			if ($this->details['w'] > 0) {
-				echo "<span class='add_to_wishlist'>";
+				echo "<span class='add_to_wishlist' style='float: left'>";
 				echo "<input 
 						class='wishlist_thumbnail' 
 						type='image' 
@@ -38,7 +38,7 @@ class ProductInfoView {
 						onclick='toggleThumbnail(this)' 
 						src='res/images/extra/cross.png' 
 						style='width: 100%;outline: none' 
-						title='remove from wishlist'/>";
+						title='remove from swishlist'/>";
 				echo "</span>";
 			} else {
 				echo "<span class='add_to_wishlist'>";
@@ -56,8 +56,18 @@ class ProductInfoView {
 			}
 			
 		} else {// means, not logged in
-			echo "<span class='add_to_wishlist' title='add to wishlist'>";
-			echo "NA";
+			echo "<span class='add_to_wishlist' title='login to add to wishlist' style='left: 1px'>";
+			echo "<input 
+						class='wishlist_thumbnail' 
+						type='image' 
+						name='$this->id' 
+						data-id='$this->id' 
+						data-in='0' 
+						onclick='showLoginModal()' 
+						src='res/images/extra/heart.png' 
+						style='width: 100%;outline: none' 
+						title='login to add to wishlist'/>";
+			echo "</span>";
 			echo "</span>";
 			
 		}

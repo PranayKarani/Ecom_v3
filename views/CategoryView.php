@@ -15,7 +15,7 @@ class CategoryView {
 			echo "$cat_name";
 			echo "</div>";
 			echo "<div class='category_link_viewall'>";
-			echo " <a href='category.php?category=$cat_name'>view all</a>";
+			echo " <a href='category.php?category=$cat_name' title='view all products in $cat_name'>view all</a>";
 			echo "</div>";
 			echo "</div>";
 
@@ -103,7 +103,7 @@ class CategoryView {
 			echo "$cat_name";
 			echo "</div>";
 			echo "<div class='header_category_link_viewall'>";
-			echo " <a href='category.php?category=$cat_name'>view all</a>";
+			echo " <a href='category.php?category=$cat_name' title='view all products in $cat_name'>view all</a>";
 			echo "</div>";
 			echo "</div>";
 			
