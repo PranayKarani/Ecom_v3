@@ -12,7 +12,6 @@
 #center_section {
     width: 75%;
     float: left;
-    outline: 1px dotted black;
 }
 
 #center_top {
@@ -27,6 +26,11 @@
     float: left;
     margin-top: 20px;
     outline: 1px solid black;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 1px;
+    box-sizing: border-box;
 }
 
 #bar {
@@ -61,4 +65,9 @@
     float: left;
     margin-top: 20px;
     outline: 1px solid black;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 1px;
+    box-sizing: border-box;
 }

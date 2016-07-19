@@ -80,7 +80,8 @@
 #top_left_bottom_right {
     width: 35%;
     height: 100%;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
     float: left;
     outline: 1px solid black;
 }

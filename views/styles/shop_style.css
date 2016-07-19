@@ -29,12 +29,14 @@
     width: 100%;
     float: left;
     outline: 1px solid black;
+    margin-top: 20px;
 }
 
 #bottom_section {
     width: 100%;
     float: left;
     outline: 1px solid black;
+    margin-top: 20px;
 }
 
 .shop_list:hover {
