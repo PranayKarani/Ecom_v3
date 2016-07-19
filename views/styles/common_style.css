@@ -79,7 +79,7 @@
     height: 25px;
     position: absolute;
     padding: 2px;
-    right: 1px;
+    left: 1px;
     top: 1px;
     z-index: 99;
     outline: 1px solid black;
