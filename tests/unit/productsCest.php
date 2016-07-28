@@ -40,11 +40,12 @@ class productsCest {
 		$json = '[{"table":"c__laptop"},{"string":"os=\'OS X\' AND\n"}]';
 		codecept_debug($json);
 //		$exp_sql = "SELECT *,(SELECT count(product) FROM wishlist_pool WHERE customer = -451 AND product = product_pool.product_id) AS w FROM product_pool JOIN c__laptop ON product_pool.product_id = c__laptop.product WHERE os='OS X' AND category = 'laptop' ORDER BY brand";
-		$exp_os = 'OS X';
+		$exp_category = 'laptop';
+		codecept_debug(ProductController::getFilteredProducts($json));
 		
-		$os = ProductController::getFilteredProducts($json)[0]['os'];
+		$category = ProductController::getFilteredProducts($json)[0]['category'];
 		
-		$I->assertEquals($os, $exp_os);
+		$I->assertEquals($category, $exp_category);
 		
 	}
 	

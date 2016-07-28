@@ -2,3 +2,4 @@
 res/
 tests/_output/
 codecept.phar
+runUnitTest.bat

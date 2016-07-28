@@ -3,7 +3,8 @@
  */
 $(document).ready(function() {
 
-    loadCart();
+    loadHomeDelProductsInCart();
+    loadNonHomeDelProductsInCart();
 
 });
 
@@ -18,17 +19,18 @@ function removeFromCart(pID, sID, uID) {
     console.info("remove from cart: " + json);
 
     postStatic("controllers", "userController", "removeFromCart", json, function(data) {
-        loadCart();
+        loadHomeDelProductsInCart();
+        loadNonHomeDelProductsInCart();
         countCart(uID);
     });
 
 }
 
-function loadCart() {
+function loadHomeDelProductsInCart() {
 
-    postStatic("views", "CartView", "showCartProducts", null, function(data) {
+    postStatic("views", "CartView", "showHomeDeliveryProducts", null, function(data) {
 
-        $("#left_section").html(data);
+        $("#top_section").html(data);
 
         $(".qty").on("input", function() {
 
@@ -50,32 +52,53 @@ function loadCart() {
 
             console.info("remove from cart: " + json);
 
-            postStatic("controllers", "userController", "updateQty", json, function(data) {
-                loadCartDetails();
-            });
+        });
+
+
+    });
+
+}
+
+function loadNonHomeDelProductsInCart() {
+
+    postStatic("views", "CartView", "showWalkinProducts", null, function(data) {
+
+        $("#bottom_section").html(data);
+
+        $(".qty").on("input", function() {
+
+            var x = $(this);
+            var qty = x.val();
+            var pID = x.attr("data-pID");
+            var sID = x.attr("data-sID");
+            var uID = x.attr("data-uID");
+            var price = x.attr("data-price");
+
+
+            var json = getJsonString(
+                {uID: uID},
+                {pID: pID},
+                {sID: sID},
+                {qty: qty},
+                {price: price}
+            );
+
+            console.info("remove from cart: " + json);
 
         });
 
-        // get details
-        loadCartDetails();
-
     });
 
 }
 
-function loadCartDetails() {
-    // get details
-    postStatic("views", "CartView", "showCartDetails", null, function(data) {
-        $("#right_section").html(data);
-    });
+
+function homeDelivery_checkOut() {
+
+    $(location).attr('href', 'checkOut.php?type=1');
+
 }
+function walkin_checkOut() {
 
-function checkOut() {
-
-    postStatic("controllers", "UserController", "checkOut", null, function(data) {
-        console.info(data);
-        loadCart();
-        countCart(user_id);
-    })
+    $(location).attr('href', 'checkOut.php?type=0');
 
 }

@@ -240,8 +240,8 @@ class UserController {
 	public static function getCartProducts ($uID) {
 
 		$sql = "CALL get_cart_products($uID)";
-
-		return DBhandler::getAll($sql);
+		
+		return DBHandler::getAll($sql);
 
 	}
 
@@ -252,7 +252,15 @@ class UserController {
 		return DBHandler::getRow($sql);
 
 	}
-
+	
+	public static function getCheckoutDetails ($uID, $type) {
+		
+		$sql = "CALL get_checkout_details($uID, $type)";
+		
+		return DBHandler::getRow($sql);
+		
+	}
+	
 	public static function removeFromCart ($json) {
 
 		$data = json_decode($json);
@@ -335,8 +343,8 @@ class UserController {
 		$sql = "CALL get_cart_products($uID)";
 
 		$result = DBHandler::getAll($sql);
-
-		$insert_sql = "INSERT INTO order_pool(customer, product, shop, qty, price, method, date, time) VALUES ";
+		
+		$insert_sql = "INSERT INTO order_pool(customer, product, shop, qty, price, method, date, time) VALUES";
 
 		for ($i = 0; $i < count($result); $i++) {
 
@@ -361,5 +369,39 @@ class UserController {
 		DBHandler::execute($delete_sql);
 
 	}
-
+	
+	public static function getHomeDelProducts ($uID) {
+		
+		$sql = "CALL get_cart_home_del_products($uID)";
+		
+		return DBHandler::getAll($sql);
+		
+	}
+	
+	public static function getWalkinProducts ($uID) {
+		
+		$sql = "CALL get_cart_non_home_del_products($uID)";
+		
+		return DBHandler::getAll($sql);
+		
+	}
+	
+	/** Data Recording or Harvesting */
+	
+	public static function recordRouteSelection ($json) {
+		
+		$data = json_decode($json, true);
+		$data = $data[0];
+		
+		$uid = $data['uid'];
+		$pid = $data['pid'];
+		$sid = $data['sid'];
+		$price = $data['price'];
+		
+		$sql = "INSERT INTO d_customer_route_selects VALUES ($uid, $pid, $sid, $price, NOW())";
+		
+		DBHandler::execute($sql);
+		
+	}
+	
 }

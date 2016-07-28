@@ -14,12 +14,16 @@ require_once('views/templates/header.php');
 require_once('views/templates/footer.php');
 require_once('views/templates/LoginModal.php');
 require_once 'views/DepartmentView.php';
-require_once('views/ProductView.php');
-require_once('views/CartView.php');
+//require_once('views/ProductView.php');
 
 if (isset($_COOKIE[COOKIE_USER_ID])) {
 	$uID = $_COOKIE[COOKIE_USER_ID];
 	echo "<input type='hidden' value='$uID' id='uID'/>";
+}
+
+if (isset($_GET['type'])) {
+	$type = $_GET['type'];// 1 = home delivery, 0 = walkin
+	echo "<input type='hidden' value='$type' id='type'/>";
 }
 
 ?>
@@ -27,28 +31,33 @@ if (isset($_COOKIE[COOKIE_USER_ID])) {
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Cart</title>
+	<title>Checkout</title>
 	<link rel="stylesheet" href="views/styles/header_style.css">
 	<link rel="stylesheet" href="views/styles/footer_style.css">
 	<link rel="stylesheet" href="views/styles/common_style.css">
-	<link rel="stylesheet" href="views/styles/cart_style.css">
 	
 	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
 	<script src="../jquery-2.2.3.min.js"></script>
 	<script src="views/scripts/header_script.js"></script>
 	<script src="views/scripts/common_script.js"></script>
-	<script src="views/scripts/cart_script.js"></script>
 
 </head>
 <body>
 <?php Header::show(); ?>
 
 <div id="content">
-	<h3>Cart</h3>
-	<div id="top_section">
-	</div>
-	<div id="bottom_section">
-	</div>
+	
+	<h3>Order Confirmations</h3>
+	
+	<ul>
+		<li>un-editable ordered products with codes</li>
+		<li>order details</li>
+		<li>send shopping route to my phone option</li>
+		<li>send shopping list to my phone option</li>
+		<li>address</li>
+		<li>map</li>
+	</ul>
+
 </div>
 
 <?php Footer::show(); ?>
@@ -56,4 +65,6 @@ if (isset($_COOKIE[COOKIE_USER_ID])) {
 
 </body>
 </html>
+
+
 

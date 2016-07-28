@@ -12,16 +12,28 @@ tr {
     border: 1px solid black;
 }
 
-#top_section {
+#left_section {
+    width: 80%;
+    float: left;
+    outline: 1px solid black
+}
+
+#left_top {
     width: 100%;
     float: left;
     outline: 1px solid black
 }
 
-#bottom_section {
+#left_bottom {
     width: 100%;
     float: left;
     margin-top: 20px;
+    outline: 1px solid black
+}
+
+#right_section {
+    width: 20%;
+    float: left;
     outline: 1px solid black
 }
 

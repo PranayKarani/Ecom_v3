@@ -1,17 +1,17 @@
 <?php
 
-class CartView {
+class CheckoutView {
 	
-	public static function showCartDetails () {
+	public static function showCartDetails ($type) {
 		
 		$uID = $_COOKIE[COOKIE_USER_ID];
-		$details = UserController::getCartDetails($uID);
+		
+		$details = UserController::getCheckoutDetails($uID, $type);
 		
 		echo "<pre>";
 		print_r($details);
 		echo "</pre>";
-		echo "<button onclick=''>goto confirmation page</button>";
-		
+		echo "<button onclick='gotoConfirmation()'>goto confirmation page</button>";
 	}
 	
 	public static function showHomeDeliveryProducts () {
@@ -31,7 +31,6 @@ class CartView {
 				echo "<table style='width: 100%; table-layout: fixed'>";
 				
 				echo "<tr>";
-				echo "<th width='2%' align='left'></th>";
 				echo "<th width='30%' align='left'>Product</th>";
 				echo "<th width='15%' align='left'>Shop</th>";
 				echo "<th width='5%' align='left' title='quantity'>qty</th>";
@@ -54,12 +53,8 @@ class CartView {
 					$qty = $product['qty'];
 					$price = $product['price'];
 					$price_now = $product['price_now'];
-					$w = $product['w'];
 					
 					echo "<tr>";
-					echo "<td style='position: relative'>";
-					wishlistThumbnail($w, $pID);
-					echo "</td>";
 					echo "<td title='$p_name' class='product_name' onclick='openProductInfo($pID)'>$p_name</td>";
 					echo "<td title='$s_name' class='shop_name' onclick=\"openShopPage($sID,'$category')\">$s_name</td>";
 					echo "<td><input type='number' class='qty' value='$qty' style='width: 100%' min='1' data-pID='$pID' data-uID='$uID' data-sID='$sID' data-price='$price_now'/></td>";
@@ -69,15 +64,13 @@ class CartView {
 					echo "</tr>";
 				}
 				echo "</table>";
-				echo "<input type='button' id='checkout_with_home_delivery' value='checkout with home delivery option' onclick='homeDelivery_checkOut()'/>";
-			} else {
-				echo "Cart Empty";
+				
 			}
-
+			
 		} else {
 			echo "login first";
 		}
-
+		
 	}
 	
 	public static function showWalkinProducts () {
@@ -97,7 +90,6 @@ class CartView {
 				echo "<table style='width: 100%; table-layout: fixed'>";
 				
 				echo "<tr>";
-				echo "<th width='2%' align='left'></th>";
 				echo "<th width='30%' align='left'>Product</th>";
 				echo "<th width='15%' align='left'>Shop</th>";
 				echo "<th width='5%' align='left' title='quantity'>qty</th>";
@@ -120,12 +112,11 @@ class CartView {
 					$qty = $product['qty'];
 					$price = $product['price'];
 					$price_now = $product['price_now'];
-					$w = $product['w'];
+					$homeDelivery = $product['home_delivery'];
+					
+					$hd = $homeDelivery == 1 ? "yes" : "no";
 					
 					echo "<tr>";
-					echo "<td style='position: relative'>";
-					wishlistThumbnail($w, $pID);
-					echo "</td>";
 					echo "<td title='$p_name' class='product_name' onclick='openProductInfo($pID)'>$p_name</td>";
 					echo "<td title='$s_name' class='shop_name' onclick=\"openShopPage($sID,'$category')\">$s_name</td>";
 					echo "<td><input type='number' class='qty' value='$qty' style='width: 100%' min='1' data-pID='$pID' data-uID='$uID' data-sID='$sID' data-price='$price_now'/></td>";
@@ -136,7 +127,7 @@ class CartView {
 					
 				}
 				echo "</table>";
-				echo "<input type='button' id='checkout_with_non_home_delivery' value='checkout with walk-in option' onclick='walkin_checkOut()'/>";
+				
 			}
 			
 		} else {

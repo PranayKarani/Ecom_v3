@@ -128,13 +128,35 @@ window.initMap = function() {
     });
 
     $(".walkIn").click(function() {
-        var loc_x = $(this).parent().parent().find('#loc_x').val();
-        var loc_y = $(this).parent().parent().find('#loc_y').val();
+        var x = $(this);
+
+        var loc_x = x.parent().parent().find('#loc_x').val();
+        var loc_y = x.parent().parent().find('#loc_y').val();
         loc_x = roundFix(loc_x, precision);
         loc_y = roundFix(loc_y, precision);
         var dest = {lat: loc_x, lng: loc_y};
         var drive = $("#drive").is(":checked");
         calculateDirection(dService, dDisplay, dest, drive, infoWindow);
+
+        var uid = x.attr("data-uid");
+        var sid = x.attr("data-sid");
+        var pid = x.attr("data-pid");
+        var price = x.attr("data-price");
+
+        var json = getJsonString(
+            {
+                uid: uid,
+                sid: sid,
+                pid: pid,
+                price: price
+            }
+        );
+        postStatic("controllers", "UserController", "recordRouteSelection", json, function(data) {
+
+            console.info(data);
+
+        });
+
     });
 
     $(".order").click(function() {

@@ -25,52 +25,7 @@ class ProductInfoView {
 	
 	public function show_wishlist_thumbnail () {
 		
-		if (isset($this->details['w'])) {
-			
-			if ($this->details['w'] > 0) {
-				echo "<span class='add_to_wishlist' style='float: left'>";
-				echo "<input 
-						class='wishlist_thumbnail' 
-						type='image' 
-						name='$this->id' 
-						data-id='$this->id' 
-						data-in='1' 
-						onclick='toggleThumbnail(this)' 
-						src='res/images/extra/cross.png' 
-						style='width: 100%;outline: none' 
-						title='remove from swishlist'/>";
-				echo "</span>";
-			} else {
-				echo "<span class='add_to_wishlist'>";
-				echo "<input 
-						class='wishlist_thumbnail' 
-						type='image' 
-						name='$this->id' 
-						data-id='$this->id' 
-						data-in='0' 
-						onclick='toggleThumbnail(this)' 
-						src='res/images/extra/heart.png' 
-						style='width: 100%;outline: none' 
-						title='add to wishlist'/>";
-				echo "</span>";
-			}
-			
-		} else {// means, not logged in
-			echo "<span class='add_to_wishlist' title='login to add to wishlist' style='left: 1px'>";
-			echo "<input 
-						class='wishlist_thumbnail' 
-						type='image' 
-						name='$this->id' 
-						data-id='$this->id' 
-						data-in='0' 
-						onclick='showLoginModal()' 
-						src='res/images/extra/heart.png' 
-						style='width: 100%;outline: none' 
-						title='login to add to wishlist'/>";
-			echo "</span>";
-			echo "</span>";
-			
-		}
+		wishlistThumbnail($this->details['w'], $this->id);
 	}
 	
 	public function show_name_and_brand () {
@@ -155,7 +110,10 @@ class ProductInfoView {
 	public function show_shop_list () {
 		$shops = ShopController::getProductShops($this->id);
 		$s_count = count($shops);
-
+		
+		$uID = cookieSet(COOKIE_USER_ID);
+		$uID = $uID < 0 ? 0 : $uID;
+		
 		// TODO remove this for loop later
 		for ($x = 0; $x < 1; $x++) {
 			for ($i = 0; $i < $s_count; $i++) {
@@ -192,7 +150,7 @@ class ProductInfoView {
 				} // else CLOSED
 				
 				echo date("h:i:a", time());
-				// TODO explore shop option (go to shop page)
+				
 				if ($open) {
 					echo "<div class='shop_box_open' id='$id'>";
 
@@ -220,7 +178,7 @@ class ProductInfoView {
 					} else {
 						echo "<input class='order' type='button' value='no home delivery :(' disabled/>";
 					}
-					echo "<input class='walkIn' type='button' value='get route'/>";
+					echo "<input class='walkIn' type='button' value='get route' data-uid='$uID' data-sid='$id' data-pid='$this->id' data-price='$price'/>";
 					echo "<input class='cart' type='button' value='add to cart' onclick='addToCart($id, $this->id, $price)'/>";
 					echo "</div>";
 					echo "</div>";
@@ -253,7 +211,7 @@ class ProductInfoView {
 					} else {
 						echo "<input class='order' type='button' value='home delivery unavailable' disabled/>";
 					}
-					echo "<input class='walkIn' type='button' value='get route'/>";
+					echo "<input class='walkIn' type='button' value='get route' data-uid='$uID' data-sid='$id' data-pid='$this->id' data-price='$price'/>";
 					echo "<input class='cart' type='button' value='add to cart' onclick='addToCart($id, $this->id, $price)'/>";
 					echo "</div>";
 					echo "</div>";

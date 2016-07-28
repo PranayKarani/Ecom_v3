@@ -84,6 +84,8 @@
     overflow-y: scroll;
     float: left;
     outline: 1px solid black;
+    padding-right: 1px;
+    box-sizing: border-box;
 }
 
 #top_right {
