@@ -70,8 +70,6 @@ class CartView {
 				}
 				echo "</table>";
 				echo "<input type='button' id='checkout_with_home_delivery' value='checkout with home delivery option' onclick='homeDelivery_checkOut()'/>";
-			} else {
-				echo "Cart Empty";
 			}
 
 		} else {

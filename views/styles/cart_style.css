@@ -29,3 +29,8 @@ tr {
     font-weight: bold;
     cursor: pointer;
 }
+
+#checkout_with_home_delivery, #checkout_with_non_home_delivery {
+    width: 25%;
+    height: 40px;
+}

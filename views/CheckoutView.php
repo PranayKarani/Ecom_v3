@@ -54,9 +54,21 @@ class CheckoutView {
 					$price = $product['price'];
 					$price_now = $product['price_now'];
 					
+					$loc_x = $product['loc_x'];
+					$loc_y = $product['loc_y'];
+					
+					$open = shopOpen($product);
+					$title = "closed";
+					if ($open == 1) {
+						$title = "open";
+						$s_name = "<span>$s_name</span>";
+					} else {
+						$s_name = "<span style='color: lightgray'>$s_name</span>";
+					}
+					
 					echo "<tr>";
 					echo "<td title='$p_name' class='product_name' onclick='openProductInfo($pID)'>$p_name</td>";
-					echo "<td title='$s_name' class='shop_name' onclick=\"openShopPage($sID,'$category')\">$s_name</td>";
+					echo "<td title='$title' class='shop_name' onclick=\"openShopPage($sID,'$category')\" data-loc_x='$loc_x' data-loc_y='$loc_y' data-id='$sID'>$s_name</td>";
 					echo "<td><input type='number' class='qty' value='$qty' style='width: 100%' min='1' data-pID='$pID' data-uID='$uID' data-sID='$sID' data-price='$price_now'/></td>";
 					echo "<td title='$price'>$price</td>";
 					echo "<td title='$price_now'><strong>$price_now</strong></td>";
@@ -112,13 +124,23 @@ class CheckoutView {
 					$qty = $product['qty'];
 					$price = $product['price'];
 					$price_now = $product['price_now'];
-					$homeDelivery = $product['home_delivery'];
 					
-					$hd = $homeDelivery == 1 ? "yes" : "no";
+					$loc_x = $product['loc_x'];
+					$loc_y = $product['loc_y'];
+					
+					$open = shopOpen($product);
+					$title = "closed";
+					if ($open == 1) {
+						$title = "open";
+						$s_name = "<span>$s_name</span>";
+					} else {
+						$s_name = "<span style='color: lightgray'>$s_name</span>";
+					}
 					
 					echo "<tr>";
+					echo "<input type='hidden' class='locations' data-loc_x='$loc_x' data-loc_y='$loc_y'/>";
 					echo "<td title='$p_name' class='product_name' onclick='openProductInfo($pID)'>$p_name</td>";
-					echo "<td title='$s_name' class='shop_name' onclick=\"openShopPage($sID,'$category')\">$s_name</td>";
+					echo "<td title='$title' class='shop_name' onclick=\"openShopPage($sID,'$category')\" data-loc_x='$loc_x' data-loc_y='$loc_y' data-id='$sID'>$s_name</td>";
 					echo "<td><input type='number' class='qty' value='$qty' style='width: 100%' min='1' data-pID='$pID' data-uID='$uID' data-sID='$sID' data-price='$price_now'/></td>";
 					echo "<td title='$price'>$price</td>";
 					echo "<td title='$price_now'><strong>$price_now</strong></td>";

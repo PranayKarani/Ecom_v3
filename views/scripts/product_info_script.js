@@ -70,10 +70,6 @@ window.initMap = function() {
     lng = roundFix(lng, precision);
 
     var dService = new google.maps.DirectionsService;// to calculate directions
-    var dDisplay = new google.maps.DirectionsRenderer({
-        draggable: true,
-        map: map
-    });
 
     var mapDiv = document.getElementById('top_left_bottom_left');
     map = new google.maps.Map(mapDiv, {
@@ -88,6 +84,10 @@ window.initMap = function() {
         mapTypeControlOptions: {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
         }
+    });
+    var dDisplay = new google.maps.DirectionsRenderer({
+        draggable: true,
+        map: map
     });
     dDisplay.setMap(map);
 
@@ -215,11 +215,6 @@ window.initMap = function() {
     });
 
 };
-
-function roundFix(number, precision) {
-    var multi = Math.pow(10, precision);
-    return Math.round((number * multi).toFixed(precision + 1)) / multi;
-}
 
 function shopSelect(box) {
     var name = box.find('.shop_name').text();

@@ -62,3 +62,19 @@ function wishlistThumbnail ($w, $id) {
 	}
 	
 }
+
+function shopOpen ($data) {
+	$timeNow = strtotime(date("H:i:s", time()));
+	$open_time = $data['open_time'];
+	$close_time = $data['close_time'];
+	$str_open_time = strtotime($open_time);
+	$str_close_time = strtotime($close_time);
+	
+	if ($timeNow > $str_open_time && $timeNow < $str_close_time) {
+		$open = 1;
+	} else {
+		$open = 0;
+	}
+	
+	return $open;
+}

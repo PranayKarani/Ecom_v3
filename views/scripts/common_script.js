@@ -143,3 +143,21 @@ function getJsonString(...obj) {
 function goBack() {
     window.History.back();
 }
+
+function roundFix(number, precision) {
+    var multi = Math.pow(10, precision);
+    return Math.round((number * multi).toFixed(precision + 1)) / multi;
+}
+
+function removeFromArray(element, array) {
+
+    var idx = array.indexOf(element);
+    if (idx > -1) {
+
+        array.slice(idx, 1);
+
+    }
+
+    return array;
+
+}

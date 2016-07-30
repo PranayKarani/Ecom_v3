@@ -37,6 +37,8 @@ if (isset($_GET['type'])) {
 	<link rel="stylesheet" href="views/styles/common_style.css">
 	<link rel="stylesheet" href="views/styles/checkout_style.css">
 	
+	<script async defer
+	        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtIbBNlZxS0chITJV8eQdmEiTxykZct9E&callback=initMap&signed_in=true"></script>
 	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
 	<script src="../jquery-2.2.3.min.js"></script>
 	<script src="views/scripts/header_script.js"></script>
