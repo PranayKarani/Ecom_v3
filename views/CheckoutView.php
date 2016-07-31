@@ -11,7 +11,7 @@ class CheckoutView {
 		echo "<pre>";
 		print_r($details);
 		echo "</pre>";
-		echo "<button onclick='gotoConfirmation()'>goto confirmation page</button>";
+		echo "<button onclick='gotoConfirmation()' style='width: 100%; height: 40px'>goto confirmation page</button>";
 	}
 	
 	public static function showHomeDeliveryProducts () {
