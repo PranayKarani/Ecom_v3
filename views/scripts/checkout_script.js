@@ -196,9 +196,7 @@ function loadCheckoutDetails() {
 }
 
 function gotoConfirmation() {
-
-    location.replace("confirmation.php?type=" + type);
-
+    $(location).attr("href", "confirmation.php?type=" + type)
 }
 
 function removeFromCart(pID, sID, uID) {

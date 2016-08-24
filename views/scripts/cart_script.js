@@ -93,11 +93,8 @@ function loadNonHomeDelProductsInCart() {
 
 
 function homeDelivery_checkOut() {
-
-    location.replace("checkOut.php?type=1");
-
+    $(location).attr("href", "checkOut.php?type=1")
 }
 function walkin_checkOut() {
-
-    location.replace("checkOut.php?type=0");
+    $(location).attr("href", "checkOut.php?type=0")
 }

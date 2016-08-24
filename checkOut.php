@@ -51,7 +51,7 @@ if (isset($_GET['type'])) {
 
 <div id="content">
 	
-	<h3>Checkout</h3>
+	<h3>Cart &#8594; <span style="color: red">Checkout</span> &#8594; Confirmation</h3>
 	
 	<div id="left_section">
 		<div id="left_top"></div>

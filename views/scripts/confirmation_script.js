@@ -215,7 +215,7 @@ function placeOrder(uID) {
         postStatic("controllers", "UserController", "checkOut", full_address, function(data) {
             console.info(data);
             countCart(uID);
-            location.replace("cart.php");
+            history.go(-2);
         })
     }
 
