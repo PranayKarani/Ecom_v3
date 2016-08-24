@@ -20,6 +20,6 @@ require_once ("../$dir/".$class.".php");
 if(method_exists($class,$method)){
     $class::$method($params);
 } else {
-    trigger_error("No such method like $method in $class");
+	die("No such method like $method in $class");
 }
 

@@ -73,6 +73,8 @@ function openProductInfo(id) {
     // TODO make it post instead of get
     window.location.href = "productInfo.php?id=" + id;
 
+    postStatic("controllers", "UserController", "recordProductSelection", id, null);
+
 }
 
 function openShopPage(sID, category) {

@@ -30,6 +30,8 @@ class ProductView {
 		$quick_info = $product['quick_info'];
 		$rating = $product['rating'];
 		$category = $product['category'];
+		
+		$inWish = null;
 		if (isset($product['w'])) {
 			$inWish = $product['w'];
 		}

@@ -1,6 +1,3 @@
-/**
- * Created by PranayKarani on 26/07/2016.
- */
 var type;
 var map;
 var markers = [];
@@ -10,6 +7,26 @@ $(document).ready(function() {
 
     type = $("#type").val();
     loadProducts(type);
+
+    postStatic("views", "ConfirmationView", "showCartDetails", type, function(data) {
+
+        $("#right_top").html(data);
+
+    });
+
+    postStatic("views", "ConfirmationView", "showButton", type, function(data) {
+
+        $("#right_bottom").html(data);
+
+    });
+
+    if (type == 1) {
+        postStatic("views", "ConfirmationView", "showAddress", null, function(data) {
+
+            $("#right_middle").html(data);
+
+        });
+    }
 
 });
 
@@ -112,39 +129,9 @@ function loadProducts(type, sID = 0) {// NOTE: sID is currently used for removin
         method = "showWalkinProducts";
     }
 
-    postStatic("views", "CheckoutView", method, null, function(data) {
+    postStatic("views", "ConfirmationView", method, null, function(data) {
 
         $("#left_top").html(data);
-
-        // Update checkout details when qty is changed
-        $(".qty").on("input", function() {
-
-            var x = $(this);
-            var qty = x.val();
-            var pID = x.attr("data-pID");
-            var sID = x.attr("data-sID");
-            var uID = x.attr("data-uID");
-            var price = x.attr("data-price");
-
-
-            var json = getJsonString(
-                {uID: uID},
-                {pID: pID},
-                {sID: sID},
-                {qty: qty},
-                {price: price}
-            );
-
-            console.info("remove from cart: " + json);
-
-            postStatic("controllers", "userController", "updateQty", json, function(data) {
-                loadCheckoutDetails();
-            });
-
-        });
-
-        // get details
-        loadCheckoutDetails();
 
         // shop name hover
         $(".shop_name").mouseover(function() {
@@ -189,33 +176,47 @@ function loadProducts(type, sID = 0) {// NOTE: sID is currently used for removin
 
 }
 
-function loadCheckoutDetails() {
-    postStatic("views", "CheckoutView", "showCartDetails", type, function(data) {
-        $("#right_section").html(data);
+function placeOrder(uID) {
+
+    var addressComplete = true;
+    var full_address = type + "^";
+    $(".addr").each(function() {
+
+        var x = $(this);
+        var id = x.attr("id");
+        var value = x.val();
+
+        if (value == "") {
+            addressComplete = false;
+        } else {
+
+            switch (id) {
+                case "room":
+                    full_address += x.val() + " ";
+                    break;
+                case "landmark":
+                    full_address += "near " + x.val() + ", ";
+                    break;
+                case "pincode":
+                    full_address += x.val();
+                    break;
+                default:
+                    full_address += x.val() + ", ";
+                    break;
+            }
+
+        }
+
     });
-}
 
-function gotoConfirmation() {
-
-    location.replace("confirmation.php?type=" + type);
-
-}
-
-function removeFromCart(pID, sID, uID) {
-
-    var json = getJsonString(
-        {uID: uID},
-        {pID: pID},
-        {sID: sID}
-    );
-
-    console.info("remove from cart: " + json);
-
-    postStatic("controllers", "UserController", "removeFromCart", json, function(data) {
-        loadProducts(type, sID);
-        loadCheckoutDetails();
-        countCart(uID);
-
-    });
+    if (!addressComplete) {
+        alert("address incomplete")
+    } else {
+        postStatic("controllers", "UserController", "checkOut", full_address, function(data) {
+            console.info(data);
+            countCart(uID);
+            location.replace("cart.php");
+        })
+    }
 
 }

@@ -25,7 +25,12 @@ class ProductInfoView {
 	
 	public function show_wishlist_thumbnail () {
 		
-		wishlistThumbnail($this->details['w'], $this->id);
+		$inwish = null;
+		if (isset($this->details['w'])) {
+			$inwish = $this->details['w'];
+		}
+		
+		wishlistThumbnail($inwish, $this->id);
 	}
 	
 	public function show_name_and_brand () {

@@ -14,7 +14,7 @@ require_once('views/templates/header.php');
 require_once('views/templates/footer.php');
 require_once('views/templates/LoginModal.php');
 require_once 'views/DepartmentView.php';
-//require_once('views/ProductView.php');
+//require_once('views/UserProfileView.php');
 
 if (isset($_COOKIE[COOKIE_USER_ID])) {
 	$uID = $_COOKIE[COOKIE_USER_ID];
@@ -31,32 +31,44 @@ if (isset($_GET['type'])) {
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Checkout</title>
+	<title>Confirmation</title>
 	<link rel="stylesheet" href="views/styles/header_style.css">
 	<link rel="stylesheet" href="views/styles/footer_style.css">
 	<link rel="stylesheet" href="views/styles/common_style.css">
+	<link rel="stylesheet" href="views/styles/confirmation_style.css">
 	
+	<script async defer
+	        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtIbBNlZxS0chITJV8eQdmEiTxykZct9E&callback=initMap&signed_in=true"></script>
 	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
 	<script src="../jquery-2.2.3.min.js"></script>
 	<script src="views/scripts/header_script.js"></script>
 	<script src="views/scripts/common_script.js"></script>
-
+	<script src="views/scripts/confirmation_script.js"></script>
 </head>
 <body>
 <?php Header::show(); ?>
 
 <div id="content">
 	
-	<h3>Order Confirmations</h3>
-	
-	<ul>
-		<li>un-editable ordered products with codes</li>
-		<li>order details</li>
-		<li>send shopping route to my phone option</li>
-		<li>send shopping list to my phone option</li>
-		<li>address</li>
-		<li>map</li>
-	</ul>
+	<div id="left_section">
+		<div id="left_top">
+			<!--		product table-->
+		</div>
+		<div id="left_bottom">
+			map
+		</div>
+	</div>
+	<div id="right_section">
+		<div id="right_top">
+			<!--		order details-->
+		</div>
+		<div id="right_middle">
+			<!--		address-->
+		</div>
+		<div id="right_bottom">
+			<button>notify/confim button</button>
+		</div>
+	</div>
 
 </div>
 

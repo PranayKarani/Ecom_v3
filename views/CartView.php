@@ -70,6 +70,12 @@ class CartView {
 				}
 				echo "</table>";
 				echo "<input type='button' id='checkout_with_home_delivery' value='checkout with home delivery option' onclick='homeDelivery_checkOut()'/>";
+			} else {
+				$result = DBHandler::getValue("SELECT COUNT(customer) FROM cart_pool WHERE customer = $uID");
+				if ($result <= 0) {
+					echo "Your cart is empty";
+				}
+				
 			}
 
 		} else {

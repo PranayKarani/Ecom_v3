@@ -116,8 +116,7 @@ function countCart(id) {
 }
 
 function gotoProfile() {
-    // TODO go to profile
-    alert("go to profile for ID: " + user_id);
+    $(location).attr("href", "UserProfile.php?uID=" + user_id);
 }
 
 $('document').ready(function() {

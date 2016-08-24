@@ -330,16 +330,26 @@ class UserController {
 	
 	/** Checkout */
 	
-	public static function checkOut () {
+	public static function checkOut ($address) {
 		
 		$uID = $_COOKIE[COOKIE_USER_ID];
 		
-		$sql = "CALL get_cart_products($uID)";
+		$data = explode("^", $address);
+		$type = $data[0];
+		$address = $data[1];
+		
+		if ($type == 1) {
+			$sql = "CALL get_cart_home_del_products($uID)";
+		} else {
+			$sql = "CALL get_cart_non_home_del_products($uID)";
+		}
 		
 		$result = DBHandler::getAll($sql);
 		
-		$insert_sql = "INSERT INTO order_pool(customer, product, shop, qty, price, method, date, time) VALUES";
+		$insert_sql = "INSERT INTO order_pool(customer, product, shop, qty, price, method, date, time,address) VALUES";
 		
+		$delete_products_id = "";
+		$delete_shops_id = "";
 		for ($i = 0; $i < count($result); $i++) {
 			
 			$x = $result[$i];
@@ -350,17 +360,26 @@ class UserController {
 			$method = $x['home_delivery'];
 			
 			if ($i == count($result) - 1) {
-				$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME())";
+				$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME(), '$address')";
+				$delete_products_id .= $pID;
+				$delete_shops_id .= $sID;
 			} else {
-				$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME()),";
+				$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME(), '$address'),";
+				$delete_products_id .= $pID . ",";
+				$delete_shops_id .= $sID . ",";
 			}
 			
 		}
 		
 		DBHandler::execute($insert_sql);
 		
-		$delete_sql = "DELETE FROM cart_pool WHERE customer = $uID";
+		$delete_sql = "DELETE FROM cart_pool WHERE customer = $uID AND product IN ($delete_products_id) AND cart_pool.shop IN ($delete_shops_id)";
 		DBHandler::execute($delete_sql);
+		
+		// TODO notify all shopkeepers about this customer and his order
+		
+		echo "$insert_sql \n";
+		echo $delete_sql;
 		
 	}
 	
@@ -426,6 +445,53 @@ class UserController {
 		$sql = "INSERT INTO d_customer_route_selects VALUES ($uid, $pid, $sid, $price, NOW())";
 		
 		DBHandler::execute($sql);
+		
+	}
+	
+	public static function recordProductSelection ($pid) {
+		
+		$uid = cookieSet(COOKIE_USER_ID);
+		$uid = $uid <= 0 ? 0 : $uid;
+		
+		$sql = "INSERT INTO d_customer_product_selects VALUES ($uid, $pid, NOW())";
+		
+		DBHandler::execute($sql);
+	}
+	
+	/** User Profile*/
+	
+	public static function getUserDetails ($uID) {
+		
+		$sql = "SELECT * FROM customer WHERE customer_id = $uID";
+		
+		return DBHandler::getRow($sql);
+		
+	}
+	
+	public static function getOrderedProducts ($uID) {
+		
+		$sql = "SELECT *,product_name FROM order_pool JOIN product_pool ON order_pool.product = product_pool.product_id WHERE customer = $uID ORDER BY date DESC";
+		
+		return DBHandler::getAll($sql);
+		
+	}
+	
+	public static function getRecentlyViewedProducts ($uID) {
+		
+		$sql = "CALL get_recently_viewed_products($uID)";
+		
+		return DBHandler::getAll($sql);
+		
+	}
+	
+	public static function updateDetails ($set) {
+		
+		$uID = cookieSet(COOKIE_USER_ID);
+		
+		if ($uID > 0) {
+			$sql = "UPDATE customer $set WHERE customer_id = $uID";
+			DBHandler::execute($sql);
+		}
 		
 	}
 	
