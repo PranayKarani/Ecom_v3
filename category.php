@@ -19,6 +19,8 @@ require_once('views/ProductView.php');
 if (isset($_GET['category'])) {
 	$category = $_GET['category'];
 	echo "<input type='hidden' id='cat' value='$category'/>";
+} else {
+	die("invalid category");
 }
 ?>
 <!doctype html>

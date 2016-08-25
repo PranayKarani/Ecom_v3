@@ -50,7 +50,9 @@ function loadHomeDelProductsInCart() {
                 {price: price}
             );
 
-            console.info("remove from cart: " + json);
+            postStatic("controllers", "UserController", "updateQty", json, function(data) {
+                loadCheckoutDetails();
+            });
 
         });
 
@@ -83,7 +85,9 @@ function loadNonHomeDelProductsInCart() {
                 {price: price}
             );
 
-            console.info("remove from cart: " + json);
+            postStatic("controllers", "UserController", "updateQty", json, function(data) {
+                loadCheckoutDetails();
+            });
 
         });
 

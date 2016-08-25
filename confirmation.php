@@ -19,12 +19,14 @@ require_once 'views/DepartmentView.php';
 if (isset($_COOKIE[COOKIE_USER_ID])) {
 	$uID = $_COOKIE[COOKIE_USER_ID];
 	echo "<input type='hidden' value='$uID' id='uID'/>";
+} else {
+	die("Access Denied. Login in first.");
 }
 
 if (isset($_GET['type'])) {
 	$type = $_GET['type'];// 1 = home delivery, 0 = walkin
 	echo "<input type='hidden' value='$type' id='type'/>";
-}
+} else die ("undefined order type");
 
 ?>
 <!doctype html>

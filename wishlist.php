@@ -19,6 +19,8 @@ require_once('views/WishlistView.php');
 if (isset($_COOKIE[COOKIE_USER_ID])) {
 	$uID = $_COOKIE[COOKIE_USER_ID];
 	echo "<input type='hidden' value='$uID' id='uID'/>";
+} else {
+	die("Access denied. Login to access this page.");
 }
 
 ?>

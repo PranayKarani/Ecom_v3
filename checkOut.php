@@ -14,11 +14,13 @@ require_once('views/templates/header.php');
 require_once('views/templates/footer.php');
 require_once('views/templates/LoginModal.php');
 require_once 'views/DepartmentView.php';
-//require_once('views/ProductView.php');
+require_once('views/CheckoutView.php');
 
 if (isset($_COOKIE[COOKIE_USER_ID])) {
 	$uID = $_COOKIE[COOKIE_USER_ID];
 	echo "<input type='hidden' value='$uID' id='uID'/>";
+} else {
+	die("Access denied. Login to access this page.");
 }
 
 if (isset($_GET['type'])) {
@@ -54,11 +56,21 @@ if (isset($_GET['type'])) {
 	<h3>Cart &#8594; <span style="color: red">Checkout</span> &#8594; Confirmation</h3>
 	
 	<div id="left_section">
-		<div id="left_top"></div>
+		<div id="left_top">
+			<?php
+			if ($type == 1) {
+				CheckoutView::showHomeDeliveryProducts(); // ajax synced
+			} else {
+				CheckoutView::showWalkinProducts(); // ajax synced
+			}
+			?>
+		</div>
 		<div id="left_bottom">map</div>
 	</div>
 	<div id="right_section">
-		checkout details
+		<?php
+		CheckoutView::showCartDetails($type); // ajax synced
+		?>
 	</div>
 
 </div>

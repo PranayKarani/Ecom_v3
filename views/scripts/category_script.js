@@ -145,22 +145,12 @@ $('document').ready(function() {
 
 
 function getFilteredProducts(json) {
-    $.post(
-        "include/ajaxStaticClass.php",
-        {
-            dir: "views",
-            class: "ProductView",
-            method: "showFilteredProducts",
-            params: json
-        },
-        function(data) {
-            $("#center_middle").hide();
-            $(".nearBy").css("width", "75%");
-            $("#order_by").show();
-            $("#center_bottom").html(data);
-
-        }
-    );
+    postStatic("views", "ProductView", "showFilteredProducts", json, function(data) {
+        $("#center_middle").hide();
+        $(".nearBy").css("width", "75%");
+        $("#order_by").show();
+        $("#center_bottom").html(data);
+    });
 }
 
 function loadProducts() {

@@ -20,6 +20,8 @@ require_once('views/CartView.php');
 if (isset($_COOKIE[COOKIE_USER_ID])) {
 	$uID = $_COOKIE[COOKIE_USER_ID];
 	echo "<input type='hidden' value='$uID' id='uID'/>";
+} else {
+	die("Access denied. Login to access this page.");
 }
 
 ?>
@@ -46,8 +48,14 @@ if (isset($_COOKIE[COOKIE_USER_ID])) {
 <div id="content">
 	<h3>Cart</h3>
 	<div id="top_section">
+		<?php
+		CartView::showHomeDeliveryProducts();
+		?>
 	</div>
 	<div id="bottom_section">
+		<?php
+		CartView::showWalkinProducts();
+		?>
 	</div>
 </div>
 

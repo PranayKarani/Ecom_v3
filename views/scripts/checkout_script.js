@@ -135,9 +135,7 @@ function loadProducts(type, sID = 0) {// NOTE: sID is currently used for removin
                 {price: price}
             );
 
-            console.info("remove from cart: " + json);
-
-            postStatic("controllers", "userController", "updateQty", json, function(data) {
+            postStatic("controllers", "UserController", "updateQty", json, function(data) {
                 loadCheckoutDetails();
             });
 
@@ -211,7 +209,7 @@ function removeFromCart(pID, sID, uID) {
 
     postStatic("controllers", "UserController", "removeFromCart", json, function(data) {
         loadProducts(type, sID);
-        loadCheckoutDetails();
+        // loadCheckoutDetails();
         countCart(uID);
 
     });

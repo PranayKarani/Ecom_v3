@@ -7,7 +7,7 @@ class CheckoutView {
 		$uID = $_COOKIE[COOKIE_USER_ID];
 		
 		$details = UserController::getCheckoutDetails($uID, $type);
-		
+		echo "<h4>checkout details</h4>";
 		echo "<pre>";
 		print_r($details);
 		echo "</pre>";

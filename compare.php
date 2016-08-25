@@ -22,9 +22,13 @@ $noof_ids = 0;
 if (isset($_GET['ids']) && !empty($_GET['ids'])) {
 	$ids = explode(' ', trim($_GET['ids']));
 	$noof_ids = count($ids);
+} else {
+	die("no products to compare");
 }
 if (isset($_GET['category'])) {
 	$category = $_GET['category'];
+} else {
+	die("category not set");
 }
 ?>
 <!doctype html>
@@ -58,8 +62,6 @@ if (isset($_GET['category'])) {
 			} else {
 				echo "<div style='font-size: 96px;font-family: \"Segoe\"; width: 100%;padding: 2%; text-align: center'><span>Nothing to compare</span></div>";
 			}
-		} else {
-			die("category not set");
 		}
 		
 		?>
