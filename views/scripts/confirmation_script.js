@@ -215,7 +215,12 @@ function placeOrder(uID) {
         postStatic("controllers", "UserController", "checkOut", full_address, function(data) {
             console.info(data);
             countCart(uID);
-            history.go(-2);
+            if (data.length > 0) {
+                history.go(-1);
+                alert("the supplier has insufficient stock for product: " + data);
+            } else {
+                history.go(-2);
+            }
         })
     }
 

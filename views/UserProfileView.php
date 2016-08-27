@@ -92,28 +92,45 @@ class UserProfileView {
 			
 			echo "<tr>";
 			echo "<th width='200'>Product Name</th>";
+			echo "<th width='200'>Shop Name</th>";
 			echo "<th width='100'>Price</th>";
 			echo "<th width='100'>Date</th>";
 			echo "<th width='100'>Time</th>";
 			echo "<th width='100'>Type</th>";
+			echo "<th width='100'>Order Status</th>";
 			echo "</tr>";
 			
 			for ($i = 0; $i < count($data); $i++) {
 				
 				$pid = $data[$i]['product'];
 				$name = $data[$i]['product_name'];
+				$shop_name = $data[$i]['shop_name'];
 				$date = $data[$i]['date'];
 				$time = $data[$i]['time'];
 				$price = $data[$i]['price'];
 				$hd = $data[$i]['method'];
 				$hd = $hd == 1 ? "home delivery" : "walk-in";
+				$status = $data[$i]['status'];
+				switch ($status) {
+					case 0:
+						$status = "placed";
+						break;
+					case 1:
+						$status = "completed";
+						break;
+					default:
+						$status = "other";
+						break;
+				}
 				
 				echo "<tr>";
 				echo "<td>$name</td>";
+				echo "<td>$shop_name</td>";
 				echo "<td>$price Rs</td>";
 				echo "<td>$date</td>";
 				echo "<td>$time</td>";
 				echo "<td>$hd</td>";
+				echo "<td>$status</td>";
 				echo "</tr>";
 				
 			}

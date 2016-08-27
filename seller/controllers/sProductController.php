@@ -21,19 +21,19 @@ class SProductController {
 				$strict_search_text .= " +$txt";
 			}
 		}
-		$sql = "CALL get_searched_products('$strict_search_text','$search_text', 25)";
+		$sql = "CALL get_searched_products('$strict_search_text','$search_text', 25,-456)";
 
 		return DBHandler::getAll($sql);
 	}
 
 	public static function getShopProducts ($shop_id) {
-		$sql = "CALL get_shop_products('$shop_id')";
+		$sql = "CALL get_shop_products('$shop_id',-89)";
 
 		return DBHandler::getAll($sql);
 	}
 
 	public static function getProductDetails ($pID) {
-		$sql = "CALL get_product_details($pID)";
+		$sql = "CALL get_product_details($pID,NULL, -24)";
 
 		return DBHandler::getRow($sql);
 	}

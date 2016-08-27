@@ -346,8 +346,11 @@ class UserController {
 		
 		$result = DBHandler::getAll($sql);
 		
-		$insert_sql = "INSERT INTO order_pool(customer, product, shop, qty, price, method, date, time,address) VALUES";
+		$insert_sql = "INSERT INTO order_pool(customer, product, shop, qty, price, method, status, date, time, address) VALUES";
+		$update_inv_qty_sql =
 		
+		$inv_qty_greater = true;
+		$insufficient_product_name = "";
 		$delete_products_id = "";
 		$delete_shops_id = "";
 		for ($i = 0; $i < count($result); $i++) {
@@ -356,30 +359,46 @@ class UserController {
 			$pID = $x['product_id'];
 			$sID = $x['shop_id'];
 			$qty = $x['qty'];
+			$inv_qty = $x['inv_qty'];
 			$price = $x['price_now'];
+			$status = 0;// 0 = placed, 1 = completed
 			$method = $x['home_delivery'];
 			
-			if ($i == count($result) - 1) {
-				$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME(), '$address')";
-				$delete_products_id .= $pID;
-				$delete_shops_id .= $sID;
+			// in product qty in order is greater than qty in shop inventory.
+			if ($qty <= $inv_qty) {
+				if ($i == count($result) - 1) {
+					$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, $status, CURDATE(), CURTIME(), '$address')";
+					$delete_products_id .= $pID;
+					$delete_shops_id .= $sID;
+				} else {
+					$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, $status, CURDATE(), CURTIME(), '$address'),";
+					$delete_products_id .= $pID . ",";
+					$delete_shops_id .= $sID . ",";
+				}
+				$diff_qty = $inv_qty - $qty;
+				// TODO diff_qty is below a limit, notify shopkeeper for stock update
+				DBHandler::execute("UPDATE inventory_pool SET qty = $diff_qty WHERE shop = $sID AND product = $pID");
 			} else {
-				$insert_sql .= " ($uID, $pID, $sID, $qty, $price, $method, CURDATE(), CURTIME(), '$address'),";
-				$delete_products_id .= $pID . ",";
-				$delete_shops_id .= $sID . ",";
+				$inv_qty_greater = false;
+				$insufficient_product_name = $x['product_name'];
 			}
 			
 		}
 		
-		DBHandler::execute($insert_sql);
-		
-		$delete_sql = "DELETE FROM cart_pool WHERE customer = $uID AND product IN ($delete_products_id) AND cart_pool.shop IN ($delete_shops_id)";
-		DBHandler::execute($delete_sql);
-		
-		// TODO notify all shopkeepers about this customer and his order
-		
-		echo "$insert_sql \n";
-		echo $delete_sql;
+		if ($inv_qty_greater) {
+			DBHandler::execute($insert_sql);
+			
+			$delete_sql = "DELETE FROM cart_pool WHERE customer = $uID AND product IN ($delete_products_id) AND cart_pool.shop IN ($delete_shops_id)";
+			DBHandler::execute($delete_sql);
+			
+			// TODO notify all shopkeepers about this customer and his order
+			
+			// NOTE: do not echo anything if everything is running fine
+//			echo "$insert_sql \n";
+//			echo $delete_sql;
+		} else {
+			echo $insufficient_product_name;
+		}
 		
 	}
 	
@@ -470,7 +489,7 @@ class UserController {
 	
 	public static function getOrderedProducts ($uID) {
 		
-		$sql = "SELECT *,product_name FROM order_pool JOIN product_pool ON order_pool.product = product_pool.product_id WHERE customer = $uID ORDER BY date DESC";
+		$sql = "SELECT *,product_name,shop_name FROM order_pool JOIN product_pool ON order_pool.product = product_pool.product_id JOIN shop_pool ON order_pool.shop = shop_pool.shop_id WHERE customer = $uID ORDER BY date,time DESC";
 		
 		return DBHandler::getAll($sql);
 		

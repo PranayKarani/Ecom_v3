@@ -97,12 +97,12 @@ class SProductView {
         echo "Mrp: <input type='number' value='$mrp' min='0' id='mrp' disabled/><br>";
 
         // qty
-        echo "Quantity: <input type='number' value='$qty' min='0' id='qty' class='input' /><br>";
+	    echo "Quantity: <input type='number' value='$qty' min='1' id='qty' class='input' /><br>";
         // My Price
         echo "My Price: <input type='number' value='$price' min='0' id='price' class='input' /><br>";
 
         // submit button
-        echo "<input type='button' value='update' id='update'>";
+	    echo "<input type='button' value='update' id='update'> <span style='color: red'>Add Remove button later</span>";
 
         echo "</form>";
 

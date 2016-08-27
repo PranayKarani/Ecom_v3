@@ -67,8 +67,8 @@ class ConfirmationView {
 					
 					echo "<tr class='product_row' data-productID = '$pID' data-shopID='$sID' data-qty='$qty' data-price='$price_now'>";
 					echo "<td class='product_code'>XYZAD</td>";
-					echo "<td title='$p_name' class='product_name' onclick='openProductInfo($pID)'>$p_name</td>";
-					echo "<td title='$title' class='shop_name' onclick=\"openShopPage($sID,'$category')\" data-loc_x='$loc_x' data-loc_y='$loc_y' data-id='$sID'>$s_name</td>";
+					echo "<td title='$p_name' class='product_name' >$p_name</td>";
+					echo "<td title='$title' class='shop_name' data-loc_x='$loc_x' data-loc_y='$loc_y' data-id='$sID'>$s_name</td>";
 					echo "<td>$qty</td>";
 					echo "<td title='$price_now'><strong>$price_now</strong></td>";
 					echo "</tr>";
@@ -135,8 +135,8 @@ class ConfirmationView {
 					
 					echo "<tr class='product_row' data-productID = '$pID' data-shopID='$sID' data-qty='$qty' data-price='$price_now'>";
 					echo "<input type='hidden' class='locations' data-loc_x='$loc_x' data-loc_y='$loc_y'/>";
-					echo "<td title='$p_name' class='product_name' onclick='openProductInfo($pID)'>$p_name</td>";
-					echo "<td title='$title' class='shop_name' onclick=\"openShopPage($sID,'$category')\" data-loc_x='$loc_x' data-loc_y='$loc_y' data-id='$sID'>$s_name</td>";
+					echo "<td title='$p_name' class='product_name'>$p_name</td>";
+					echo "<td title='$title' class='shop_name' data-loc_x='$loc_x' data-loc_y='$loc_y' data-id='$sID'>$s_name</td>";
 					echo "<td>$qty</td>";
 					echo "<td title='$price_now'><strong>$price_now</strong></td>";
 					echo "</tr>";

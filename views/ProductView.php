@@ -340,15 +340,10 @@ class ProductView {
 		$count = count($products);
 		if ($count > 0) {
 			for ($i = 0; $i < $count; $i++) {
-				// product box
-//                $id = $products[$i]['product_id'];
-//                $name = $products[$i]['product_name'];
-//                $brand = $products[$i]['brand'];
-//
-//                echo "<span class='shop_product_link' id='$id'>";
-//                echo "<strong>$brand</strong> $name";
-//                echo "</span><br>";
-				self::product_box($products[$i], false);
+				
+				if ($products[$i]['qty'] > 0) {
+					self::product_box($products[$i], false);
+				}
 			}
 		} else {
 			echo "no products found";
@@ -361,14 +356,9 @@ class ProductView {
 		if ($count > 0) {
 			for ($i = 0; $i < $count; $i++) {
 				// product box
-//                $id = $products[$i]['product_id'];
-//                $name = $products[$i]['product_name'];
-//                $brand = $products[$i]['brand'];
-//
-//                echo "<span class='shop_product_link' id='$id'>";
-//                echo "<strong>$brand</strong> $name";
-//                echo "</span><br>";
-				self::product_box($products[$i], false);
+				if ($products[$i]['qty'] > 0) {
+					self::product_box($products[$i], false);
+				}
 			}
 		} else {
 			echo "no $category" . "s found in this shop";
